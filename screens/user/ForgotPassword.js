@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import * as AuthActions from '../../store/actions/auth';
 import {connect} from 'react-redux';
@@ -46,14 +47,26 @@ class ForgotPassword extends Component {
   };
 
   _resetPassword = () => {
+    let errors = {};
     if (this._validate()) {
       //this.props.navigation.navigate('RESETPASSWORD', {email});
-      this.props.resetPassword(this.state.email).then(val => {
-        this.setState({isLoading: false});
-        setTimeout(() => {
-          this.props.navigation.navigate('Auth');
-        }, 1000);
-      });
+      this.props
+        .resetPassword(this.state.email)
+        .then(val => {
+          this.setState({isLoading: false});
+          setTimeout(() => {
+            this.props.navigation.navigate('Auth');
+          }, 1000);
+        })
+        .catch(err => {
+          errors.message = err.message;
+          // let message = err.message ? err.message : 'Error';
+          // Toast.show(message);
+          this.setState({
+            isLoading: false,
+            errors: errors,
+          });
+        });
     }
   };
 
@@ -66,6 +79,9 @@ class ForgotPassword extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        {/* <NavigationEvents onDidFocus={() => this._clearState()} /> */}
+
+        <StatusBar barStyle={'dark-content'} />
         <View>
           <TextInput
             style={styles.textInput}
@@ -74,7 +90,13 @@ class ForgotPassword extends Component {
             value={this.email}
             placeholder="E-mail"
           />
+          <View style={{alignItems: 'center', marginTop: 4}}>
+            {this.state.errors && this.state.errors.message ? (
+              <Text style={{color: 'red'}}>{this.state.errors.message}</Text>
+            ) : null}
+          </View>
         </View>
+
         <View style={styles.buttonContainer}>
           <TouchableOpacity
             activeOpacity={0.5}
@@ -104,7 +126,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 25,
     paddingLeft: 15,
-    marginVertical: 27,
+    marginTop: 27,
   },
   resetPasswordBtn: {
     height: 40,
@@ -113,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 12,
+    marginTop: 27,
   },
   resetPasswordLabel: {},
   buttonContainer: {

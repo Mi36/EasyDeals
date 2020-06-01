@@ -124,6 +124,7 @@ const editProductScreen = props => {
       }
       props.navigation.goBack();
     } catch (err) {
+      console.log(err);
       setError(err.message);
     }
 
@@ -142,6 +143,7 @@ const editProductScreen = props => {
 
   useEffect(() => {
     if (error) {
+      console.log(error);
       Alert.alert('An Error Occured', error, [{text: 'Okay'}]);
 
       Alert.alert('An error occured', 'Please check errors ', [{text: 'Okay'}]);
@@ -213,7 +215,7 @@ const editProductScreen = props => {
           returnKeyType="next"
           autoCapitalize="sentences"
           autoCorrect
-          multiline
+          //   multiline
           initialValue={editProduct ? editProduct.title : ''}
           initiallyValid={!!editProduct}
           onInputChange={inputChangehandler}
