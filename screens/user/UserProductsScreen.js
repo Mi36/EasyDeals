@@ -1,11 +1,42 @@
-import React from 'react';
-import {FlatList, Button, Text, View, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, Button, Text, View, StyleSheet, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productActions from '../../store/actions/products';
+import ImagePicker from 'react-native-image-picker';
+// watch from 10 onwards
+//https://www.youtube.com/watch?v=GEtqS9Qozv4&t=681s
 
 import ProductItem from '../../components/shop/ProdectItem';
+
+const PickImage = ({image, onImagePicked}) => {
+  const [selectedImage, setSelectedImage] = useState();
+  const pickImageHandler = () => {
+    ImagePicker.showImagePicker(
+      {title: 'Pick image', maxWidth: 800, maxHeight: 600},
+      response => {
+        if (response.error) {
+          console.log('image error');
+        } else {
+          console.log('image:' + response.uri);
+          setSelectedImage({uri: response.uri});
+          onImagePicked({uri: response.uri});
+        }
+      },
+    );
+  };
+  return (
+    <View style={{alignItems: 'center', marginTop: 25}}>
+      <View style={styles.imageContainer}>
+        <Image source={selectedImage} />
+      </View>
+      <View style={styles.button}>
+        <Button title="Pick image" onPress={pickImageHandler} />
+      </View>
+    </View>
+  );
+};
 
 const UserProductScreen = props => {
   const userProducts = useSelector(state => state.products.userproducts);
@@ -17,9 +48,10 @@ const UserProductScreen = props => {
 
   if (userProducts.length === 0) {
     return (
-      <View style={styles.empty}>
-        <Text>No items found</Text>
-      </View>
+      // <View style={styles.empty}>
+      //   <Text>No items found</Text>
+      // </View>
+      <PickImage />
     );
   }
 
@@ -91,5 +123,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  button: {
+    margin: 8,
+    borderWidth: 3,
+    borderColor: 'green',
+    borderRadius: 10,
+  },
+  imageContainer: {
+    borderWidth: 1,
+    borderColor: 'red',
+    width: '80%',
+    height: 150,
   },
 });
