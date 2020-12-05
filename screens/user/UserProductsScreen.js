@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, Button, Text, View} from 'react-native';
+import {FlatList, Button, Text, View, StyleSheet} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
@@ -17,13 +17,7 @@ const UserProductScreen = props => {
 
   if (userProducts.length === 0) {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'pink',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
+      <View style={styles.empty}>
         <Text>No items found</Text>
       </View>
     );
@@ -42,8 +36,7 @@ const UserProductScreen = props => {
           onAddToCart={() => {}}
           onSelect={() => {
             editProductHandler(itemData.item.id);
-          }}
-          onAddToCart={() => {}}>
+          }}>
           <Button
             color="red"
             title="Edit"
@@ -92,3 +85,11 @@ UserProductScreen.navigationOptions = navData => {
 };
 
 export default UserProductScreen;
+
+const styles = StyleSheet.create({
+  empty: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
