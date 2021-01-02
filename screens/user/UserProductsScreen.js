@@ -1,28 +1,44 @@
 import React, {useState} from 'react';
-import {FlatList, Button, Text, View, StyleSheet, Image} from 'react-native';
+import {FlatList, Button, View, StyleSheet, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productActions from '../../store/actions/products';
-import ImagePicker from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 // watch from 10 onwards
 //https://www.youtube.com/watch?v=GEtqS9Qozv4&t=681s
 
 import ProductItem from '../../components/shop/ProdectItem';
 
-const PickImage = ({image, onImagePicked}) => {
+const PickImage = () => {
   const [selectedImage, setSelectedImage] = useState();
-  const pickImageHandler = () => {
-    ImagePicker.showImagePicker(
-      {title: 'Pick image', maxWidth: 800, maxHeight: 600},
+  const [takenImage, setTakenImage] = useState();
+
+  const takePhotoHandler = () => {
+    console.warn('take');
+    launchCamera(
+      {
+        mediaType: 'photo',
+        includeBase64: false,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
       response => {
-        if (response.error) {
-          console.log('image error');
-        } else {
-          console.log('image:' + response.uri);
-          setSelectedImage({uri: response.uri});
-          onImagePicked({uri: response.uri});
-        }
+        setTakenImage(response);
+      },
+    );
+  };
+
+  const pickImageHandler = () => {
+    launchImageLibrary(
+      {
+        mediaType: 'photo',
+        includeBase64: false,
+        maxHeight: 200,
+        maxWidth: 200,
+      },
+      response => {
+        setSelectedImage(response);
       },
     );
   };
@@ -31,8 +47,12 @@ const PickImage = ({image, onImagePicked}) => {
       <View style={styles.imageContainer}>
         <Image source={selectedImage} />
       </View>
+      <View style={styles.imageContainer}>
+        <Image source={takenImage} />
+      </View>
       <View style={styles.button}>
         <Button title="Pick image" onPress={pickImageHandler} />
+        <Button title="Take image" onPress={takePhotoHandler} />
       </View>
     </View>
   );
