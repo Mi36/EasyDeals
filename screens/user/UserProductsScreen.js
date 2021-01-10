@@ -1,21 +1,78 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {FlatList, Button, View, StyleSheet, Image} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productActions from '../../store/actions/products';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-// watch from 10 onwards
-//https://www.youtube.com/watch?v=GEtqS9Qozv4&t=681s
+import AsyncStorage from '@react-native-community/async-storage';
+import storage from '@react-native-firebase/storage';
+import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 import ProductItem from '../../components/shop/ProdectItem';
 
 const PickImage = () => {
   const [selectedImage, setSelectedImage] = useState();
   const [takenImage, setTakenImage] = useState();
+  useEffect(() => {
+    auth().signInAnonymously();
+  });
+
+  const uploadImage = async () => {
+    const uri = selectedImage.uri;
+    const response = await fetch(uri); //take uri from picker
+    const blob = await response.blob(); //converted to blob
+    const userData = await AsyncStorage.getItem('userData');
+    const transformedData = JSON.parse(userData);
+    console.log(transformedData.userId);
+    const task = storage()
+      .ref()
+      .child(
+        `post/${auth().currentUser._user.uid}/${Math.random().toString(36)}`,
+      )
+      .put(blob);
+
+    const taskProgress = snapshot => {
+      console.log(
+        `${snapshot.bytesTransferred} transferred out of ${
+          snapshot.totalBytes
+        }`,
+      );
+    };
+
+    const taskCompleted = () => {
+      task.snapshot.ref.getDownloadURL().then(snapshot => {
+        console.log('ssss', snapshot);
+        savePostData(snapshot);
+      });
+    };
+    const taskError = snapshot => {
+      console.log(snapshot);
+    };
+
+    task.on('state_changed', taskProgress, taskCompleted, taskError);
+
+    task.then(() => {
+      console.log('Image uploaded to the bucket!');
+      task.snapshot.ref.getDownloadURL().then(snapshot => {
+        console.log('ssss', snapshot);
+        savePostData(snapshot);
+      });
+    });
+  };
+
+  const savePostData = downloadURL => {
+    console.log('working');
+    database()
+      .ref('/products/123')
+      .update({
+        image: downloadURL,
+      })
+      .then(() => console.log('Data updated.'));
+  };
 
   const takePhotoHandler = () => {
-    console.warn('take');
     launchCamera(
       {
         mediaType: 'photo',
@@ -42,6 +99,7 @@ const PickImage = () => {
       },
     );
   };
+  console.log('dsd', auth().currentUser._user.uid);
   return (
     <View style={{alignItems: 'center', marginTop: 25}}>
       <View style={styles.imageContainer}>
@@ -53,6 +111,7 @@ const PickImage = () => {
       <View style={styles.button}>
         <Button title="Pick image" onPress={pickImageHandler} />
         <Button title="Take image" onPress={takePhotoHandler} />
+        <Button title="press here" onPress={uploadImage} />
       </View>
     </View>
   );

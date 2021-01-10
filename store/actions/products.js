@@ -83,7 +83,7 @@ export const createProduct = (title, description, imageUrl, price) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products.json?auth=${token}`,
+      `https://ecommerce-f33e7.firebaseio.com/products/${userId}.json?auth=${token}`,
       {
         method: 'POST',
         headers: {

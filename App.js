@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {persistStore, persistReducer} from 'redux-persist'; // for prsist
 //import storage from 'redux-persist/lib/storage';
+import {YellowBox} from 'react-native';
+
+YellowBox.ignoreWarnings(['Remote']);
 
 import AsyncStorage from '@react-native-community/async-storage'; // for persisit
 
@@ -31,10 +34,7 @@ const persistConfig = {
   //seperated by commas
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const store = createStore(
-  persistedReducer,
-  applyMiddleware(createLogger(), thunk),
-);
+const store = createStore(persistedReducer, applyMiddleware(thunk));
 
 const persistedStore = persistStore(store);
 
