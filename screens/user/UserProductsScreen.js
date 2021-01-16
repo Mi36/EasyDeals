@@ -24,6 +24,7 @@ const PickImage = () => {
     const response = await fetch(uri); //take uri from picker
     const blob = await response.blob(); //converted to blob
     const userData = await AsyncStorage.getItem('userData');
+    console.log('dsadasd', userData);
     const transformedData = JSON.parse(userData);
     console.log(transformedData.userId);
     const task = storage()

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KidswayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KidswayTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2ADB1E1B386A23E1B4410B17 /* libPods-Kidsway-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09A48C95263D0ECB77367438 /* libPods-Kidsway-tvOSTests.a */; };
@@ -19,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* KidswayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KidswayTests.m */; };
 		81622C078547AC8C6E0482E8 /* libPods-Kidsway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB2663A4AD6461CB576B98A /* libPods-Kidsway.a */; };
 		8444650C25AA0A0C0095063F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8444650B25AA0A0C0095063F /* GoogleService-Info.plist */; };
+		8480D42B25B36B6300445170 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8480D42A25B36B6200445170 /* BootSplash.storyboard */; };
 		87B156178A355AD95A897872 /* libPods-KidswayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */; };
 		8BFC5C43B261411D6D13F329 /* libPods-Kidsway-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5F171BE549C8E808C8313 /* libPods-Kidsway-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -53,7 +53,6 @@
 		13B07F961A680F5B00A75B9A /* Kidsway.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kidsway.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Kidsway/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Kidsway/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Kidsway/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Kidsway/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Kidsway/main.m; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		4BB2663A4AD6461CB576B98A /* libPods-Kidsway.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kidsway.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB1E962EF65E1F4EB3CB2EA /* Pods-KidswayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KidswayTests.release.xcconfig"; path = "Target Support Files/Pods-KidswayTests/Pods-KidswayTests.release.xcconfig"; sourceTree = "<group>"; };
 		8444650B25AA0A0C0095063F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8480D42A25B36B6200445170 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Kidsway/Images.xcassets/BootSplash.storyboard; sourceTree = "<group>"; };
 		893959DDAE50E4B00D556F55 /* Pods-Kidsway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kidsway.release.xcconfig"; path = "Target Support Files/Pods-Kidsway/Pods-Kidsway.release.xcconfig"; sourceTree = "<group>"; };
 		937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidswayTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A964FE343C036324773EB /* Pods-Kidsway-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kidsway-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Kidsway-tvOSTests/Pods-Kidsway-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -131,8 +131,8 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				8480D42A25B36B6200445170 /* BootSplash.storyboard */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = Kidsway;
@@ -341,8 +341,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				8444650C25AA0A0C0095063F /* GoogleService-Info.plist in Resources */,
+				8480D42B25B36B6300445170 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,18 +579,6 @@
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = Kidsway;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
@@ -894,7 +882,7 @@
 				00E356F71AD99517003FC87E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Kidsway" */ = {
 			isa = XCConfigurationList;
@@ -903,7 +891,7 @@
 				13B07F951A680F5B00A75B9A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Kidsway-tvOS" */ = {
 			isa = XCConfigurationList;
@@ -912,7 +900,7 @@
 				2D02E4981E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "Kidsway-tvOSTests" */ = {
 			isa = XCConfigurationList;
@@ -921,7 +909,7 @@
 				2D02E49A1E0B4A5E006451C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "Kidsway" */ = {
 			isa = XCConfigurationList;
@@ -930,7 +918,7 @@
 				83CBBA211A601CBA00E9B192 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

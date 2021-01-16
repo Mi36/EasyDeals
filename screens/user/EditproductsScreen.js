@@ -1,12 +1,12 @@
-import React, {useEffect, useState, useCallback, useReducer} from 'react';
+import React, {useCallback, useEffect, useReducer, useState} from 'react';
 // use reducer not related to redux
-import {View, StyleSheet, Alert, ActivityIndicator} from 'react-native';
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-import HeaderButton from '../../components/UI/HeaderButton';
-import {useSelector, useDispatch} from 'react-redux';
-import * as productActions from '../../store/actions/products';
-import Input from '../../components/input';
+import {ActivityIndicator, Alert, StyleSheet, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import {useDispatch, useSelector} from 'react-redux';
+import Input from '../../components/input';
+import HeaderButton from '../../components/UI/HeaderButton';
+import * as productActions from '../../store/actions/products';
 // use outside of component if not depend on prop, it helps to avoid unnecessory
 // recreations of the function
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
