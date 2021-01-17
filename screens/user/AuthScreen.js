@@ -68,6 +68,11 @@ const AuthScreen = props => {
       Alert.alert('Error Occured', error, [{text: 'Okay'}]);
     }
   }, [error]);
+  useEffect(() => {
+    props.navigation.setParams({
+      aaaa: isSignUp,
+    });
+  }, [isSignUp]);
 
   const authHandler = async () => {
     let action;
@@ -114,6 +119,13 @@ const AuthScreen = props => {
     <LinearGradient colors={['pink', 'grey']} style={styles.linearGradient}>
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={1}>
         <View>
+          <View style={{alignItems: 'center', paddingTop: 25}}>
+            {isSignUp ? (
+              <Text style={{fontWeight: 'bold', fontSize: 50}}>REGISTER</Text>
+            ) : (
+              <Text style={{fontWeight: 'bold', fontSize: 50}}>LOGIN</Text>
+            )}
+          </View>
           <ScrollView style={{marginHorizontal: 24, marginTop: 50}}>
             <Input
               keyboardType="email-address"
@@ -170,12 +182,14 @@ const AuthScreen = props => {
     </LinearGradient>
   );
 };
-AuthScreen.navigationOptions = {
-  headerTitle: 'Authenticate',
-  headerTintColor: 'red', // heading color
-  headerStyle: {
-    backgroundColor: 'pink',
-  },
+AuthScreen.navigationOptions = navData => {
+  return {
+    headerShown: false,
+    headerTintColor: 'red', // heading color
+    headerStyle: {
+      backgroundColor: 'pink',
+    },
+  };
 };
 
 const styles = StyleSheet.create({

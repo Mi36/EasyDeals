@@ -36,6 +36,7 @@
     "react-navigation-drawer": "^2.4.11",
     "react-navigation-header-buttons": "^3.0.5",
     "react-navigation-stack": "^2.2.3",
+    "react-navigation-tabs": "^2.10.1",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",

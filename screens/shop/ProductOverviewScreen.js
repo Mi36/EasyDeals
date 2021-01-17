@@ -7,6 +7,7 @@ import {
   View,
   StyleSheet,
   Text,
+  Alert,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import ProductItem from '../../components/shop/ProdectItem';
@@ -14,16 +15,25 @@ import * as cartActions from '../../store/actions/cart';
 import * as productActions from '../../store/actions/products';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
+import * as AuthActions from '../../store/actions/auth';
 
 const ProductOverviewScreen = props => {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
   const [isRefrehing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(); //initially undefined, thats why this is empty
+  const actionLogOut = useCallback(() => {
+    dispatch(AuthActions.logout());
+  }, [dispatch]);
+  useEffect(() => {
+    props.navigation.setParams({
+      logOut: actionLogOut,
+    });
+  }, [actionLogOut]);
 
   const selectItemHandler = id => {
     props.navigation.navigate('ProductDetails', {productId: id});
   };
-  const dispatch = useDispatch();
 
   const loadProducts = useCallback(async () => {
     setError(null);
@@ -38,7 +48,7 @@ const ProductOverviewScreen = props => {
     // here we get the thrown error fro actionFunction
     //  setIsLoading(false);
     setIsRefreshing(false);
-  }, [dispatch, setError, setIsLoading]);
+  }, [dispatch, setError]);
 
   useEffect(() => {
     const willFocusSub = props.navigation.addListener(
@@ -52,7 +62,7 @@ const ProductOverviewScreen = props => {
     return () => {
       willFocusSub.remove();
     };
-  }, [loadProducts]);
+  }, [loadProducts, props.navigation]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -130,9 +140,23 @@ ProductOverviewScreen.navigationOptions = navData => {
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
-          title="Cart"
+          title="Logout"
           onPress={() => {
-            navData.navigation.navigate('CartScreen');
+            Alert.alert(
+              'Log out',
+              'Are you sure you want to log out.',
+              [
+                {
+                  text: 'Cancel',
+                  style: 'cancel',
+                },
+                {
+                  text: 'OK',
+                  onPress: () => navData.navigation.state.params.logOut(),
+                },
+              ],
+              {cancelable: false},
+            );
           }}
         />
       </HeaderButtons>
