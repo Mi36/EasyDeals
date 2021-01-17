@@ -10,6 +10,8 @@ import {
   TouchableOpacity,
   Text,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
 import * as AuthActions from '../../store/actions/auth';
@@ -161,6 +163,7 @@ const AuthScreen = props => {
               }}>
               <Text style={styles.goBackTextColor}>Forgot Password</Text>
             </TouchableOpacity>
+            <Icon name="rocket" size={30} color="#900" />
           </ScrollView>
         </View>
       </KeyboardAvoidingView>

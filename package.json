@@ -31,6 +31,7 @@
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.2.0",
     "react-native-tiny-toast": "^1.0.7",
+    "react-native-vector-icons": "^7.1.0",
     "react-navigation": "^4.2.2",
     "react-navigation-drawer": "^2.4.11",
     "react-navigation-header-buttons": "^3.0.5",
