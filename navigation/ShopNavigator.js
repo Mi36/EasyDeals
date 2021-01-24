@@ -11,22 +11,15 @@ import EditProductscreen from '../screens/user/EditproductsScreen';
 import ForgotPassword from '../screens/user/ForgotPassword';
 import ResetPassword from '../screens/user/ResetPassword';
 import UserProductScreen from '../screens/user/UserProductsScreen';
-import EntryScreen from '../screens/admin/EntryScreen';
+import EntryScreen from '../screens/EntryScreen';
 import AdminLogin from '../screens/admin/AdminLogin';
 import AdminSignUp from '../screens/admin/AdminSignUp';
 import AllOrders from '../screens/admin/AllOrders';
-const ProductsNavigator = createStackNavigator(
-  {
-    ProductsOverview: ProductOverviewScreen,
-    ProductDetails: ProductDetailsScreen,
-    CartScreen: CartScreen,
-  },
-  {
-    defaultNavigationOptions: {
-      headertintColor: 'red',
-    },
-  },
-);
+const ProductsNavigator = createStackNavigator({
+  ProductsOverview: ProductOverviewScreen,
+  ProductDetails: ProductDetailsScreen,
+  CartScreen: CartScreen,
+});
 
 const AuthNavigator = createStackNavigator({
   Entry: EntryScreen,
