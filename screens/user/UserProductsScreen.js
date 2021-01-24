@@ -171,18 +171,16 @@ const UserProductScreen = props => {
 UserProductScreen.navigationOptions = navData => {
   return {
     headerTitle: 'User products',
-
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
-          title="MENU"
+          title="All orders"
           onPress={() => {
-            navData.navigation.toggleDrawer();
+            navData.navigation.navigate('AllOrders');
           }}
         />
       </HeaderButtons>
     ),
-
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item

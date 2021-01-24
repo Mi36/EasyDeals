@@ -161,16 +161,6 @@ ProductOverviewScreen.navigationOptions = navData => {
         />
       </HeaderButtons>
     ),
-    headerLeft: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="MENU"
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    ),
   };
 };
 

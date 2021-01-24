@@ -63,17 +63,6 @@ const OrderScreen = props => {
 OrderScreen.navigationOptions = navData => {
   return {
     headerTitle: 'Your Orders',
-
-    headerLeft: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="MENU"
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    ),
   };
 };
 

@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {View, ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {useDispatch} from 'react-redux';
 import * as authActions from '../store/actions/auth';
 
@@ -10,15 +10,14 @@ const StartUpScreen = props => {
     const tryLogin = async () => {
       const userData = await AsyncStorage.getItem('userData');
       if (!userData) {
-        props.navigation.navigate('Auth');
+        props.navigation.navigate('Entry');
         return;
       }
       const transformedData = JSON.parse(userData); // convert to js array or object
-      console.log(transformedData);
       const {userId, token, expiryDate} = transformedData;
       const expirationDate = new Date(expiryDate);
       if (expirationDate <= new Date() || !token || !userId) {
-        props.navigation.navigate('Auth');
+        props.navigation.navigate('Entry');
         return;
       }
       const expirationTime = expirationDate.getTime() - new Date().getTime();
@@ -26,12 +25,17 @@ const StartUpScreen = props => {
       dispatch(authActions.authenticate(userId, userId, expirationTime));
     };
     tryLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <View style={styles.indicator}>
       <ActivityIndicator color="red" size="large" />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  indicator: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+});
 
 export default StartUpScreen;

@@ -72,6 +72,7 @@ const AuthScreen = props => {
     props.navigation.setParams({
       aaaa: isSignUp,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSignUp]);
 
   const authHandler = async () => {
@@ -119,12 +120,25 @@ const AuthScreen = props => {
     <LinearGradient colors={['pink', 'grey']} style={styles.linearGradient}>
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={1}>
         <View>
-          <View style={{alignItems: 'center', paddingTop: 25}}>
-            {isSignUp ? (
-              <Text style={{fontWeight: 'bold', fontSize: 50}}>REGISTER</Text>
-            ) : (
-              <Text style={{fontWeight: 'bold', fontSize: 50}}>LOGIN</Text>
-            )}
+          <View
+            style={{
+              paddingTop: 25,
+              backgroundColor: 'red',
+            }}>
+            <View style={{flexDirection: 'row', paddingTop: 25}}>
+              <TouchableOpacity
+                onPress={() => {
+                  props.navigation.goBack();
+                }}>
+                <Text>back</Text>
+              </TouchableOpacity>
+
+              {isSignUp ? (
+                <Text style={{fontWeight: 'bold', fontSize: 50}}>REGISTER</Text>
+              ) : (
+                <Text style={{fontWeight: 'bold', fontSize: 50}}>LOGIN</Text>
+              )}
+            </View>
           </View>
           <ScrollView style={{marginHorizontal: 24, marginTop: 50}}>
             <Input
@@ -203,7 +217,6 @@ const styles = StyleSheet.create({
   },
   linearGradient: {
     flex: 1,
-    // justifyContent: 'center',
   },
 });
 
