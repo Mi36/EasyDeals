@@ -199,10 +199,6 @@ const AuthScreen = props => {
 AuthScreen.navigationOptions = navData => {
   return {
     headerShown: false,
-    headerTintColor: 'red', // heading color
-    headerStyle: {
-      backgroundColor: 'pink',
-    },
   };
 };
 
