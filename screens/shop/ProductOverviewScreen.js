@@ -29,6 +29,7 @@ const ProductOverviewScreen = props => {
     props.navigation.setParams({
       logOut: actionLogOut,
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [actionLogOut]);
 
   const selectItemHandler = id => {

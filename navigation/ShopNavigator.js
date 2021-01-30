@@ -33,7 +33,7 @@ const AuthNavigator = createStackNavigator({
 const OrderNavigator = createStackNavigator({
   Orders: OrderScreen,
 });
-const AdminNavigator = createStackNavigator({
+const AdminNavigator = createBottomTabNavigator({
   UserProducts: UserProductScreen,
   EditProduct: EditProductscreen,
   AllOrders: AllOrders,

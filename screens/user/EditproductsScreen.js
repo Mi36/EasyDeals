@@ -1,6 +1,14 @@
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
 // use reducer not related to redux
-import {ActivityIndicator, Alert, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Text,
+} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {useDispatch, useSelector} from 'react-redux';
@@ -159,18 +167,17 @@ const editProductScreen = props => {
   }
 
   return (
-    // <KeyboardAvoidingView
-    //   style={{flex: 1}}
-    //   bahavior="padding"
-    //   keyboardVerticalOffset={100}>
-    //   <ScrollView>
     <KeyboardAwareScrollView
       style={{backgroundColor: 'pink'}}
-      resetScrollToCoords={{x: 0, y: 0}}
-      // contentContainerStyle={{flex: 1}}
-      //scrollEnabled={false}
-    >
-      <View style={styles.form}>
+      resetScrollToCoords={{x: 0, y: 0}}>
+      <SafeAreaView style={styles.form}>
+        <View style={{alignSelf: 'center'}}>
+          {props.navigation.getParam('productId') ? (
+            <Text>Edit Product</Text>
+          ) : (
+            <Text>Add Product</Text>
+          )}
+        </View>
         <Input
           id="title"
           label="Title"
@@ -222,7 +229,12 @@ const editProductScreen = props => {
           required
           minLength={5}
         />
-      </View>
+        <TouchableOpacity
+          style={{backgroundColor: 'red', height: 25, marginTop: 25}}
+          onPress={props.navigation.getParam('submit')}>
+          <Text>Save</Text>
+        </TouchableOpacity>
+      </SafeAreaView>
     </KeyboardAwareScrollView>
   );
 };

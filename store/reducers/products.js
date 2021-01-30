@@ -7,7 +7,7 @@ import {
 } from '../actions/products';
 import Product from '../../models/product';
 const initialState = {
-  availableProducts: [],
+  availableProducts: PRODUCTS,
   userproducts: [],
 };
 

@@ -12,6 +12,7 @@ export const fetchProducts = () => {
       const response = await fetch(
         'https://ecommerce-f33e7.firebaseio.com/products.json',
       );
+      console.log('zzzzzz', response);
       // ok is a field available in response body
       //this is true if rsponse in 200 status code range
       //false if 400 0r 500

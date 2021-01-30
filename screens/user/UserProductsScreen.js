@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {FlatList, Button, View, StyleSheet, Image} from 'react-native';
+import {FlatList, Button, View, StyleSheet, Image, Text} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
@@ -11,6 +11,9 @@ import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 
 import ProductItem from '../../components/shop/ProdectItem';
+
+// show all images as static here
+//adding functionality keep pending
 
 const PickImage = () => {
   const [selectedImage, setSelectedImage] = useState();
@@ -100,7 +103,6 @@ const PickImage = () => {
       },
     );
   };
-  console.log('dsd', auth().currentUser._user.uid);
   return (
     <View style={{alignItems: 'center', marginTop: 25}}>
       <View style={styles.imageContainer}>
@@ -128,10 +130,10 @@ const UserProductScreen = props => {
 
   if (userProducts.length === 0) {
     return (
-      // <View style={styles.empty}>
-      //   <Text>No items found</Text>
-      // </View>
-      <PickImage />
+      <View style={styles.empty}>
+        <Text>No items found</Text>
+      </View>
+      // <PickImage />
     );
   }
 
