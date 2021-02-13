@@ -16,7 +16,7 @@ import * as productActions from '../../store/actions/products';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as AuthActions from '../../store/actions/auth';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 const ProductOverviewScreen = props => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -140,6 +140,7 @@ ProductOverviewScreen.navigationOptions = navData => {
     headerTitle: 'All products',
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Ionicons name="log-out-outline" size={25} color="red" />
         <Item
           title="Logout"
           onPress={() => {

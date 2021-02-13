@@ -86,7 +86,7 @@ const Input = props => {
       />
       {!inputState.isValid && inputState.touched && (
         <View style={{paddingTop: 15}}>
-          <Text style={{color: 'red'}}>{props.errorText}</Text>
+          <Text style={{color: 'white'}}>{props.errorText}</Text>
         </View>
       )}
     </View>

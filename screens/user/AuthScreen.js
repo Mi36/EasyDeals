@@ -1,23 +1,18 @@
-import React, {useReducer, useState, useEffect, useCallback} from 'react';
+import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import {
-  View,
-  ScrollView,
-  StyleSheet,
-  KeyboardAvoidingView,
-  Button,
   ActivityIndicator,
   Alert,
-  TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
+  StyleSheet,
   Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import LinearGradient from 'react-native-linear-gradient';
 import {useDispatch} from 'react-redux';
+import Input from '../../components/input';
 import * as AuthActions from '../../store/actions/auth';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-
-import Input from '../../components/input';
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -101,11 +96,6 @@ const AuthScreen = props => {
 
   const inputChangehandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      // let isValid = false;
-      // if (text.trim().length > 0) {
-      //   isValid = true;
-      // }
-      //trim() will remove white spaces
       dispatchFormState({
         type: FORM_INPUT_UPDATE,
         value: inputValue,
@@ -117,30 +107,19 @@ const AuthScreen = props => {
   );
 
   return (
-    <LinearGradient colors={['pink', 'grey']} style={styles.linearGradient}>
+    <View style={styles.main}>
       <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={1}>
         <View>
-          <View
-            style={{
-              paddingTop: 25,
-              backgroundColor: 'red',
-            }}>
-            <View style={{flexDirection: 'row', paddingTop: 25}}>
-              <TouchableOpacity
-                onPress={() => {
-                  props.navigation.goBack();
-                }}>
-                <Text>back</Text>
-              </TouchableOpacity>
-
+          <View style={styles.screen}>
+            <View style={styles.signup}>
               {isSignUp ? (
-                <Text style={{fontWeight: 'bold', fontSize: 50}}>REGISTER</Text>
+                <Text style={styles.header}>REGISTER</Text>
               ) : (
-                <Text style={{fontWeight: 'bold', fontSize: 50}}>LOGIN</Text>
+                <Text style={styles.header}>LOGIN</Text>
               )}
             </View>
           </View>
-          <ScrollView style={{marginHorizontal: 24, marginTop: 50}}>
+          <ScrollView style={styles.scrollview}>
             <Input
               keyboardType="email-address"
               label="E-Mail"
@@ -166,34 +145,42 @@ const AuthScreen = props => {
             />
             <View style={styles.switch}>
               {isLoading ? (
-                <ActivityIndicator color="red" size="small" />
+                <ActivityIndicator color="black" size="small" />
               ) : (
-                <Button
-                  title={isSignUp ? 'Sign Up' : 'Login'}
-                  color="black"
-                  onPress={authHandler}
-                />
+                <TouchableOpacity
+                  style={styles.customerButton}
+                  onPress={authHandler}>
+                  <Text>{isSignUp ? 'Register' : 'Login'}</Text>
+                </TouchableOpacity>
               )}
-              <Button
-                title={`Switch to ${isSignUp ? 'Login' : 'Sign Up'}`}
-                color="black"
+              <TouchableOpacity
+                style={styles.customerButton}
                 onPress={() => {
                   setIsSignUp(prevState => !prevState);
-                }}
-              />
+                }}>
+                <Text>{`Switch to ${isSignUp ? 'Login' : 'Register'}`}</Text>
+              </TouchableOpacity>
             </View>
-            <TouchableOpacity
-              style={styles.forgotPassword}
-              onPress={() => {
-                props.navigation.navigate('FORGOTPASSWORD');
-              }}>
-              <Text style={styles.goBackTextColor}>Forgot Password</Text>
-            </TouchableOpacity>
-            <Icon name="rocket" size={30} color="#900" />
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity
+                style={styles.goback}
+                onPress={() => {
+                  props.navigation.navigate('FORGOTPASSWORD');
+                }}>
+                <Text style={styles.underline}>Forgot Password</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.goback}
+                onPress={() => {
+                  props.navigation.goBack();
+                }}>
+                <Text style={styles.underline}>back</Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </View>
       </KeyboardAvoidingView>
-    </LinearGradient>
+    </View>
   );
 };
 AuthScreen.navigationOptions = navData => {
@@ -203,16 +190,41 @@ AuthScreen.navigationOptions = navData => {
 };
 
 const styles = StyleSheet.create({
-  screen: {},
+  main: {backgroundColor: '#F1543F', flex: 1},
+  header: {fontWeight: 'bold', fontSize: 50},
+  screen: {
+    paddingTop: 25,
+    alignItems: 'center',
+  },
+  customerButton: {
+    backgroundColor: '#A6CE39',
+    marginHorizontal: 25,
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  signup: {flexDirection: 'row', paddingTop: 25},
+  scrollview: {marginHorizontal: 24, marginTop: 50},
   goBackTextColor: {},
   forgotPassword: {},
   switch: {
-    marginTop: 15,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginVertical: 15,
   },
   linearGradient: {
     flex: 1,
+  },
+  goback: {
+    backgroundColor: '#A6CE39',
+    alignItems: 'center',
+    borderRadius: 5,
+    alignSelf: 'center',
+  },
+  underline: {textDecorationLine: 'underline'},
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginHorizontal: 30,
   },
 });
 

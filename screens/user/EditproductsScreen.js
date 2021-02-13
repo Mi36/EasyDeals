@@ -7,9 +7,10 @@ import {
   View,
   SafeAreaView,
   Text,
+  TouchableOpacity,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {useDispatch, useSelector} from 'react-redux';
 import Input from '../../components/input';
@@ -167,75 +168,82 @@ const editProductScreen = props => {
   }
 
   return (
-    <KeyboardAwareScrollView
-      style={{backgroundColor: 'pink'}}
-      resetScrollToCoords={{x: 0, y: 0}}>
-      <SafeAreaView style={styles.form}>
-        <View style={{alignSelf: 'center'}}>
-          {props.navigation.getParam('productId') ? (
-            <Text>Edit Product</Text>
-          ) : (
-            <Text>Add Product</Text>
-          )}
-        </View>
-        <Input
-          id="title"
-          label="Title"
-          errorText="please enter valid title"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          autoCorrect
-          onInputChange={inputChangehandler}
-          initialValue={editProduct ? editProduct.title : ''}
-          initiallyValid={!!editProduct} //if we have edited product, then only initially valid, otherwise not i itially valid
-          required
-        />
-        <Input
-          id="imageUrl"
-          label="Image Url"
-          errorText="please enter valid url"
-          keyboardType="default"
-          returnKeyType="next"
-          initialValue={editProduct ? editProduct.imageUrl : ''}
-          initiallyValid={!!editProduct}
-          onInputChange={inputChangehandler}
-          required
-        />
-        {editProduct ? null : (
+    <>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
+          <Icon name="arrow-back-outline" size={30} />
+        </TouchableOpacity>
+      </View>
+      <KeyboardAwareScrollView
+        style={{backgroundColor: 'pink'}}
+        resetScrollToCoords={{x: 0, y: 0}}>
+        <SafeAreaView style={styles.form}>
+          <View style={{alignSelf: 'center'}}>
+            {props.navigation.getParam('productId') ? (
+              <Text>Edit Product</Text>
+            ) : (
+              <Text>Add Product</Text>
+            )}
+          </View>
           <Input
-            id="price"
-            label="Price"
-            errorText="please enter valid Price"
-            keyboardType="decimal-pad"
+            id="title"
+            label="Title"
+            errorText="please enter valid title"
+            keyboardType="default"
             returnKeyType="next"
+            autoCapitalize="sentences"
+            autoCorrect
+            onInputChange={inputChangehandler}
+            initialValue={editProduct ? editProduct.title : ''}
+            initiallyValid={!!editProduct} //if we have edited product, then only initially valid, otherwise not i itially valid
+            required
+          />
+          <Input
+            id="imageUrl"
+            label="Image Url"
+            errorText="please enter valid url"
+            keyboardType="default"
+            returnKeyType="next"
+            initialValue={editProduct ? editProduct.imageUrl : ''}
+            initiallyValid={!!editProduct}
             onInputChange={inputChangehandler}
             required
-            min={0.1}
           />
-        )}
-        <Input
-          id="description"
-          label="description"
-          errorText="please enter valid description"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          autoCorrect
-          //   multiline
-          initialValue={editProduct ? editProduct.title : ''}
-          initiallyValid={!!editProduct}
-          onInputChange={inputChangehandler}
-          required
-          minLength={5}
-        />
-        <TouchableOpacity
-          style={{backgroundColor: 'red', height: 25, marginTop: 25}}
-          onPress={props.navigation.getParam('submit')}>
-          <Text>Save</Text>
-        </TouchableOpacity>
-      </SafeAreaView>
-    </KeyboardAwareScrollView>
+          {editProduct ? null : (
+            <Input
+              id="price"
+              label="Price"
+              errorText="please enter valid Price"
+              keyboardType="decimal-pad"
+              returnKeyType="next"
+              onInputChange={inputChangehandler}
+              required
+              min={0.1}
+            />
+          )}
+          <Input
+            id="description"
+            label="description"
+            errorText="please enter valid description"
+            keyboardType="default"
+            returnKeyType="next"
+            autoCapitalize="sentences"
+            autoCorrect
+            //   multiline
+            initialValue={editProduct ? editProduct.title : ''}
+            initiallyValid={!!editProduct}
+            onInputChange={inputChangehandler}
+            required
+            minLength={5}
+          />
+          <TouchableOpacity
+            style={{backgroundColor: 'red', height: 25, marginTop: 25}}
+            onPress={props.navigation.getParam('submit')}>
+            <Text>Save</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
+    </>
   );
 };
 
@@ -250,6 +258,7 @@ editProductScreen.navigationOptions = navData => {
         <Item title="Save" onPress={submitFun} />
       </HeaderButtons>
     ),
+    tabBarLabel: 'Edit/Add Product',
   };
 };
 
@@ -266,6 +275,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderBottomColor: '#ccc',
     borderBottomWidth: 5,
+  },
+  header: {
+    backgroundColor: '#F1543F',
+    height: 50,
+    justifyContent: 'center',
   },
 });
 

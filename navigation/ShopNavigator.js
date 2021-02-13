@@ -1,4 +1,6 @@
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import React from 'react';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import CartScreen from '../screens/shop/CartScreen';
@@ -33,17 +35,63 @@ const AuthNavigator = createStackNavigator({
 const OrderNavigator = createStackNavigator({
   Orders: OrderScreen,
 });
-const AdminNavigator = createBottomTabNavigator({
-  UserProducts: UserProductScreen,
-  EditProduct: EditProductscreen,
-  AllOrders: AllOrders,
-});
+const AdminNavigator = createBottomTabNavigator(
+  {
+    UserProducts: UserProductScreen,
+    EditProduct: EditProductscreen,
+    AllOrders: AllOrders,
+  },
+  {
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: ({focused, horizontal, tintColor}) => {
+        const {routeName} = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+        if (routeName === 'UserProducts') {
+          iconName = focused ? 'apps-outline' : 'apps-outline';
+        } else if (routeName === 'AllOrders') {
+          iconName = focused ? 'ios-list' : 'ios-list';
+        } else if (routeName === 'EditProduct') {
+          iconName = focused ? 'build-outline' : 'build-outline';
+        }
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'red',
+      inactiveTintColor: 'green',
+    },
+  },
+);
 
-const TabNavigator = createBottomTabNavigator({
-  Products: ProductsNavigator,
-  Orders: OrderNavigator,
-  CartScreen: CartScreen,
-});
+const TabNavigator = createBottomTabNavigator(
+  {
+    Products: ProductsNavigator,
+    Orders: OrderNavigator,
+    CartScreen: CartScreen,
+  },
+  {
+    defaultNavigationOptions: ({navigation}) => ({
+      tabBarIcon: ({focused, horizontal, tintColor}) => {
+        const {routeName} = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+        if (routeName === 'Products') {
+          iconName = focused ? 'apps-outline' : 'apps-outline';
+        } else if (routeName === 'Orders') {
+          iconName = focused ? 'code-working-outline' : 'code-working-outline';
+        } else if (routeName === 'CartScreen') {
+          iconName = focused ? 'cart-outline' : 'cart-outline';
+        }
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'red',
+      inactiveTintColor: 'green',
+    },
+  },
+);
 const MainNavigator = createSwitchNavigator({
   Start: StartUpScreen,
   Auth: AuthNavigator,
