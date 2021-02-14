@@ -43,7 +43,7 @@ export default function AdminLogin(props) {
       <TouchableOpacity
         style={styles.goback}
         onPress={() => {
-          props.navigation.goBack();
+          props.navigation.navigate('ProductsOverview');
         }}>
         <Text style={styles.underline}>go back</Text>
       </TouchableOpacity>

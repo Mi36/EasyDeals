@@ -23,16 +23,9 @@ export default function EntryScreen(props) {
           />
         </View>
         <TouchableOpacity
-          style={styles.adminButton}
-          onPress={() => {
-            props.navigation.navigate('AdminLogin');
-          }}>
-          <Text style={styles.adminText}>Admin Section</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
           onPress={() => props.navigation.navigate('Auth')}
           style={styles.customerButton}>
-          <Text style={styles.customerText}>Customer Section</Text>
+          <Text style={styles.customerText}>MOVE FORWARD</Text>
         </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>

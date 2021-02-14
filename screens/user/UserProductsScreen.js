@@ -125,7 +125,8 @@ import * as productActions from '../../store/actions/products';
 // };
 
 const UserProductScreen = props => {
-  const userProducts = useSelector(state => state.products.userproducts);
+  const userProducts = useSelector(state => state.products.availableProducts);
+  console.log(userProducts);
   const dispatch = useDispatch();
   const {navigation} = props;
   const editProductHandler = id => {
@@ -138,8 +139,10 @@ const UserProductScreen = props => {
         <StatusBar backgroundColor="#F1543F" barStyle={'dark-content'} />
         <SafeAreaView style={styles.flex}>
           <View style={styles.header}>
-            <TouchableOpacity onPress={() => navigation.navigate('Entry')}>
-              <Icon name="arrow-back-outline" size={30} />
+            <TouchableOpacity
+              onPress={() => navigation.navigate('AdminLogin')}
+              style={styles.goback}>
+              <Text>Logout</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.empty}>
@@ -236,6 +239,14 @@ const styles = StyleSheet.create({
     borderColor: 'red',
     width: '80%',
     height: 150,
+  },
+  goback: {
+    backgroundColor: '#A6CE39',
+    alignItems: 'center',
+    borderRadius: 5,
+    alignSelf: 'flex-end',
+    marginRight: 20,
+    padding: 5,
   },
   pickImage: {alignItems: 'center', marginTop: 25},
   flex: {flex: 1, backgroundColor: '#F1543F'},
