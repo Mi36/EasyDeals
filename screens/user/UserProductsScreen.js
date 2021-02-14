@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     height: 150,
   },
   pickImage: {alignItems: 'center', marginTop: 25},
-  flex: {flex: 1},
+  flex: {flex: 1, backgroundColor: '#F1543F'},
   header: {
     backgroundColor: '#F1543F',
     height: 50,

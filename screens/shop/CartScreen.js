@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
+import {SafeAreaView} from 'react-native';
 import {
-  View,
-  Button,
-  StyleSheet,
-  FlatList,
-  Text,
   ActivityIndicator,
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import * as CartActions from '../../store/actions/cart';
 import * as orderActions from '../../store/actions/order';
@@ -42,37 +43,44 @@ const CartScreen = () => {
   };
 
   return (
-    <View style={styles.screen}>
-      <View style={styles.summary}>
-        <Text style={styles.summaryText}>Total:${totalAmount.toFixed(2)}</Text>
-        {isLoading ? (
-          <ActivityIndicator color="blue" size="small" />
-        ) : (
-          <Button
-            title="Order Now"
-            disabled={cartItems.length === 0}
-            onPress={() =>
-              dispatch(orderActions.addOrder(cartItems, totalAmount))
-            }
-          />
-        )}
-        {/*above function do two things place order and also remove item from cart, these two are in different reducers. from actions the type get passed and 
-            both reducer will work */}
+    <SafeAreaView style={styles.flex}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>CART</Text>
       </View>
-      <FlatList
-        data={cartItems}
-        keyExtractor={item => item.productId}
-        renderItem={itemData => (
-          <CartItem
-            quantity={itemData.item.quantity}
-            amount={itemData.item.sum}
-            title={itemData.item.productTitle}
-            deletable
-            onRemove={sendOrderHandler}
-          />
-        )}
-      />
-    </View>
+      <View style={styles.screen}>
+        <View style={styles.summary}>
+          <Text style={styles.summaryText}>
+            Total:${totalAmount.toFixed(2)}
+          </Text>
+          {isLoading ? (
+            <ActivityIndicator color="blue" size="small" />
+          ) : (
+            <Button
+              title="Order Now"
+              disabled={cartItems.length === 0}
+              onPress={() =>
+                dispatch(orderActions.addOrder(cartItems, totalAmount))
+              }
+            />
+          )}
+          {/*above function do two things place order and also remove item from cart, these two are in different reducers. from actions the type get passed and
+            both reducer will work */}
+        </View>
+        <FlatList
+          data={cartItems}
+          keyExtractor={item => item.productId}
+          renderItem={itemData => (
+            <CartItem
+              quantity={itemData.item.quantity}
+              amount={itemData.item.sum}
+              title={itemData.item.productTitle}
+              deletable
+              onRemove={sendOrderHandler}
+            />
+          )}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 export default CartScreen;
@@ -99,4 +107,13 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   items: {},
+  flex: {flex: 1, backgroundColor: '#F1543F'},
+  header: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
 });

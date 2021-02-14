@@ -1,22 +1,20 @@
-import React, {useEffect, useState, useCallback} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
   Button,
   FlatList,
   SafeAreaView,
-  ActivityIndicator,
-  View,
   StyleSheet,
   Text,
+  View,
   Alert,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
 import ProductItem from '../../components/shop/ProdectItem';
+import * as AuthActions from '../../store/actions/auth';
 import * as cartActions from '../../store/actions/cart';
 import * as productActions from '../../store/actions/products';
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
-import HeaderButton from '../../components/UI/HeaderButton';
-import * as AuthActions from '../../store/actions/auth';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 const ProductOverviewScreen = props => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -75,6 +73,34 @@ const ProductOverviewScreen = props => {
   const products = useSelector(state => state.products.availableProducts);
   const cart = useSelector(state => state.cart.items);
 
+  const onPress = () => {
+    Alert.alert(
+      'Log out',
+      'Are you sure you want to log out.',
+      [
+        {
+          text: 'Cancel',
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => props.navigation.state.params.logOut(),
+        },
+      ],
+      {cancelable: false},
+    );
+  };
+  const header = () => {
+    return (
+      <View style={styles.header}>
+        <Text style={styles.headerText}>ALL PRODUCTS</Text>
+        <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
+          <Text style={{}}>Logout</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  };
+
   if (isLoading) {
     return (
       <View style={styles.indicator}>
@@ -84,9 +110,12 @@ const ProductOverviewScreen = props => {
   }
   if (!isLoading && products.length === 0) {
     return (
-      <View style={styles.indicator}>
-        <Text>There is no products available</Text>
-      </View>
+      <SafeAreaView style={styles.flex}>
+        {header()}
+        <View style={styles.noProductAvailable}>
+          <Text style={styles.text}>There is no products available</Text>
+        </View>
+      </SafeAreaView>
     );
   }
   if (error) {
@@ -99,7 +128,8 @@ const ProductOverviewScreen = props => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.flex}>
+      {header()}
       <FlatList
         onRefresh={loadProducts}
         refreshing={isRefrehing}
@@ -135,34 +165,10 @@ const ProductOverviewScreen = props => {
     </SafeAreaView>
   );
 };
+
 ProductOverviewScreen.navigationOptions = navData => {
   return {
-    headerTitle: 'All products',
-    headerRight: () => (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Ionicons name="log-out-outline" size={25} color="red" />
-        <Item
-          title="Logout"
-          onPress={() => {
-            Alert.alert(
-              'Log out',
-              'Are you sure you want to log out.',
-              [
-                {
-                  text: 'Cancel',
-                  style: 'cancel',
-                },
-                {
-                  text: 'OK',
-                  onPress: () => navData.navigation.state.params.logOut(),
-                },
-              ],
-              {cancelable: false},
-            );
-          }}
-        />
-      </HeaderButtons>
-    ),
+    headerShown: false,
   };
 };
 
@@ -172,6 +178,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  logoutButton: {
+    backgroundColor: '#A6CE39',
+    alignItems: 'center',
+    borderRadius: 5,
+    alignSelf: 'center',
+    padding: 5,
+  },
+  header: {
+    backgroundColor: '#F1543F',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+  headerText: {fontSize: 30, fontWeight: 'bold'},
+  noProductAvailable: {
+    alignItems: 'center',
+    paddingTop: 35,
+  },
+  text: {
+    fontWeight: '500',
+    fontSize: 25,
+    textAlign: 'center',
+  },
+  flex: {flex: 1, backgroundColor: '#F1543F'},
 });
 
 export default ProductOverviewScreen;

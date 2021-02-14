@@ -1,13 +1,14 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
 // use reducer not related to redux
 import {
   ActivityIndicator,
   Alert,
-  StyleSheet,
-  View,
   SafeAreaView,
+  StyleSheet,
   Text,
   TouchableOpacity,
+  View,
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -138,6 +139,7 @@ const editProductScreen = props => {
     }
 
     setIsLoading(false); // this will only set after dispatch above functions, this is due to our async await syntex
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, prodId, formState]);
 
   //useCallback here used to avoid infinite loop
@@ -148,6 +150,7 @@ const editProductScreen = props => {
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitHandler]);
 
   useEffect(() => {
@@ -161,29 +164,29 @@ const editProductScreen = props => {
 
   if (isLoading) {
     return (
-      <View style={{alignItems: 'center', justifyContent: 'center', flex: 1}}>
+      <View style={styles.indicator}>
         <ActivityIndicator size="large" color="green" />
       </View>
     );
   }
 
   return (
-    <>
+    <SafeAreaView style={styles.flex}>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon name="arrow-back-outline" size={30} />
         </TouchableOpacity>
       </View>
-      <KeyboardAwareScrollView
-        style={{backgroundColor: 'pink'}}
-        resetScrollToCoords={{x: 0, y: 0}}>
+      <KeyboardAwareScrollView resetScrollToCoords={{x: 0, y: 0}}>
         <SafeAreaView style={styles.form}>
-          <View style={{alignSelf: 'center'}}>
-            {props.navigation.getParam('productId') ? (
-              <Text>Edit Product</Text>
-            ) : (
-              <Text>Add Product</Text>
-            )}
+          <View style={styles.head}>
+            <Text>
+              {props.navigation.getParam('productId') ? (
+                <Text style={styles.text}>Edit Product</Text>
+              ) : (
+                <Text style={styles.text}>Add Product</Text>
+              )}
+            </Text>
           </View>
           <Input
             id="title"
@@ -229,7 +232,6 @@ const editProductScreen = props => {
             returnKeyType="next"
             autoCapitalize="sentences"
             autoCorrect
-            //   multiline
             initialValue={editProduct ? editProduct.title : ''}
             initiallyValid={!!editProduct}
             onInputChange={inputChangehandler}
@@ -237,13 +239,13 @@ const editProductScreen = props => {
             minLength={5}
           />
           <TouchableOpacity
-            style={{backgroundColor: 'red', height: 25, marginTop: 25}}
+            style={styles.button}
             onPress={props.navigation.getParam('submit')}>
             <Text>Save</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </KeyboardAwareScrollView>
-    </>
+    </SafeAreaView>
   );
 };
 
@@ -258,7 +260,7 @@ editProductScreen.navigationOptions = navData => {
         <Item title="Save" onPress={submitFun} />
       </HeaderButtons>
     ),
-    tabBarLabel: 'Edit/Add Product',
+    tabBarLabel: 'Add Product',
   };
 };
 
@@ -269,6 +271,13 @@ const styles = StyleSheet.create({
   },
   label: {
     marginVertical: 8,
+  },
+  head: {
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
   },
   input: {
     paddingHorizontal: 2,
@@ -281,6 +290,16 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'center',
   },
+  flex: {flex: 1, backgroundColor: '#F1543F'},
+  button: {
+    backgroundColor: '#A6CE39',
+    marginHorizontal: 25,
+    paddingVertical: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginVertical: 25,
+  },
+  indicator: {alignItems: 'center', justifyContent: 'center', flex: 1},
 });
 
 export default editProductScreen;
