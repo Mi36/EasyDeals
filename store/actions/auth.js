@@ -5,7 +5,7 @@ export const FORGOT = 'FORGOT';
 export const LOGOUT = 'LOGOUT';
 export const NEW_PASSWORD = 'NEW_PASSWORD';
 import AsyncStorage from '@react-native-community/async-storage';
-import ENV from '../../env';
+import ENV from '../../ENV/env';
 let timer;
 
 export const newPassword = options => {

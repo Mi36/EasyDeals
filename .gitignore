@@ -59,6 +59,6 @@ buck-out/
 /ios/Pods/
 
 #others
-env.js
+ENV/env.js
 android/app/google-services.json
 ios/GoogleService-Info.plist
