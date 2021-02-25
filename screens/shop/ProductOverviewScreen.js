@@ -1,13 +1,13 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
+  Alert,
   Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
-  Alert,
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
@@ -131,7 +131,7 @@ const ProductOverviewScreen = props => {
       </View>
     );
   }
-
+  console.log('dddd', products);
   return (
     <SafeAreaView style={styles.flex}>
       {header()}

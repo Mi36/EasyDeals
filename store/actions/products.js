@@ -12,7 +12,6 @@ export const fetchProducts = () => {
       const response = await fetch(
         'https://ecommerce-f33e7.firebaseio.com/products.json',
       );
-      console.log('zzzzzz', response);
       // ok is a field available in response body
       //this is true if rsponse in 200 status code range
       //false if 400 0r 500
@@ -37,7 +36,6 @@ export const fetchProducts = () => {
           ),
         );
       }
-
       dispatch({
         type: SET_PRODUCT,
         products: loadedData,
@@ -84,7 +82,7 @@ export const createProduct = (title, description, imageUrl, price) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products/${userId}.json?auth=${token}`,
+      `https://ecommerce-f33e7.firebaseio.com/products.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
