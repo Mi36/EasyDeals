@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native';
 import {
   ActivityIndicator,
   Button,
   FlatList,
+  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -35,12 +35,6 @@ const CartScreen = () => {
     // this is to make returned item as array, it allows we can use flatlist
     //also we can disable button by checking the lenght of array
   });
-
-  const sendOrderHandler = async () => {
-    setIsLoading(true);
-    await dispatch(CartActions.removeFromCart(itemData.item.productId));
-    setIsLoading(false);
-  };
 
   return (
     <SafeAreaView style={styles.flex}>
@@ -75,7 +69,13 @@ const CartScreen = () => {
               amount={itemData.item.sum}
               title={itemData.item.productTitle}
               deletable
-              onRemove={sendOrderHandler}
+              onRemove={async () => {
+                setIsLoading(true);
+                await dispatch(
+                  CartActions.removeFromCart(itemData.item.productId),
+                );
+                setIsLoading(false);
+              }}
             />
           )}
         />
