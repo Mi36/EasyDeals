@@ -156,7 +156,7 @@ const UserProductScreen = props => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Entry')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Shop')}>
           <Icon name="arrow-back-outline" size={30} />
         </TouchableOpacity>
       </View>

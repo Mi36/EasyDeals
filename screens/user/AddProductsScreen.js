@@ -12,10 +12,11 @@ import {
 } from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import {useDispatch, useSelector} from 'react-redux';
 import Input from '../../components/input';
+import HeaderButton from '../../components/UI/HeaderButton';
 import * as productActions from '../../store/actions/products';
-
 // use outside of component if not depend on prop, it helps to avoid unnecessory
 // recreations of the function
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
@@ -46,7 +47,7 @@ const formReducer = (state, action) => {
   return state;
 };
 
-const editProductScreen = props => {
+const AddProductsScreen = props => {
   // this will rerun when error changes
 
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +55,6 @@ const editProductScreen = props => {
 
   const dispatch = useDispatch();
   const prodId = props.navigation.getParam('productId');
-  console.log('prodid', prodId);
   const editProduct = useSelector(state =>
     state.products.userproducts.find(prod => prod.id === prodId),
   );
@@ -75,23 +75,8 @@ const editProductScreen = props => {
     formIsvalid: editProduct ? true : false,
   });
 
-  // const [titleIsValid, setTitleIsValid] = useState(false);
-  // const [title, setTitle] = useState(editProduct ? editProduct.title : '');
-  // const [imageUrl, setImage] = useState(
-  //   editProduct ? editProduct.imageUrl : '',
-  // );
-  // const [price, setPrice] = useState('');
-  // const [description, setDescription] = useState(
-  //   editProduct ? editProduct.description : '',
-  // );
-
   const inputChangehandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      // let isValid = false;
-      // if (text.trim().length > 0) {
-      //   isValid = true;
-      // }
-      //trim() will remove white spaces
       dispatchFormState({
         type: FORM_INPUT_UPDATE,
         value: inputValue,
@@ -114,12 +99,12 @@ const editProductScreen = props => {
 
     try {
       await dispatch(
-        productActions.updateProduct(
-          prodId,
+        productActions.createProduct(
           formState.inputValues.title,
           formState.inputValues.description,
           formState.inputValues.imageUrl,
-        ),
+          +formState.inputValues.price,
+        ), //here + is used to convert to a string
       );
 
       props.navigation.goBack();
@@ -163,8 +148,7 @@ const editProductScreen = props => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.header}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate('UserProducts')}>
+        <TouchableOpacity onPress={() => props.navigation.goBack()}>
           <Icon name="arrow-back-outline" size={30} />
         </TouchableOpacity>
       </View>
@@ -172,7 +156,7 @@ const editProductScreen = props => {
         <SafeAreaView style={styles.form}>
           <View style={styles.head}>
             <Text>
-              <Text style={styles.text}>Edit Product</Text>
+              <Text style={styles.text}>Add Product</Text>
             </Text>
           </View>
           <Input
@@ -194,10 +178,21 @@ const editProductScreen = props => {
             errorText="please enter valid url"
             keyboardType="default"
             returnKeyType="next"
-            initialValue={editProduct ? editProduct.imageUrl : ''}
+            initialValue={''}
             initiallyValid={!!editProduct}
             onInputChange={inputChangehandler}
             required
+          />
+
+          <Input
+            id="price"
+            label="Price"
+            errorText="please enter valid Price"
+            keyboardType="decimal-pad"
+            returnKeyType="next"
+            onInputChange={inputChangehandler}
+            required
+            min={0.1}
           />
 
           <Input
@@ -208,7 +203,7 @@ const editProductScreen = props => {
             returnKeyType="next"
             autoCapitalize="sentences"
             autoCorrect
-            initialValue={editProduct ? editProduct.title : ''}
+            initialValue={''}
             initiallyValid={!!editProduct}
             onInputChange={inputChangehandler}
             required
@@ -224,24 +219,19 @@ const editProductScreen = props => {
     </SafeAreaView>
   );
 };
-editProductScreen.navigationOptions = navData => {
+
+AddProductsScreen.navigationOptions = navData => {
+  const submitFun = navData.navigation.getParam('submit');
   return {
-    headerShown: false,
+    headerTitle: 'Add Product',
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item title="Save" onPress={submitFun} />
+      </HeaderButtons>
+    ),
+    tabBarLabel: 'Add Product',
   };
 };
-
-// editProductScreen.navigationOptions = navData => {
-//   const submitFun = navData.navigation.getParam('submit');
-//   return {
-//     headerTitle: 'Edit Product',
-//     headerRight: () => (
-//       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-//         <Item title="Save" onPress={submitFun} />
-//       </HeaderButtons>
-//     ),
-//     tabBarLabel: 'Add Product',
-//   };
-// };
 
 const styles = StyleSheet.create({
   form: {margin: 20},
@@ -281,4 +271,4 @@ const styles = StyleSheet.create({
   indicator: {alignItems: 'center', justifyContent: 'center', flex: 1},
 });
 
-export default editProductScreen;
+export default AddProductsScreen;

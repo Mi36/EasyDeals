@@ -13,6 +13,7 @@ import ProductOverviewScreen from '../screens/shop/ProductOverviewScreen';
 import StartUpScreen from '../screens/StartUpScreen';
 import AuthScreen from '../screens/user/AuthScreen';
 import EditProductscreen from '../screens/user/EditproductsScreen';
+import AddProductsScreen from '../screens/user/AddProductsScreen';
 import ForgotPassword from '../screens/user/ForgotPassword';
 import ResetPassword from '../screens/user/ResetPassword';
 import UserProductScreen from '../screens/user/UserProductsScreen';
@@ -30,6 +31,7 @@ const AuthNavigator = createStackNavigator({
   AdminSignUp: AdminSignUp,
   FORGOTPASSWORD: ForgotPassword,
   RESETPASSWORD: ResetPassword,
+  EditProduct: EditProductscreen,
 });
 
 const OrderNavigator = createStackNavigator({
@@ -38,7 +40,7 @@ const OrderNavigator = createStackNavigator({
 const AdminNavigator = createBottomTabNavigator(
   {
     UserProducts: UserProductScreen,
-    EditProduct: EditProductscreen,
+    AddProduct: AddProductsScreen,
     AllOrders: AllOrders,
   },
   {
@@ -51,7 +53,7 @@ const AdminNavigator = createBottomTabNavigator(
           iconName = focused ? 'apps-outline' : 'apps-outline';
         } else if (routeName === 'AllOrders') {
           iconName = focused ? 'ios-list' : 'ios-list';
-        } else if (routeName === 'EditProduct') {
+        } else if (routeName === 'AddProduct') {
           iconName = focused ? 'build-outline' : 'build-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;

@@ -7,7 +7,7 @@ export const SET_PRODUCT = 'SET_PRODUCT';
 
 export const fetchProducts = () => {
   return async (dispatch, getState) => {
-    const userId = getState().auth.ownerId;
+    const userId = getState().auth.userId;
     try {
       const response = await fetch(
         'https://ecommerce-f33e7.firebaseio.com/products.json',
@@ -120,8 +120,10 @@ export const createProduct = (title, description, imageUrl, price) => {
 
 export const updateProduct = (id, title, description, imageUrl) => {
   return async (dispatch, getState) => {
+    console.log('id', id);
     // here getState is used to access the whole store, and then token
     const token = getState().auth.token;
+    console.log('token', token);
     const response = await fetch(
       `https://ecommerce-f33e7.firebaseio.com/products/${id}.json?auth=${token}`, // here backtick is used to submit our id
       {
@@ -136,6 +138,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
         }),
       },
     );
+    console.log('res', response);
     if (!response.ok) {
       throw new Error('SomeThing Went Wrong');
     }

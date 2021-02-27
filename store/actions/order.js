@@ -54,7 +54,7 @@ export const addOrder = (cartItems, totalAmount) => {
         }),
       },
     ); //.json added because of firebase syntax, by default it send get req,otherwise explicitly mention
-
+    console.log('order', response);
     if (!response.ok) {
       throw new Error('Something went wrong');
     }
