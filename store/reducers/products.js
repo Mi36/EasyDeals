@@ -1,4 +1,3 @@
-import PRODUCTS from '../../data/dummy-data';
 import {
   DELETE_PRODUCT,
   CREATE_PRODUCT,
@@ -7,7 +6,7 @@ import {
 } from '../actions/products';
 import Product from '../../models/product';
 const initialState = {
-  availableProducts: PRODUCTS,
+  availableProducts: [],
   userproducts: [],
 };
 

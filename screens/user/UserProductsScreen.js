@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {
   Button,
   FlatList,
@@ -15,6 +15,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import ProductItem from '../../components/shop/ProdectItem';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productActions from '../../store/actions/products';
+import * as AuthActions from '../../store/actions/auth';
+import * as cartActions from '../../store/actions/cart';
 
 // show all images as static here
 //adding functionality keep pending
@@ -126,12 +128,61 @@ import * as productActions from '../../store/actions/products';
 
 const UserProductScreen = props => {
   const userProducts = useSelector(state => state.products.availableProducts);
-  console.log(userProducts);
+  console.log('useProducts', userProducts);
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefrehing, setIsRefreshing] = useState(false);
+  const [error, setError] = useState(); //initially undefined, thats why this is empty
   const {navigation} = props;
   const editProductHandler = id => {
     props.navigation.navigate('EditProduct', {productId: id});
   };
+
+  const actionLogOut = useCallback(() => {
+    dispatch(AuthActions.logout());
+  }, [dispatch]);
+  useEffect(() => {
+    props.navigation.setParams({
+      logOut: actionLogOut,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [actionLogOut]);
+
+  const loadProducts = useCallback(async () => {
+    setError(null);
+    // setIsLoading(true);
+    setIsRefreshing(true);
+    try {
+      await dispatch(productActions.fetchProducts());
+    } catch (err) {
+      setError(err.message);
+    }
+
+    // here we get the thrown error fro actionFunction
+    //  setIsLoading(false);
+    setIsRefreshing(false);
+  }, [dispatch, setError]);
+
+  useEffect(() => {
+    const willFocusSub = props.navigation.addListener(
+      'willFocus',
+      loadProducts,
+    );
+    // the load focus function will ru when ever we coming to this screen
+
+    // another thing in useeffect is we can return something from this ie
+    //this is  function that run whenever component rerun or destroyed
+    return () => {
+      willFocusSub.remove();
+    };
+  }, [loadProducts, props.navigation]);
+
+  useEffect(() => {
+    setIsLoading(true);
+    loadProducts().then(() => {
+      setIsLoading(false);
+    });
+  }, [dispatch, loadProducts]);
 
   if (userProducts.length === 0) {
     return (
@@ -140,9 +191,9 @@ const UserProductScreen = props => {
         <SafeAreaView style={styles.flex}>
           <View style={styles.header}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('AdminLogin')}
+              onPress={() => props.navigation.state.params.logOut()}
               style={styles.goback}>
-              <Text>Logout</Text>
+              <Text>logout</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.empty}>
@@ -156,8 +207,10 @@ const UserProductScreen = props => {
   return (
     <SafeAreaView style={styles.flex}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Shop')}>
-          <Icon name="arrow-back-outline" size={30} />
+        <TouchableOpacity
+          onPress={() => props.navigation.state.params.logOut()}
+          style={styles.goback}>
+          <Text>logout</Text>
         </TouchableOpacity>
       </View>
       <FlatList
