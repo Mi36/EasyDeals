@@ -24,14 +24,12 @@ const StartUpScreen = props => {
       if (token && userId && admin) {
         const expirationTime = expirationDate.getTime() - new Date().getTime();
         props.navigation.navigate('Admin');
-        dispatch(
-          authActions.authenticate(userId, userId, expirationTime, true),
-        );
+        dispatch(authActions.authenticate(userId, token, expirationTime, true));
         return;
       }
       const expirationTime = expirationDate.getTime() - new Date().getTime();
       props.navigation.navigate('Shop');
-      dispatch(authActions.authenticate(userId, userId, expirationTime));
+      dispatch(authActions.authenticate(userId, token, expirationTime));
     };
     tryLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
