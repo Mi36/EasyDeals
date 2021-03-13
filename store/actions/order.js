@@ -20,14 +20,12 @@ export const fetchOrder = () => {
         loadedOrders.push(
           new Order(
             key,
-
             resData[key].cartItems,
             resData[key].totalAmount,
             new Date(resData[key].date), // this is for getting date object instaed of string
           ),
         );
       }
-
       dispatch({type: SET_ORDER, orders: loadedOrders});
     } catch (err) {
       throw err; // by throwing this it reaches in the component

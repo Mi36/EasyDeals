@@ -75,23 +75,8 @@ const editProductScreen = props => {
     formIsvalid: editProduct ? true : false,
   });
 
-  // const [titleIsValid, setTitleIsValid] = useState(false);
-  // const [title, setTitle] = useState(editProduct ? editProduct.title : '');
-  // const [imageUrl, setImage] = useState(
-  //   editProduct ? editProduct.imageUrl : '',
-  // );
-  // const [price, setPrice] = useState('');
-  // const [description, setDescription] = useState(
-  //   editProduct ? editProduct.description : '',
-  // );
-
   const inputChangehandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      // let isValid = false;
-      // if (text.trim().length > 0) {
-      //   isValid = true;
-      // }
-      //trim() will remove white spaces
       dispatchFormState({
         type: FORM_INPUT_UPDATE,
         value: inputValue,
@@ -122,7 +107,7 @@ const editProductScreen = props => {
         ),
       );
 
-      props.navigation.goBack();
+      props.navigation.navigate('Admin');
     } catch (err) {
       console.log(err);
       setError(err.message);
@@ -208,15 +193,13 @@ const editProductScreen = props => {
             returnKeyType="next"
             autoCapitalize="sentences"
             autoCorrect
-            initialValue={editProduct ? editProduct.title : ''}
+            initialValue={editProduct ? editProduct.description : ''}
             initiallyValid={!!editProduct}
             onInputChange={inputChangehandler}
             required
             minLength={5}
           />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={props.navigation.getParam('submit')}>
+          <TouchableOpacity style={styles.button} onPress={submitHandler}>
             <Text>Save</Text>
           </TouchableOpacity>
         </SafeAreaView>
@@ -229,20 +212,6 @@ editProductScreen.navigationOptions = navData => {
     headerShown: false,
   };
 };
-
-// editProductScreen.navigationOptions = navData => {
-//   const submitFun = navData.navigation.getParam('submit');
-//   return {
-//     headerTitle: 'Edit Product',
-//     headerRight: () => (
-//       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-//         <Item title="Save" onPress={submitFun} />
-//       </HeaderButtons>
-//     ),
-//     tabBarLabel: 'Add Product',
-//   };
-// };
-
 const styles = StyleSheet.create({
   form: {margin: 20},
   formControl: {
