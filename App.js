@@ -1,24 +1,19 @@
+import AsyncStorage from '@react-native-community/async-storage'; // for persisit
 import React, {Component} from 'react';
-import {persistStore, persistReducer} from 'redux-persist'; // for prsist
 //import storage from 'redux-persist/lib/storage';
 import {YellowBox} from 'react-native';
-
-YellowBox.ignoreWarnings(['Remote']);
-
-import AsyncStorage from '@react-native-community/async-storage'; // for persisit
-
-import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-
-import productReducer from './store/reducers/products';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import {persistReducer, persistStore} from 'redux-persist'; // for prsist
+import {PersistGate} from 'redux-persist/integration/react';
+import thunk from 'redux-thunk';
+import NavigationContainer from './navigation/NavigationContainer';
+import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
 import orderReducer from './store/reducers/order';
-import authReducer from './store/reducers/auth';
-import NavigationContainer from './navigation/NavigationContainer';
-import thunk from 'redux-thunk';
+import productReducer from './store/reducers/products';
 
-import {createLogger} from 'redux-logger'; // for persist
-import {PersistGate} from 'redux-persist/integration/react';
+YellowBox.ignoreWarnings(['Remote']);
 
 const rootReducer = combineReducers({
   products: productReducer,
@@ -30,7 +25,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root', //use this in all
   storage: AsyncStorage, // here the storage we are using
-  whitelist: ['order'], //  here th list of reducers we want to persist, if we want some specific only
+  whitelist: ['order', 'auth'], //  here th list of reducers we want to persist, if we want some specific only
   //seperated by commas
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

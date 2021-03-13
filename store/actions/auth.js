@@ -110,18 +110,19 @@ export const logout = () => {
 
 //const setLogo
 
-export const authenticate = (userId, token, expiryTime) => {
+export const authenticate = (userId, token, expiryTime, admin = false) => {
   return dispatch => {
     dispatch(setLogoutTimer(expiryTime));
     dispatch({
       type: AUTHENTICATE,
       userId: userId,
       token: token,
+      admin: admin,
     });
   };
 };
 
-export const signup = (email, password) => {
+export const signup = (email, password, admin = false) => {
   return async dispatch => {
     const response = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${
@@ -158,16 +159,19 @@ export const signup = (email, password) => {
       authenticate(
         resData.localId,
         resData.idToken,
+        // eslint-disable-next-line radix
         parseInt(resData.expiresIn) * 1000,
+        admin,
       ),
     );
     const expirationDate = new Date(
+      // eslint-disable-next-line radix
       new Date().getTime() + parseInt(resData.expiresIn) * 1000,
     ); // this is neww time in future with current time+expiry time in milliseconds, the put it in new date object
     saveDataToStorage(resData.idToken, resData.localId, expirationDate);
   };
 };
-export const login = (email, password) => {
+export const login = (email, password, admin = false) => {
   return async dispatch => {
     const response = await fetch(
       `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${
@@ -200,16 +204,18 @@ export const login = (email, password) => {
     }
 
     const resData = await response.json();
-    console.log(resData);
     //  dispatch({type: LOGIN, token: resData.idToken, userId: resData.localId});
     dispatch(
       authenticate(
         resData.localId,
         resData.idToken,
+        // eslint-disable-next-line radix
         parseInt(resData.expiresIn) * 1000,
+        admin,
       ),
     );
     const expirationDate = new Date(
+      // eslint-disable-next-line radix
       new Date().getTime() + parseInt(resData.expiresIn) * 1000,
     ); // this is neww time in future with current time+expiry time in milliseconds, the put it in new date object
     saveDataToStorage(resData.idToken, resData.localId, expirationDate);

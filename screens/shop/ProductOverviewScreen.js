@@ -93,11 +93,6 @@ const ProductOverviewScreen = props => {
   const header = () => {
     return (
       <View style={styles.header}>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate('AdminLogin')}
-          style={styles.logoutButton}>
-          <Text style={{}}>Admin</Text>
-        </TouchableOpacity>
         <Text style={styles.headerText}>ALL PRODUCTS</Text>
         <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
           <Text style={{}}>Logout</Text>
@@ -131,7 +126,6 @@ const ProductOverviewScreen = props => {
       </View>
     );
   }
-  console.log('dddd', products);
   return (
     <SafeAreaView style={styles.flex}>
       {header()}

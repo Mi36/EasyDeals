@@ -4,6 +4,7 @@ import {AUTHENTICATE} from '../actions/auth';
 const initialState = {
   token: null,
   userId: null,
+  admin: false,
 };
 
 export default (state = initialState, action) => {
@@ -19,12 +20,8 @@ export default (state = initialState, action) => {
       return {
         token: action.token,
         userId: action.userId,
+        admin: action.admin,
       };
-    // case SIGNUP:
-    //   return {
-    //     token: action.token,
-    //     userId: action.userId,
-    //   };
     default:
       return state;
   }

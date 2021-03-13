@@ -1,6 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
-// use reducer not related to redux
 import {
   ActivityIndicator,
   Alert,

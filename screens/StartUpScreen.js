@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {useEffect} from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import * as authActions from '../store/actions/auth';
 
 const StartUpScreen = props => {
+  const admin = useSelector(state => state.auth.admin);
   const dispatch = useDispatch();
   useEffect(() => {
     const tryLogin = async () => {
@@ -18,6 +19,14 @@ const StartUpScreen = props => {
       const expirationDate = new Date(expiryDate);
       if (expirationDate <= new Date() || !token || !userId) {
         props.navigation.navigate('Entry');
+        return;
+      }
+      if (token && userId && admin) {
+        const expirationTime = expirationDate.getTime() - new Date().getTime();
+        props.navigation.navigate('Admin');
+        dispatch(
+          authActions.authenticate(userId, userId, expirationTime, true),
+        );
         return;
       }
       const expirationTime = expirationDate.getTime() - new Date().getTime();
