@@ -53,7 +53,7 @@ const OrderScreen = props => {
         keyExtractor={item => item.id}
         renderItem={itemData => (
           <OrderItem
-            amount={itemData.item.totalAmount.toFixed(2)}
+            amount={itemData.item.totalAmount}
             date={itemData.item.date}
             item={itemData.item.item}
           />
