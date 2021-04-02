@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     height: 60,
   },
   errorContainer: {
-    paddingTop: 15,
+    paddingTop: 2,
   },
   errorLabel: {
     color: 'red',
