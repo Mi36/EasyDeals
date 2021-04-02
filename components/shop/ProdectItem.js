@@ -1,22 +1,10 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
-import {TouchableNativeFeedback} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 
 const ProductItem = props => {
-  let TouchableOpaComponent = TouchableOpacity;
-  if (Platform.OS === 'android' && Platform.Version >= 21) {
-    TouchableOpaComponent = TouchableNativeFeedback;
-  }
   return (
     <View style={styles.product}>
-      <TouchableOpaComponent onPress={props.onSelect}>
+      <View>
         <View>
           <View style={styles.imageContainer}>
             <Image style={styles.image} source={{uri: props.image}} />
@@ -35,7 +23,7 @@ const ProductItem = props => {
                 */}
           </View>
         </View>
-      </TouchableOpaComponent>
+      </View>
     </View>
   );
 };
