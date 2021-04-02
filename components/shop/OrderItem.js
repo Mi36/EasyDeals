@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import CartItem from './CartItem';
 
 const OrderItem = props => {
@@ -9,12 +9,15 @@ const OrderItem = props => {
       <View style={styles.summary}>
         <Text>₹{props.amount}</Text>
       </View>
-      <Button
-        title={showDetails ? 'Hide Details' : 'Show Details'}
+      <TouchableOpacity
+        style={styles.button}
         onPress={() => {
           setShowDetails(prevState => !prevState);
-        }}
-      />
+        }}>
+        <Text style={styles.buttonLabel}>
+          {showDetails ? 'Hide Details' : 'Show Details'}
+        </Text>
+      </TouchableOpacity>
       {showDetails && (
         <View>
           {props.item.map(cartItem => (
@@ -49,6 +52,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingBottom: 15,
+  },
+  button: {
+    backgroundColor: '#141B5D',
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    marginBottom: 10,
+  },
+  buttonLabel: {
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 

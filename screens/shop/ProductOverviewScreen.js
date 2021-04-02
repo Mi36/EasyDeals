@@ -144,20 +144,20 @@ const ProductOverviewScreen = props => {
             onAddToCart={() => {
               dispatch(cartActions.addToCart(itemData.item));
             }}>
-            <Button
-              color="red"
-              title="View Details"
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 selectItemHandler(itemData.item.id);
-              }}
-            />
-            <Button
-              color="red"
-              title="To Cart"
+              }}>
+              <Text style={styles.buttonLabel}>View details</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 dispatch(cartActions.addToCart(itemData.item));
-              }}
-            />
+              }}>
+              <Text style={styles.buttonLabel}>To cart</Text>
+            </TouchableOpacity>
           </ProductItem>
         )}
       />
@@ -177,6 +177,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#5EC7F2',
+  },
+  button: {
+    backgroundColor: '#141B5D',
+    height: 40,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  buttonLabel: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   logoutButton: {
     backgroundColor: '#141B5D',
