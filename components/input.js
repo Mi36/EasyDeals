@@ -35,6 +35,7 @@ const Input = props => {
     if (inputState.touched) {
       onInputChange(id, inputState.value, inputState.isValid);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputState, id]);
 
   const textChangeHandler = text => {
@@ -67,15 +68,10 @@ const Input = props => {
     <View style={styles.formControl}>
       <Text style={styles.label}>{props.label}</Text>
       <TextInput
-        {...props} // by putting this accept all props from outside
+        {...props}
         style={styles.input}
         value={inputState.value}
         onChangeText={textChangeHandler}
-        //    onChangeText={titleChangehandler.bind(this, 'title')} // last argumrnt is text by default// no need to pass
-        // returnKeyType="next"
-        // autoCapitalize="sentences"
-        // autoCorrect
-        // this all must be set from outside
         onEndEditing={() => {
           console.log('fires when we go out from a field');
         }}
@@ -85,8 +81,8 @@ const Input = props => {
         onBlur={lostFocushandler}
       />
       {!inputState.isValid && inputState.touched && (
-        <View style={{paddingTop: 15}}>
-          <Text style={{color: 'white'}}>{props.errorText}</Text>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorLabel}>{props.errorText}</Text>
         </View>
       )}
     </View>
@@ -99,15 +95,22 @@ const styles = StyleSheet.create({
   },
   label: {
     marginVertical: 8,
+    fontWeight: 'bold',
   },
   input: {
-    // paddingHorizontal: 2,
     paddingVertical: 15,
-    borderWidth: 1,
     borderColor: 'black',
     backgroundColor: 'white',
     paddingLeft: 10,
     borderRadius: 10,
+    height: 60,
+  },
+  errorContainer: {
+    paddingTop: 15,
+  },
+  errorLabel: {
+    color: 'red',
+    fontWeight: '700',
   },
 });
 

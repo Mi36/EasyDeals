@@ -93,9 +93,9 @@ const ProductOverviewScreen = props => {
   const header = () => {
     return (
       <View style={styles.header}>
-        <Text style={styles.headerText}>ALL PRODUCTS</Text>
+        <Text style={styles.headerText}>All Products</Text>
         <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
-          <Text style={{}}>Logout</Text>
+          <Text style={styles.logout}>Logout</Text>
         </TouchableOpacity>
       </View>
     );
@@ -144,20 +144,20 @@ const ProductOverviewScreen = props => {
             onAddToCart={() => {
               dispatch(cartActions.addToCart(itemData.item));
             }}>
-            <Button
-              color="red"
-              title="View Details"
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 selectItemHandler(itemData.item.id);
-              }}
-            />
-            <Button
-              color="red"
-              title="To Cart"
+              }}>
+              <Text style={styles.buttonLabel}>View details</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
               onPress={() => {
                 dispatch(cartActions.addToCart(itemData.item));
-              }}
-            />
+              }}>
+              <Text style={styles.buttonLabel}>To cart</Text>
+            </TouchableOpacity>
           </ProductItem>
         )}
       />
@@ -176,23 +176,39 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#5EC7F2',
+  },
+  button: {
+    backgroundColor: '#141B5D',
+    height: 40,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  buttonLabel: {
+    color: 'white',
+    fontWeight: 'bold',
   },
   logoutButton: {
-    backgroundColor: '#A6CE39',
+    backgroundColor: '#141B5D',
     alignItems: 'center',
     borderRadius: 5,
     alignSelf: 'center',
     padding: 5,
   },
   header: {
-    backgroundColor: '#F1543F',
+    backgroundColor: '#5EC7F2',
     height: 50,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: 20,
   },
-  headerText: {fontSize: 30, fontWeight: 'bold'},
+  headerText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
   noProductAvailable: {
     alignItems: 'center',
     paddingTop: 35,
@@ -202,7 +218,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
+  logout: {
+    backgroundColor: 'white',
+  },
 });
 
 export default ProductOverviewScreen;

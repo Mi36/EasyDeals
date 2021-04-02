@@ -70,7 +70,10 @@ OrderScreen.navigationOptions = navData => {
 };
 
 const styles = StyleSheet.create({
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
   text: {
     fontWeight: '500',
     fontSize: 25,
@@ -78,11 +81,16 @@ const styles = StyleSheet.create({
   },
   noOrder: {
     flex: 1,
-    backgroundColor: '#F1543F',
+    backgroundColor: '#5EC7F2',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  indicator: {alignItems: 'center', justifyContent: 'center', flex: 1},
+  indicator: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
   header: {
     alignItems: 'center',
     justifyContent: 'center',

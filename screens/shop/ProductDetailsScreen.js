@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Button, ScrollView, Text, Image, View} from 'react-native';
+import {StyleSheet, Button, Text, Image, View} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import * as cartActions from '../../store/actions/cart';
 
@@ -10,26 +11,31 @@ const ProductDetailsScreen = props => {
     state.products.availableProducts.find(prod => prod.id === productId),
   );
   return (
-    <ScrollView>
+    <View style={styles.container}>
       <Image style={styles.image} source={{uri: selectedproduct.imageUrl}} />
       <View style={styles.action}>
-        <Button
-          title="Add To cart"
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => {
             dispatch(cartActions.addToCart(selectedproduct));
-          }}
-        />
+          }}>
+          <Text style={styles.buttonLabel}>Add to cart</Text>
+        </TouchableOpacity>
       </View>
-
-      <Text style={styles.price}>${selectedproduct.price}</Text>
+      <Text style={styles.price}>₹{selectedproduct.price}</Text>
       <Text style={styles.description}>{selectedproduct.description}</Text>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 300,
+  },
+  container: {
+    backgroundColor: '#5EC7F2',
+    flex: 1,
+    paddingHorizontal: 10,
   },
   price: {
     fontSize: 20,
@@ -43,8 +49,33 @@ const styles = StyleSheet.create({
   },
   action: {
     marginVertical: 10,
+  },
+  button: {
+    backgroundColor: '#141B5D',
+    height: 60,
     alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  buttonLabel: {
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
+
+ProductDetailsScreen.navigationOptions = navData => {
+  return {
+    headerShown: true,
+    title: 'Product details',
+    headerTintColor: 'black',
+    headerStyle: {
+      backgroundColor: '#5EC7F2',
+    },
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize: 20,
+    },
+  };
+};
 
 export default ProductDetailsScreen;

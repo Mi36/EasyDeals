@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import * as CartActions from '../../store/actions/cart';
@@ -44,18 +45,19 @@ const CartScreen = () => {
       <View style={styles.screen}>
         <View style={styles.summary}>
           <Text style={styles.summaryText}>
-            Total:${totalAmount.toFixed(2)}
+            Total:₹{totalAmount.toFixed(2)}
           </Text>
           {isLoading ? (
             <ActivityIndicator color="blue" size="small" />
           ) : (
-            <Button
-              title="Order Now"
+            <TouchableOpacity
+              style={styles.button}
               disabled={cartItems.length === 0}
               onPress={() =>
                 dispatch(orderActions.addOrder(cartItems, totalAmount))
-              }
-            />
+              }>
+              <Text style={styles.buttonLabel}>Order now</Text>
+            </TouchableOpacity>
           )}
           {/*above function do two things place order and also remove item from cart, these two are in different reducers. from actions the type get passed and
             both reducer will work */}
@@ -102,12 +104,27 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     height: 50,
   },
+  button: {
+    backgroundColor: '#141B5D',
+    height: 40,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  buttonLabel: {
+    fontWeight: 'bold',
+    color: 'white',
+  },
   summaryText: {
     fontSize: 18,
     color: 'red',
   },
   items: {},
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
   header: {
     alignItems: 'center',
     justifyContent: 'center',

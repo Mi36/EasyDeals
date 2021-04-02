@@ -12,27 +12,17 @@ import {ScrollView} from 'react-native-gesture-handler';
 export default function EntryScreen(props) {
   return (
     <SafeAreaView style={styles.main}>
-      <ScrollView bounces={false}>
-        <View style={styles.header}>
-          <Text style={styles.text}>Welcome to our store.</Text>
-        </View>
-        <View style={styles.margin}>
-          <Image
-            style={styles.stretch}
-            source={require('../assets/cart.png')}
-          />
-        </View>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate('Auth')}
-          style={styles.customerButton}>
-          <Text style={styles.customerText}>CUSTOMER</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => props.navigation.navigate('AdminLogin')}
-          style={styles.customerButton}>
-          <Text style={styles.customerText}>ADMIN</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      <View style={styles.header}>
+        <Text style={styles.text}>Welcome to our store.</Text>
+      </View>
+      <View style={styles.margin}>
+        <Image style={styles.stretch} source={require('../assets/cart.png')} />
+      </View>
+      <TouchableOpacity
+        onPress={() => props.navigation.navigate('Auth')}
+        style={styles.customerButton}>
+        <Text style={styles.customerText}>Continue</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -44,8 +34,9 @@ EntryScreen.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#F1543F',
+    backgroundColor: '#5EC7F2',
     flex: 1,
+    justifyContent: 'center',
   },
   stretch: {
     width: 200,
@@ -53,7 +44,9 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
     alignSelf: 'center',
   },
-  margin: {marginVertical: 50},
+  margin: {
+    marginVertical: 50,
+  },
   text: {
     fontSize: 30,
     fontWeight: 'bold',
@@ -67,7 +60,7 @@ const styles = StyleSheet.create({
   customerText: {
     fontWeight: '600',
     fontSize: 20,
-    color: '#222020',
+    color: 'white',
   },
   header: {
     alignItems: 'center',
@@ -83,11 +76,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: '#A6CE39',
-    marginHorizontal: 25,
-    paddingVertical: 25,
-    borderRadius: 25,
+    backgroundColor: '#141B5D',
+    borderRadius: 10,
     alignItems: 'center',
-    marginVertical: 25,
+    justifyContent: 'center',
+    marginVertical: 5,
+    height: 60,
+    marginHorizontal: 25,
   },
 });
