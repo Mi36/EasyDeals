@@ -44,7 +44,7 @@ const CartScreen = () => {
       <View style={styles.screen}>
         <View style={styles.summary}>
           <Text style={styles.summaryText}>
-            Total:${totalAmount.toFixed(2)}
+            Total:₹{totalAmount.toFixed(2)}
           </Text>
           {isLoading ? (
             <ActivityIndicator color="blue" size="small" />
@@ -107,7 +107,10 @@ const styles = StyleSheet.create({
     color: 'red',
   },
   items: {},
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
   header: {
     alignItems: 'center',
     justifyContent: 'center',

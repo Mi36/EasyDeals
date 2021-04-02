@@ -7,7 +7,7 @@ const OrderItem = props => {
   return (
     <View style={styles.OrderItem}>
       <View style={styles.summary}>
-        <Text>${props.amount}</Text>
+        <Text>₹{props.amount}</Text>
       </View>
       <Button
         title={showDetails ? 'Hide Details' : 'Show Details'}

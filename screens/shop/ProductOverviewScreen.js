@@ -93,9 +93,9 @@ const ProductOverviewScreen = props => {
   const header = () => {
     return (
       <View style={styles.header}>
-        <Text style={styles.headerText}>ALL PRODUCTS</Text>
+        <Text style={styles.headerText}>All Products</Text>
         <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
-          <Text style={{}}>Logout</Text>
+          <Text style={styles.logout}>Logout</Text>
         </TouchableOpacity>
       </View>
     );
@@ -176,23 +176,27 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#5EC7F2',
   },
   logoutButton: {
-    backgroundColor: '#A6CE39',
+    backgroundColor: '#141B5D',
     alignItems: 'center',
     borderRadius: 5,
     alignSelf: 'center',
     padding: 5,
   },
   header: {
-    backgroundColor: '#F1543F',
+    backgroundColor: '#5EC7F2',
     height: 50,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
     paddingHorizontal: 20,
   },
-  headerText: {fontSize: 30, fontWeight: 'bold'},
+  headerText: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
   noProductAvailable: {
     alignItems: 'center',
     paddingTop: 35,
@@ -202,7 +206,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
   },
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+  },
+  logout: {
+    backgroundColor: 'white',
+  },
 });
 
 export default ProductOverviewScreen;
