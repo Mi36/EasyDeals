@@ -138,9 +138,9 @@ const ProductOverviewScreen = props => {
             image={itemData.item.imageUrl}
             price={itemData.item.price}
             title={itemData.item.title}
-            onSelect={() => {
-              selectItemHandler(itemData.item.id);
-            }}
+            // onSelect={() => {
+            //   selectItemHandler(itemData.item.id);
+            // }}
             onAddToCart={() => {
               dispatch(cartActions.addToCart(itemData.item));
             }}>
