@@ -4,7 +4,6 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 target 'Kidsway' do
   # Pods for Kidsway
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
-  pod 'RNBootSplash', :path => '../node_modules/react-native-bootsplash'
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
   pod 'RCTTypeSafety', :path => "../node_modules/react-native/Libraries/TypeSafety"
@@ -34,6 +33,7 @@ target 'Kidsway' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'RNBootSplash', :path => '../node_modules/react-native-bootsplash'
 
   target 'KidswayTests' do
     inherit! :search_paths

@@ -279,7 +279,7 @@ PODS:
     - React-cxxreact (= 0.61.5)
     - React-jsi (= 0.61.5)
     - ReactCommon/jscallinvoker (= 0.61.5)
-  - RNBootSplash (3.1.2):
+  - RNBootSplash (2.2.8):
     - React-Core
   - RNCAsyncStorage (1.10.0):
     - React
@@ -491,7 +491,7 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNBootSplash: a9544ba7f1a68b561e61e9efc68e2b3eec05dcef
+  RNBootSplash: 14d30c2e1de7247d334540cb2c2d7f3c2acc6150
   RNCAsyncStorage: 6d99641f8e6f15d169d695d8ef184bf187903f11
   RNCMaskedView: 76c40a1d41c3e2535df09246a2b5487f04de0814
   RNFBApp: a9af8372c9c2b2135ffa78817fd2d8baf3ee632e
@@ -504,6 +504,6 @@ SPEC CHECKSUMS:
   RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: a35f76342461c712b17bdd251903bc07db18282b
+PODFILE CHECKSUM: aca8cbbbbe0af31ef4d449db7df7334a93b2dd4a
 
 COCOAPODS: 1.10.1
