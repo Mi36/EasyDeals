@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   StatusBar,
   SafeAreaView,
+  Image,
 } from 'react-native';
 import * as AuthActions from '../../store/actions/auth';
 import {connect} from 'react-redux';
@@ -82,7 +83,10 @@ class ForgotPassword extends Component {
       <SafeAreaView style={styles.flex}>
         <StatusBar barStyle={'dark-content'} />
         <View style={styles.header}>
-          <Text style={styles.text}>Forgot Password</Text>
+          <Image
+            style={styles.stretch}
+            source={require('../../assets/cart.png')}
+          />
         </View>
         <View>
           <TextInput
@@ -103,13 +107,13 @@ class ForgotPassword extends Component {
             activeOpacity={0.5}
             onPress={this._resetPassword}
             style={styles.resetPasswordBtn}>
-            <Text style={styles.resetPasswordLabel}>Send Email</Text>
+            <Text style={styles.resetPasswordLabel}>Reset my password</Text>
           </TouchableOpacity>
           <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => this.props.navigation.goBack()}
             style={styles.backBtn}>
-            <Text style={styles.resetPasswordLabel}>Back</Text>
+            <Text style={styles.backLabel}>Back</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
@@ -124,42 +128,63 @@ ForgotPassword.navigationOptions = navData => {
 };
 
 const styles = StyleSheet.create({
-  flex: {flex: 1, backgroundColor: '#F1543F'},
+  flex: {
+    flex: 1,
+    backgroundColor: '#5EC7F2',
+    justifyContent: 'center',
+  },
   textInput: {
-    height: 35,
+    height: 60,
     marginHorizontal: 15,
-    borderWidth: 1,
     borderRadius: 10,
     paddingLeft: 15,
     marginTop: 27,
+    backgroundColor: 'white',
   },
   resetPasswordBtn: {
-    height: 40,
-    width: 120,
-    backgroundColor: '#A6CE39',
+    backgroundColor: '#141B5D',
+    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 6,
-    marginTop: 27,
+    marginVertical: 5,
+    height: 60,
   },
   backBtn: {
-    backgroundColor: '#A6CE39',
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 3,
     padding: 4,
-    marginTop: 27,
+    marginTop: 5,
   },
   resetPasswordLabel: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  backLabel: {
     textDecorationLine: 'underline',
+    fontWeight: 'bold',
   },
   buttonContainer: {
     marginHorizontal: 15,
-    alignItems: 'center',
   },
-  error: {alignItems: 'center', marginTop: 4},
-  header: {alignItems: 'center'},
-  text: {fontSize: 30, fontWeight: 'bold'},
+  error: {
+    alignItems: 'center',
+    marginTop: 4,
+  },
+  header: {
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  text: {
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  stretch: {
+    width: 130,
+    height: 130,
+    resizeMode: 'stretch',
+    alignSelf: 'center',
+  },
 });
 
 const mapDispatchToProps = dispatch => {

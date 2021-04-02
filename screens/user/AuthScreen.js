@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Image,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import Input from '../../components/input';
@@ -60,7 +61,7 @@ const AuthScreen = props => {
 
   useEffect(() => {
     if (error) {
-      Alert.alert('Error Occured', error, [{text: 'Okay'}]);
+      Alert.alert('Error Occured', error, [{text: 'OK'}]);
     }
   }, [error]);
   useEffect(() => {
@@ -112,14 +113,13 @@ const AuthScreen = props => {
         <View>
           <View style={styles.screen}>
             <View style={styles.signup}>
-              {isSignUp ? (
-                <Text style={styles.header}>REGISTER</Text>
-              ) : (
-                <Text style={styles.header}>LOGIN</Text>
-              )}
+              <Image
+                style={styles.stretch}
+                source={require('../../assets/cart.png')}
+              />
             </View>
           </View>
-          <ScrollView style={styles.scrollview}>
+          <ScrollView style={styles.scrollview} bounces={false}>
             <Input
               keyboardType="email-address"
               label="E-Mail"
@@ -150,7 +150,9 @@ const AuthScreen = props => {
                 <TouchableOpacity
                   style={styles.customerButton}
                   onPress={authHandler}>
-                  <Text>{isSignUp ? 'Register' : 'Login'}</Text>
+                  <Text style={styles.buttonLabel}>
+                    {isSignUp ? 'Register' : 'Login'}
+                  </Text>
                 </TouchableOpacity>
               )}
               <TouchableOpacity
@@ -158,7 +160,9 @@ const AuthScreen = props => {
                 onPress={() => {
                   setIsSignUp(prevState => !prevState);
                 }}>
-                <Text>{`Switch to ${isSignUp ? 'Login' : 'Register'}`}</Text>
+                <Text style={styles.buttonLabel}>{`Switch to ${
+                  isSignUp ? 'Login' : 'Register'
+                }`}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.buttonContainer}>
@@ -168,13 +172,6 @@ const AuthScreen = props => {
                   props.navigation.navigate('FORGOTPASSWORD');
                 }}>
                 <Text style={styles.underline}>Forgot Password</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.goback}
-                onPress={() => {
-                  props.navigation.goBack();
-                }}>
-                <Text style={styles.underline}>back</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -190,22 +187,38 @@ AuthScreen.navigationOptions = navData => {
 };
 
 const styles = StyleSheet.create({
-  main: {backgroundColor: '#F1543F', flex: 1},
-  header: {fontWeight: 'bold', fontSize: 50},
+  main: {
+    backgroundColor: '#5EC7F2',
+    flex: 1,
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 50,
+  },
   screen: {
     paddingTop: 25,
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: '#A6CE39',
-    marginHorizontal: 25,
-    padding: 15,
+    backgroundColor: '#141B5D',
     borderRadius: 10,
     alignItems: 'center',
+    justifyContent: 'center',
     marginVertical: 5,
+    height: 60,
   },
-  signup: {flexDirection: 'row', paddingTop: 25},
-  scrollview: {marginHorizontal: 24, marginTop: 50},
+  buttonLabel: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  signup: {
+    flexDirection: 'row',
+    marginTop: 50,
+  },
+  scrollview: {
+    marginHorizontal: 24,
+    marginTop: 10,
+  },
   goBackTextColor: {},
   forgotPassword: {},
   switch: {
@@ -215,16 +228,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   goback: {
-    backgroundColor: '#A6CE39',
     alignItems: 'center',
     borderRadius: 5,
     alignSelf: 'center',
   },
-  underline: {textDecorationLine: 'underline'},
+  underline: {
+    textDecorationLine: 'underline',
+    fontWeight: 'bold',
+  },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginHorizontal: 30,
+    justifyContent: 'center',
+  },
+  stretch: {
+    width: 130,
+    height: 130,
+    resizeMode: 'stretch',
+    alignSelf: 'center',
   },
 });
 
