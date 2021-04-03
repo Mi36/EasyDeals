@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import * as CartActions from '../../store/actions/cart';
@@ -52,7 +51,6 @@ const CartScreen = () => {
           ) : (
             <TouchableOpacity
               style={styles.button}
-              disabled={cartItems.length === 0}
               onPress={() =>
                 dispatch(orderActions.addOrder(cartItems, totalAmount))
               }>
