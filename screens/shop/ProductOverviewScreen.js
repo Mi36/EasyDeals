@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
+import {StatusBar} from 'react-native';
 import {
   ActivityIndicator,
   Alert,
@@ -15,6 +16,7 @@ import ProductItem from '../../components/shop/ProdectItem';
 import * as AuthActions from '../../store/actions/auth';
 import * as cartActions from '../../store/actions/cart';
 import * as productActions from '../../store/actions/products';
+import colors from '../../styles/colors';
 const ProductOverviewScreen = props => {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
@@ -128,6 +130,7 @@ const ProductOverviewScreen = props => {
   }
   return (
     <SafeAreaView style={styles.flex}>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
       {header()}
       <FlatList
         onRefresh={loadProducts}

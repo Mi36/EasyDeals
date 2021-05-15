@@ -7,6 +7,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
@@ -38,6 +39,7 @@ const CartScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.flex}>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
       <View style={styles.header}>
         <Text style={styles.headerText}>CART</Text>
       </View>

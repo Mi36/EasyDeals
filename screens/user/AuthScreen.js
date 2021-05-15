@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
+import {StatusBar} from 'react-native';
 import {
   ActivityIndicator,
   Alert,
@@ -13,6 +14,7 @@ import {useDispatch} from 'react-redux';
 import Input from '../../components/input';
 import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
+import colors from '../../styles/colors';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
@@ -109,6 +111,7 @@ const AuthScreen = props => {
 
   return (
     <View style={styles.main}>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
       <KeyboardAvoidingViewWrapper>
         <View style={styles.screen}>
           <View style={styles.signup}>
