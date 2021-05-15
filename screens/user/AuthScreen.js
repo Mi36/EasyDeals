@@ -2,16 +2,16 @@ import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
-  KeyboardAvoidingView,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Image,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import Input from '../../components/input';
+import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -109,74 +109,72 @@ const AuthScreen = props => {
 
   return (
     <View style={styles.main}>
-      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={1}>
-        <View>
-          <View style={styles.screen}>
-            <View style={styles.signup}>
-              <Image
-                style={styles.stretch}
-                source={require('../../assets/cart.png')}
-              />
-            </View>
+      <KeyboardAvoidingViewWrapper>
+        <View style={styles.screen}>
+          <View style={styles.signup}>
+            <Image
+              style={styles.stretch}
+              source={require('../../assets/cart.png')}
+            />
           </View>
-          <ScrollView style={styles.scrollview} bounces={false}>
-            <Input
-              keyboardType="email-address"
-              label="E-Mail"
-              id="email"
-              email
-              required
-              autoCapitalize="none"
-              errorText="Please enter a valid email address"
-              initialValue=""
-              onInputChange={inputChangehandler}
-            />
-            <Input
-              keyboardType="default"
-              label="Password"
-              id="password"
-              secureTextEntry
-              minlenght={6}
-              required
-              autoCapitalize="none"
-              errorText="Please enter a valid password"
-              initialValue=""
-              onInputChange={inputChangehandler}
-            />
-            <View style={styles.switch}>
-              {isLoading ? (
-                <ActivityIndicator color="black" size="small" />
-              ) : (
-                <TouchableOpacity
-                  style={styles.customerButton}
-                  onPress={authHandler}>
-                  <Text style={styles.buttonLabel}>
-                    {isSignUp ? 'Register' : 'Login'}
-                  </Text>
-                </TouchableOpacity>
-              )}
+        </View>
+        <ScrollView style={styles.scrollview} bounces={false}>
+          <Input
+            keyboardType="email-address"
+            label="E-Mail"
+            id="email"
+            email
+            required
+            autoCapitalize="none"
+            errorText="Please enter a valid email address"
+            initialValue=""
+            onInputChange={inputChangehandler}
+          />
+          <Input
+            keyboardType="default"
+            label="Password"
+            id="password"
+            secureTextEntry
+            minlenght={6}
+            required
+            autoCapitalize="none"
+            errorText="Please enter a valid password"
+            initialValue=""
+            onInputChange={inputChangehandler}
+          />
+          <View style={styles.switch}>
+            {isLoading ? (
+              <ActivityIndicator color="black" size="small" />
+            ) : (
               <TouchableOpacity
                 style={styles.customerButton}
-                onPress={() => {
-                  setIsSignUp(prevState => !prevState);
-                }}>
-                <Text style={styles.buttonLabel}>{`Switch to ${
-                  isSignUp ? 'Login' : 'Register'
-                }`}</Text>
+                onPress={authHandler}>
+                <Text style={styles.buttonLabel}>
+                  {isSignUp ? 'Register' : 'Login'}
+                </Text>
               </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.goback}
-                onPress={() => {
-                  props.navigation.navigate('FORGOTPASSWORD');
-                }}>
-                <Text style={styles.underline}>Forgot Password</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>
-      </KeyboardAvoidingView>
+            )}
+            <TouchableOpacity
+              style={styles.customerButton}
+              onPress={() => {
+                setIsSignUp(prevState => !prevState);
+              }}>
+              <Text style={styles.buttonLabel}>{`Switch to ${
+                isSignUp ? 'Login' : 'Register'
+              }`}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.goback}
+              onPress={() => {
+                props.navigation.navigate('FORGOTPASSWORD');
+              }}>
+              <Text style={styles.underline}>Forgot Password</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </KeyboardAvoidingViewWrapper>
     </View>
   );
 };

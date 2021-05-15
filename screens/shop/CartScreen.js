@@ -11,9 +11,9 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import * as CartActions from '../../store/actions/cart';
-import * as orderActions from '../../store/actions/order';
+import colors from '../../styles/colors';
 
-const CartScreen = () => {
+const CartScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   //const [error, setError] = useState(); // we can add like before for error handling
   const dispatch = useDispatch();
@@ -50,9 +50,14 @@ const CartScreen = () => {
             <ActivityIndicator color="blue" size="small" />
           ) : (
             <TouchableOpacity
-              style={styles.button}
+              disabled={cartItems.length === 0 ? true : false}
+              style={cartItems.length === 0 ? styles.diasbled : styles.button}
               onPress={() =>
-                dispatch(orderActions.addOrder(cartItems, totalAmount))
+                // dispatch(orderActions.addOrder(cartItems, totalAmount))
+                navigation.navigate('OrderDetails', {
+                  cartItems,
+                  totalAmount,
+                })
               }>
               <Text style={styles.buttonLabel}>Order now</Text>
             </TouchableOpacity>
@@ -118,7 +123,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: 'black',
   },
-  items: {},
+  diasbled: {
+    backgroundColor: colors.grey_dimmed,
+    height: 40,
+    width: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
   flex: {
     flex: 1,
     backgroundColor: '#5EC7F2',
@@ -132,3 +144,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+CartScreen.navigationOptions = navData => {
+  return {
+    headerShown: false,
+  };
+};

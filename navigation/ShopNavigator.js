@@ -12,6 +12,7 @@ import AuthScreen from '../screens/user/AuthScreen';
 import ForgotPassword from '../screens/user/ForgotPassword';
 import ResetPassword from '../screens/user/ResetPassword';
 import EntryScreen from '../screens/EntryScreen';
+import OrderDetails from '../screens/shop/OrderDetails';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -28,12 +29,16 @@ const AuthNavigator = createStackNavigator({
 const OrderNavigator = createStackNavigator({
   Orders: OrderScreen,
 });
+const CartNavigator = createStackNavigator({
+  CartScreen: CartScreen,
+  OrderDetails: OrderDetails,
+});
 
 const TabNavigator = createBottomTabNavigator(
   {
     Products: ProductsNavigator,
     Orders: OrderNavigator,
-    CartScreen: CartScreen,
+    Cart: CartNavigator,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -45,7 +50,7 @@ const TabNavigator = createBottomTabNavigator(
           iconName = focused ? 'apps-outline' : 'apps-outline';
         } else if (routeName === 'Orders') {
           iconName = focused ? 'code-working-outline' : 'code-working-outline';
-        } else if (routeName === 'CartScreen') {
+        } else if (routeName === 'Cart') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
