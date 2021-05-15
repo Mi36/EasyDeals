@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   summaryText: {
     fontSize: 18,
-    color: 'red',
+    color: 'black',
   },
   items: {},
   flex: {
