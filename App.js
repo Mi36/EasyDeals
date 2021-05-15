@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage'; // for persisit
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import React, {Component} from 'react';
 //import storage from 'redux-persist/lib/storage';
 import {YellowBox} from 'react-native';
@@ -12,6 +13,7 @@ import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
 import orderReducer from './store/reducers/order';
 import productReducer from './store/reducers/products';
+import colors from './styles/colors';
 
 YellowBox.ignoreWarnings(['Remote']);
 
@@ -38,6 +40,9 @@ class App extends Component {
     super(props);
     this.state = {};
   }
+  componentDidMount = () => {
+    changeNavigationBarColor(colors.brand_5);
+  };
 
   render() {
     return (
