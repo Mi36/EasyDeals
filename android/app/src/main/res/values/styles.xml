@@ -1,13 +1,18 @@
-<resources>
+    <resources xmlns:tools="http://schemas.android.com/tools">
+
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:navigationBarColor" tools:targetApi="21">@color/navigationbar_color</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">#000000</item>
     </style>
-     <style name="BootTheme" parent="AppTheme">
+  <style name="BootTheme" parent="AppTheme">
     <!-- set the generated bootsplash.xml drawable as activity background -->
     <item name="android:background">@drawable/bootsplash</item>
+
+
+
   </style>
 
 </resources>
