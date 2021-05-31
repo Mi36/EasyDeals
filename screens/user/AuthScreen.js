@@ -16,6 +16,13 @@ import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
 import colors from '../../styles/colors';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+
+// Somewhere in your code
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -109,6 +116,28 @@ const AuthScreen = props => {
     [dispatchFormState],
   );
 
+  const signIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('userInfo', userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+        console.log(`error`, error);
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+        console.log(`error`, error);
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+        console.log(`error`, error);
+      } else {
+        // some other error happened
+        console.log(`error`, error);
+      }
+    }
+  };
+
   return (
     <View style={styles.main}>
       <StatusBar animated={true} backgroundColor={colors.brand_5} />
@@ -176,6 +205,12 @@ const AuthScreen = props => {
               <Text style={styles.underline}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
+          <GoogleSigninButton
+            style={{width: 192, height: 48}}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={signIn}
+          />
         </ScrollView>
       </KeyboardAvoidingViewWrapper>
     </View>

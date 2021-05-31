@@ -62,3 +62,4 @@ buck-out/
 ENV/env.js
 android/app/google-services.json
 ios/GoogleService-Info.plist
+config.js

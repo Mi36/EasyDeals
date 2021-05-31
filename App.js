@@ -1,13 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage'; // for persisit
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {Component} from 'react';
 //import storage from 'redux-persist/lib/storage';
 import {YellowBox} from 'react-native';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist'; // for prsist
 import {PersistGate} from 'redux-persist/integration/react';
 import thunk from 'redux-thunk';
+import config from './config';
 import NavigationContainer from './navigation/NavigationContainer';
 import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
@@ -40,7 +42,16 @@ class App extends Component {
     super(props);
     this.state = {};
   }
+
+  _configureGoogleSignIn() {
+    GoogleSignin.configure({
+      webClientId: config.webClientId, //for android
+      iosClientId: config.iosClientId, //// [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+      offlineAccess: false, //true if you want to access Google API on behalf of the user FROM YOUR SERVER
+    });
+  }
   componentDidMount = () => {
+    this._configureGoogleSignIn();
     changeNavigationBarColor(colors.brand_5);
   };
 
