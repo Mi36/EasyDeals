@@ -3,7 +3,6 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {Component} from 'react';
 //import storage from 'redux-persist/lib/storage';
 import {YellowBox} from 'react-native';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist'; // for prsist
@@ -15,7 +14,6 @@ import authReducer from './store/reducers/auth';
 import cartReducer from './store/reducers/cart';
 import orderReducer from './store/reducers/order';
 import productReducer from './store/reducers/products';
-import colors from './styles/colors';
 
 YellowBox.ignoreWarnings(['Remote']);
 
@@ -52,7 +50,6 @@ class App extends Component {
   }
   componentDidMount = () => {
     this._configureGoogleSignIn();
-    changeNavigationBarColor(colors.brand_5);
   };
 
   render() {
