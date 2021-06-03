@@ -6222,6 +6222,11 @@ react-native-elements@^3.1.0:
     react-native-safe-area-context "^3.1.9"
     react-native-size-matters "^0.3.1"
 
+react-native-fbsdk-next@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-fbsdk-next/-/react-native-fbsdk-next-4.1.0.tgz#99ec5b0a637e0302504599a619ab8e30b0bf9d59"
+  integrity sha512-MWb74tcBWzLtmggSRwxP91YSwoAI806VKdNjYvyqeungH2XaGdgwKNJCDFftRlFydJrIoYJ+eY27UKomHlw/LQ==
+
 react-native-gesture-handler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.0.tgz#e9a4e1d0c7ac21eb0d6b6ec013e73f9c0c33a629"

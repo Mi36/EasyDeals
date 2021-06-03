@@ -21,6 +21,10 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-google-signin/google-signin';
+import auth from '@react-native-firebase/auth';
+import {LoginButton, AccessToken} from 'react-native-fbsdk-next';
+import {Button} from 'react-native';
+import {LoginManager} from 'react-native-fbsdk-next';
 
 // Somewhere in your code
 
@@ -138,6 +142,31 @@ const AuthScreen = props => {
     }
   };
 
+  async function onFacebookButtonPress() {
+    // Attempt login with permissions
+    const result = await LoginManager.logInWithPermissions([
+      'public_profile',
+      'email',
+    ]);
+
+    if (result.isCancelled) {
+      throw 'User cancelled the login process';
+    }
+    const data = await AccessToken.getCurrentAccessToken();
+    if (!data) {
+      throw 'Something went wrong obtaining access token';
+    }
+
+    // Create a Firebase credential with the AccessToken
+    const facebookCredential = auth.FacebookAuthProvider.credential(
+      data.accessToken,
+    );
+    console.log(`facebookCredential`, facebookCredential);
+
+    // Sign-in the user with the credential
+    return auth().signInWithCredential(facebookCredential);
+  }
+
   return (
     <View style={styles.main}>
       <StatusBar animated={true} backgroundColor={colors.brand_5} />
@@ -205,6 +234,15 @@ const AuthScreen = props => {
               <Text style={styles.underline}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
+
+          <Button
+            title="Facebook Sign-In"
+            onPress={() =>
+              onFacebookButtonPress().then(() =>
+                console.log('Signed in with Facebook!'),
+              )
+            }
+          />
           <GoogleSigninButton
             style={{width: 192, height: 48}}
             size={GoogleSigninButton.Size.Wide}

@@ -18,6 +18,7 @@
 		2DCD954D1E0B4F2C00145EB5 /* KidswayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KidswayTests.m */; };
 		81622C078547AC8C6E0482E8 /* libPods-Kidsway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB2663A4AD6461CB576B98A /* libPods-Kidsway.a */; };
 		8444650C25AA0A0C0095063F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8444650B25AA0A0C0095063F /* GoogleService-Info.plist */; };
+		846CB66E26696EE2004EA4A6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CB66D26696EE2004EA4A6 /* File.swift */; };
 		8480D42B25B36B6300445170 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8480D42A25B36B6200445170 /* BootSplash.storyboard */; };
 		87B156178A355AD95A897872 /* libPods-KidswayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */; };
 		8BFC5C43B261411D6D13F329 /* libPods-Kidsway-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5F171BE549C8E808C8313 /* libPods-Kidsway-tvOS.a */; };
@@ -78,6 +79,8 @@
 		8422D89825B44B55005AB268 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		8422D89925B44B55005AB268 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		8444650B25AA0A0C0095063F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		846CB66C26696EE1004EA4A6 /* Kidsway-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kidsway-Bridging-Header.h"; sourceTree = "<group>"; };
+		846CB66D26696EE2004EA4A6 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		8480D42A25B36B6200445170 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Kidsway/Images.xcassets/BootSplash.storyboard; sourceTree = "<group>"; };
 		893959DDAE50E4B00D556F55 /* Pods-Kidsway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kidsway.release.xcconfig"; path = "Target Support Files/Pods-Kidsway/Pods-Kidsway.release.xcconfig"; sourceTree = "<group>"; };
 		937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidswayTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,6 +153,8 @@
 				8480D42A25B36B6200445170 /* BootSplash.storyboard */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				846CB66D26696EE2004EA4A6 /* File.swift */,
+				846CB66C26696EE1004EA4A6 /* Kidsway-Bridging-Header.h */,
 			);
 			name = Kidsway;
 			sourceTree = "<group>";
@@ -337,6 +342,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						LastSwiftMigration = 1240;
+					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -463,6 +471,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Kidsway/Pods-Kidsway-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -483,6 +492,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
@@ -636,6 +646,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				846CB66E26696EE2004EA4A6 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,6 +688,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 04D6905D847065991A7CFBD8 /* Pods-KidswayTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -700,6 +712,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5DB1E962EF65E1F4EB3CB2EA /* Pods-KidswayTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = KidswayTests/Info.plist;
@@ -721,6 +734,7 @@
 			baseConfigurationReference = 3B20608B73C602C75E9A0CE0 /* Pods-Kidsway.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = Kidsway/Info.plist;
@@ -732,6 +746,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Kidsway;
+				SWIFT_OBJC_BRIDGING_HEADER = "Kidsway-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -741,6 +758,7 @@
 			baseConfigurationReference = 893959DDAE50E4B00D556F55 /* Pods-Kidsway.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = Kidsway/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -751,6 +769,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Kidsway;
+				SWIFT_OBJC_BRIDGING_HEADER = "Kidsway-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
