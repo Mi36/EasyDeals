@@ -1,8 +1,10 @@
 import React from 'react';
-import {StyleSheet, Button, Text, Image, View} from 'react-native';
+import {StatusBar} from 'react-native';
+import {StyleSheet, Text, Image, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
 import * as cartActions from '../../store/actions/cart';
+import colors from '../../styles/colors';
 
 const ProductDetailsScreen = props => {
   const dispatch = useDispatch();
@@ -12,6 +14,7 @@ const ProductDetailsScreen = props => {
   );
   return (
     <View style={styles.container}>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
       <Image style={styles.image} source={{uri: selectedproduct.imageUrl}} />
       <View style={styles.action}>
         <TouchableOpacity

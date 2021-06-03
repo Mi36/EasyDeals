@@ -1,5 +1,6 @@
 export const ADD_ORDER = 'ADD_ORDER';
 export const SET_ORDER = 'SET_ORDER';
+export const ADD_ORDER_FAILED = 'ADD_ORDER_FAILED';
 import Order from '../../models/order';
 
 export const fetchOrder = () => {
@@ -33,39 +34,47 @@ export const fetchOrder = () => {
   };
 };
 
-export const addOrder = (cartItems, totalAmount) => {
+export const addOrder = (cartItems, totalAmount, name, phone, address) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const date = new Date();
-    const response = await fetch(
+
+    fetch(
       `https://ecommerce-f33e7.firebaseio.com/orders/${userId}.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'apllication/json',
         },
+        //json added because of firebase syntax, by default it send get req,otherwise explicitly mention
         body: JSON.stringify({
           cartItems,
           totalAmount,
           date: date.toISOString(),
+          name,
+          phone,
+          address,
         }),
       },
-    ); //.json added because of firebase syntax, by default it send get req,otherwise explicitly mention
-    console.log('order', response);
-    if (!response.ok) {
-      throw new Error('Something went wrong');
-    }
-
-    const resData = await response.json();
-    dispatch({
-      type: ADD_ORDER,
-      orderData: {
-        id: resData.name,
-        items: cartItems,
-        amount: totalAmount,
-        date: date,
-      },
-    });
+    )
+      .then(res => {
+        console.log(res);
+        const resData = res.json();
+        dispatch({
+          type: ADD_ORDER,
+          orderData: {
+            id: resData.name,
+            items: cartItems,
+            amount: totalAmount,
+            date: date,
+          },
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: ADD_ORDER_FAILED,
+        });
+      });
   };
 };

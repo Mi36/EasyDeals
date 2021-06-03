@@ -1,19 +1,28 @@
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
+import {StatusBar} from 'react-native';
 import {
   ActivityIndicator,
   Alert,
-  KeyboardAvoidingView,
+  Image,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Image,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import Input from '../../components/input';
+import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
+import colors from '../../styles/colors';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from '@react-native-google-signin/google-signin';
+
+// Somewhere in your code
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -107,76 +116,103 @@ const AuthScreen = props => {
     [dispatchFormState],
   );
 
+  const signIn = async () => {
+    try {
+      await GoogleSignin.hasPlayServices();
+      const userInfo = await GoogleSignin.signIn();
+      console.log('userInfo', userInfo);
+    } catch (error) {
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // user cancelled the login flow
+        console.log(`error`, error);
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // operation (e.g. sign in) is in progress already
+        console.log(`error`, error);
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // play services not available or outdated
+        console.log(`error`, error);
+      } else {
+        // some other error happened
+        console.log(`error`, error);
+      }
+    }
+  };
+
   return (
     <View style={styles.main}>
-      <KeyboardAvoidingView behavior="padding" keyboardVerticalOffset={1}>
-        <View>
-          <View style={styles.screen}>
-            <View style={styles.signup}>
-              <Image
-                style={styles.stretch}
-                source={require('../../assets/cart.png')}
-              />
-            </View>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+      <KeyboardAvoidingViewWrapper>
+        <View style={styles.screen}>
+          <View style={styles.signup}>
+            <Image
+              style={styles.stretch}
+              source={require('../../assets/cart.png')}
+            />
           </View>
-          <ScrollView style={styles.scrollview} bounces={false}>
-            <Input
-              keyboardType="email-address"
-              label="E-Mail"
-              id="email"
-              email
-              required
-              autoCapitalize="none"
-              errorText="Please enter a valid email address"
-              initialValue=""
-              onInputChange={inputChangehandler}
-            />
-            <Input
-              keyboardType="default"
-              label="Password"
-              id="password"
-              secureTextEntry
-              minlenght={6}
-              required
-              autoCapitalize="none"
-              errorText="Please enter a valid password"
-              initialValue=""
-              onInputChange={inputChangehandler}
-            />
-            <View style={styles.switch}>
-              {isLoading ? (
-                <ActivityIndicator color="black" size="small" />
-              ) : (
-                <TouchableOpacity
-                  style={styles.customerButton}
-                  onPress={authHandler}>
-                  <Text style={styles.buttonLabel}>
-                    {isSignUp ? 'Register' : 'Login'}
-                  </Text>
-                </TouchableOpacity>
-              )}
+        </View>
+        <ScrollView style={styles.scrollview} bounces={false}>
+          <Input
+            keyboardType="email-address"
+            label="E-Mail"
+            id="email"
+            email
+            required
+            autoCapitalize="none"
+            errorText="Please enter a valid email address"
+            initialValue=""
+            onInputChange={inputChangehandler}
+          />
+          <Input
+            keyboardType="default"
+            label="Password"
+            id="password"
+            secureTextEntry
+            minlenght={6}
+            required
+            autoCapitalize="none"
+            errorText="Please enter a valid password"
+            initialValue=""
+            onInputChange={inputChangehandler}
+          />
+          <View style={styles.switch}>
+            {isLoading ? (
+              <ActivityIndicator color="black" size="small" />
+            ) : (
               <TouchableOpacity
                 style={styles.customerButton}
-                onPress={() => {
-                  setIsSignUp(prevState => !prevState);
-                }}>
-                <Text style={styles.buttonLabel}>{`Switch to ${
-                  isSignUp ? 'Login' : 'Register'
-                }`}</Text>
+                onPress={authHandler}>
+                <Text style={styles.buttonLabel}>
+                  {isSignUp ? 'Register' : 'Login'}
+                </Text>
               </TouchableOpacity>
-            </View>
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity
-                style={styles.goback}
-                onPress={() => {
-                  props.navigation.navigate('FORGOTPASSWORD');
-                }}>
-                <Text style={styles.underline}>Forgot Password</Text>
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </View>
-      </KeyboardAvoidingView>
+            )}
+            <TouchableOpacity
+              style={styles.customerButton}
+              onPress={() => {
+                setIsSignUp(prevState => !prevState);
+              }}>
+              <Text style={styles.buttonLabel}>{`Switch to ${
+                isSignUp ? 'Login' : 'Register'
+              }`}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              style={styles.goback}
+              onPress={() => {
+                props.navigation.navigate('FORGOTPASSWORD');
+              }}>
+              <Text style={styles.underline}>Forgot Password</Text>
+            </TouchableOpacity>
+          </View>
+          <GoogleSigninButton
+            style={{width: 192, height: 48}}
+            size={GoogleSigninButton.Size.Wide}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={signIn}
+          />
+        </ScrollView>
+      </KeyboardAvoidingViewWrapper>
     </View>
   );
 };

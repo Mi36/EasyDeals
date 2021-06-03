@@ -1,4 +1,5 @@
 import React from 'react';
+import {StatusBar} from 'react-native';
 import {
   Image,
   SafeAreaView,
@@ -7,11 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
+import colors from '../styles/colors';
 
 export default function EntryScreen(props) {
   return (
     <SafeAreaView style={styles.main}>
+      <StatusBar animated={true} backgroundColor={colors.brand_5} />
       <View style={styles.header}>
         <Text style={styles.text}>Welcome to our store.</Text>
       </View>
