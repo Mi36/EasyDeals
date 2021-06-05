@@ -238,9 +238,7 @@ const AuthScreen = props => {
           <Button
             title="Facebook Sign-In"
             onPress={() =>
-              onFacebookButtonPress().then(() =>
-                console.log('Signed in with Facebook!'),
-              )
+              onFacebookButtonPress().then(value => console.log(`value`, value))
             }
           />
           <GoogleSigninButton
