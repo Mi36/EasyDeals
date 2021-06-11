@@ -13,6 +13,7 @@ import ForgotPassword from '../screens/user/ForgotPassword';
 import ResetPassword from '../screens/user/ResetPassword';
 import EntryScreen from '../screens/EntryScreen';
 import OrderDetails from '../screens/shop/OrderDetails';
+import UploadProduct from '../screens/shop/UploadProduct';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -24,6 +25,7 @@ const AuthNavigator = createStackNavigator({
   Auth: AuthScreen,
   FORGOTPASSWORD: ForgotPassword,
   RESETPASSWORD: ResetPassword,
+  UPLOAD: UploadProduct,
 });
 
 const OrderNavigator = createStackNavigator({
