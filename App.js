@@ -3,6 +3,7 @@ import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import React, {Component} from 'react';
 //import storage from 'redux-persist/lib/storage';
 import {YellowBox} from 'react-native';
+import RNBootSplash from 'react-native-bootsplash';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist'; // for prsist
@@ -50,6 +51,7 @@ class App extends Component {
   }
   componentDidMount = () => {
     this._configureGoogleSignIn();
+    RNBootSplash.hide(); // immediate
   };
 
   render() {

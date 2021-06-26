@@ -45,7 +45,12 @@ const StartUpScreen = props => {
 };
 
 const styles = StyleSheet.create({
-  indicator: {flex: 1, justifyContent: 'center', alignItems: 'center'},
+  indicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'pink',
+  },
 });
 
 export default StartUpScreen;
