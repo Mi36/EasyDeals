@@ -125,19 +125,19 @@ const AuthScreen = props => {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
       console.log('userInfo', userInfo);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+    } catch (err) {
+      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
-        console.log(`error`, error);
+        console.log(err);
       } else if (error.code === statusCodes.IN_PROGRESS) {
         // operation (e.g. sign in) is in progress already
-        console.log(`error`, error);
+        console.log(err);
       } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
         // play services not available or outdated
-        console.log(`error`, error);
+        console.log(err);
       } else {
         // some other error happened
-        console.log(`error`, error);
+        console.log(err);
       }
     }
   };
@@ -235,7 +235,7 @@ const AuthScreen = props => {
             </TouchableOpacity>
           </View>
 
-          <Button
+          {/* <Button
             title="Facebook Sign-In"
             onPress={() =>
               onFacebookButtonPress().then(value => console.log(`value`, value))
@@ -246,7 +246,7 @@ const AuthScreen = props => {
             size={GoogleSigninButton.Size.Wide}
             color={GoogleSigninButton.Color.Dark}
             onPress={signIn}
-          />
+          /> */}
         </ScrollView>
       </KeyboardAvoidingViewWrapper>
     </View>

@@ -21,7 +21,7 @@ export default function EntryScreen(props) {
         <Image style={styles.stretch} source={require('../assets/cart.png')} />
       </View>
       <TouchableOpacity
-        onPress={() => props.navigation.navigate('UPLOAD')}
+        onPress={() => props.navigation.navigate('Auth')}
         style={styles.customerButton}>
         <Text style={styles.customerText}>Continue</Text>
       </TouchableOpacity>
