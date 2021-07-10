@@ -1,10 +1,10 @@
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
-import {StatusBar} from 'react-native';
 import {
   ActivityIndicator,
   Alert,
   Image,
   ScrollView,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -15,18 +15,8 @@ import Input from '../../components/input';
 import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
 import colors from '../../styles/colors';
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
-import auth from '@react-native-firebase/auth';
-import {LoginButton, AccessToken} from 'react-native-fbsdk-next';
-import {Button} from 'react-native';
-import {LoginManager} from 'react-native-fbsdk-next';
 
-// Somewhere in your code
+const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -120,53 +110,6 @@ const AuthScreen = props => {
     [dispatchFormState],
   );
 
-  const signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log('userInfo', userInfo);
-    } catch (err) {
-      if (err.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        console.log(err);
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-        console.log(err);
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-        console.log(err);
-      } else {
-        // some other error happened
-        console.log(err);
-      }
-    }
-  };
-
-  async function onFacebookButtonPress() {
-    // Attempt login with permissions
-    const result = await LoginManager.logInWithPermissions([
-      'public_profile',
-      'email',
-    ]);
-
-    if (result.isCancelled) {
-      throw 'User cancelled the login process';
-    }
-    const data = await AccessToken.getCurrentAccessToken();
-    if (!data) {
-      throw 'Something went wrong obtaining access token';
-    }
-
-    // Create a Firebase credential with the AccessToken
-    const facebookCredential = auth.FacebookAuthProvider.credential(
-      data.accessToken,
-    );
-    console.log(`facebookCredential`, facebookCredential);
-
-    // Sign-in the user with the credential
-    return auth().signInWithCredential(facebookCredential);
-  }
-
   return (
     <View style={styles.main}>
       <StatusBar animated={true} backgroundColor={colors.brand_5} />
@@ -234,19 +177,6 @@ const AuthScreen = props => {
               <Text style={styles.underline}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
-
-          {/* <Button
-            title="Facebook Sign-In"
-            onPress={() =>
-              onFacebookButtonPress().then(value => console.log(`value`, value))
-            }
-          />
-          <GoogleSigninButton
-            style={{width: 192, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          /> */}
         </ScrollView>
       </KeyboardAvoidingViewWrapper>
     </View>

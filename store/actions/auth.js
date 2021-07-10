@@ -143,18 +143,15 @@ export const signup = (email, password, admin = false) => {
 
     if (!response.ok) {
       const errorResData = await response.json();
-      const errorId = errorResData.error.message; // this we can find by using console
+      const errorId = errorResData.error.message;
       let message = 'Something went wrong';
       if (errorId === 'EMAIL_EXISTS') {
         message = 'This email already used';
       }
-
       throw new Error(message);
     }
 
     const resData = await response.json();
-    console.log(resData);
-    //dispatch({type: SIGNUP, token: resData.idToken, userId: resData.localId}); // we can get these console resdata
     dispatch(
       authenticate(
         resData.localId,
@@ -171,6 +168,7 @@ export const signup = (email, password, admin = false) => {
     saveDataToStorage(resData.idToken, resData.localId, expirationDate);
   };
 };
+
 export const login = (email, password, admin = false) => {
   return async dispatch => {
     const response = await fetch(
