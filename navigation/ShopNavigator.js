@@ -3,17 +3,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import CartScreen from '../screens/shop/CartScreen';
-import OrderScreen from '../screens/shop/OrderScreen';
-import ProductDetailsScreen from '../screens/shop/ProductDetailsScreen';
-import ProductOverviewScreen from '../screens/shop/ProductOverviewScreen';
+import CartScreen from '../screens/CartScreen';
+import OrderScreen from '../screens/OrderScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import ProductOverviewScreen from '../screens/ProductOverviewScreen';
 import StartUpScreen from '../screens/StartUpScreen';
-import AuthScreen from '../screens/user/AuthScreen';
-import ForgotPassword from '../screens/user/ForgotPassword';
-import ResetPassword from '../screens/user/ResetPassword';
+import AuthScreen from '../screens/AuthScreen';
+import ForgotPassword from '../screens/ForgotPassword';
+import ResetPassword from '../screens/ResetPassword';
 import EntryScreen from '../screens/EntryScreen';
-import OrderDetails from '../screens/shop/OrderDetails';
-import UploadProduct from '../screens/shop/UploadProduct';
+import OrderDetails from '../screens/OrderDetails';
+import UploadProduct from '../screens/UploadProduct';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
