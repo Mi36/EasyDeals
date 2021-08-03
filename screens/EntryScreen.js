@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import colors from '../styles/colors';
+import Colors from '../constants/Colors';
 
 export default function EntryScreen(props) {
   return (
     <SafeAreaView style={styles.main}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
       <View style={styles.header}>
         <Text style={styles.text}>Welcome to our store.</Text>
       </View>

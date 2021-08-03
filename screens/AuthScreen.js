@@ -14,7 +14,7 @@ import {useDispatch} from 'react-redux';
 import Input from '../../components/input';
 import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
 import * as AuthActions from '../../store/actions/auth';
-import colors from '../../styles/colors';
+import Colors from '../constants/Colors';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -112,7 +112,7 @@ const AuthScreen = props => {
 
   return (
     <View style={styles.main}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
       <KeyboardAvoidingViewWrapper>
         <View style={styles.screen}>
           <View style={styles.signup}>

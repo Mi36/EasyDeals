@@ -1,6 +1,6 @@
 import React, {useReducer, useEffect} from 'react';
 import {View, TextInput, StyleSheet, Text} from 'react-native';
-import Colors from '../styles/colors';
+import Colors from '../constants/Colors';
 
 const INPUT_CHANGE = 'INPUT_CHANGE';
 const INPUT_BLUR = 'INPUT_BLUR';

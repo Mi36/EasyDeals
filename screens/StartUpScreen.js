@@ -3,8 +3,8 @@ import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Colors from '../constants/Colors';
 import * as authActions from '../store/actions/auth';
-import colors from '../styles/colors';
 
 const StartUpScreen = props => {
   const admin = useSelector(state => state.auth.admin);
@@ -38,7 +38,7 @@ const StartUpScreen = props => {
   }, []);
   return (
     <View style={styles.indicator}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
       <ActivityIndicator color="red" size="large" />
     </View>
   );
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.brand,
+    backgroundColor: Colors.brand,
   },
 });
 

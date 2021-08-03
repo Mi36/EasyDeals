@@ -12,7 +12,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import * as CartActions from '../../store/actions/cart';
-import colors from '../../styles/colors';
+import Colors from '../constants/Colors';
 
 const CartScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     color: 'black',
   },
   diasbled: {
-    backgroundColor: colors.grey_dimmed,
+    backgroundColor: Colors.grey_dimmed,
     height: 40,
     width: 100,
     alignItems: 'center',
