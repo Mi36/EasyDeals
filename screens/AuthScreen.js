@@ -2,9 +2,6 @@ import React, {useCallback, useEffect, useReducer, useState} from 'react';
 import {
   ActivityIndicator,
   Alert,
-  Image,
-  ScrollView,
-  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -13,8 +10,9 @@ import {
 import {useDispatch} from 'react-redux';
 import Input from '../components/input';
 import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
-import * as AuthActions from '../store/actions/auth';
+import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
+import * as AuthActions from '../store/actions/auth';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
@@ -47,7 +45,7 @@ const formReducer = (state, action) => {
 const AuthScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -111,18 +109,12 @@ const AuthScreen = props => {
   );
 
   return (
-    <View style={styles.main}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+    <Screen>
       <KeyboardAvoidingViewWrapper>
-        <View style={styles.screen}>
-          <View style={styles.signup}>
-            <Image
-              style={styles.stretch}
-              source={require('../assets/cart.png')}
-            />
+        <View style={styles.main}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>{isSignUp ? 'Register' : 'Login'}</Text>
           </View>
-        </View>
-        <ScrollView style={styles.scrollview} bounces={false}>
           <Input
             keyboardType="email-address"
             label="E-Mail"
@@ -177,9 +169,9 @@ const AuthScreen = props => {
               <Text style={styles.underline}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
-        </ScrollView>
+        </View>
       </KeyboardAvoidingViewWrapper>
-    </View>
+    </Screen>
   );
 };
 AuthScreen.navigationOptions = navData => {
@@ -190,19 +182,23 @@ AuthScreen.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#5EC7F2',
-    flex: 1,
+    marginHorizontal: 20,
+  },
+  headerContainer: {
+    alignItems: 'center',
+    marginVertical: 10,
   },
   header: {
     fontWeight: 'bold',
-    fontSize: 50,
+    fontSize: 40,
+    color: Colors.black2,
   },
   screen: {
     paddingTop: 25,
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: '#141B5D',
+    backgroundColor: Colors.pink3,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -217,10 +213,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 50,
   },
-  scrollview: {
-    marginHorizontal: 24,
-    marginTop: 10,
-  },
+
   goBackTextColor: {},
   forgotPassword: {},
   switch: {

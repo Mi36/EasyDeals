@@ -67,8 +67,8 @@ const Input = props => {
 
   return (
     <View style={styles.formControl}>
-      <Text style={styles.label}>{props.label}</Text>
       <TextInput
+        placeholder={props.label}
         {...props}
         style={styles.input}
         value={inputState.value}
@@ -93,14 +93,15 @@ const Input = props => {
 const styles = StyleSheet.create({
   formControl: {
     flex: 1,
+    marginBottom: 10,
   },
   label: {
     marginVertical: 8,
     fontWeight: 'bold',
   },
   input: {
-    paddingVertical: 15,
     borderColor: 'black',
+    borderWidth: 1,
     backgroundColor: 'white',
     paddingLeft: 10,
     borderRadius: 10,
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
   },
   errorContainer: {
     paddingTop: 2,
+    alignItems: 'center',
   },
   errorLabel: {
     color: Colors.danger,

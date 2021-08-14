@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {
-  View,
-  Text,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  StatusBar,
-  SafeAreaView,
-  Image,
+  View,
 } from 'react-native';
-import * as AuthActions from '../store/actions/auth';
-import {connect} from 'react-redux';
 import Toast from 'react-native-tiny-toast';
+import {connect} from 'react-redux';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
+import Screen from '../components/Screen';
+import Colors from '../constants/Colors';
+import * as AuthActions from '../store/actions/auth';
 
 class ForgotPassword extends Component {
   constructor(props) {
@@ -80,43 +80,39 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.flex}>
-        <StatusBar barStyle={'dark-content'} />
-        <View style={styles.header}>
-          <Image
-            style={styles.stretch}
-            source={require('../assets/cart.png')}
-          />
-        </View>
-        <View>
-          <TextInput
-            style={styles.textInput}
-            inputType="email"
-            onChangeText={this.inputCangeHandler}
-            value={this.email}
-            placeholder="E-mail"
-          />
-          <View style={styles.error}>
-            {this.state.errors && this.state.errors.message ? (
-              <Text>{this.state.errors.message}</Text>
-            ) : null}
+      <Screen style={styles.flex}>
+        <KeyboardAvoidingViewWrapper>
+          <View style={styles.header} />
+          <View>
+            <TextInput
+              style={styles.textInput}
+              inputType="email"
+              onChangeText={this.inputCangeHandler}
+              value={this.email}
+              placeholder="Enter your email"
+            />
+            <View style={styles.error}>
+              {this.state.errors && this.state.errors.message ? (
+                <Text>{this.state.errors.message}</Text>
+              ) : null}
+            </View>
           </View>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={this._resetPassword}
-            style={styles.resetPasswordBtn}>
-            <Text style={styles.resetPasswordLabel}>Reset my password</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => this.props.navigation.goBack()}
-            style={styles.backBtn}>
-            <Text style={styles.backLabel}>Back</Text>
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={this._resetPassword}
+              style={styles.resetPasswordBtn}>
+              <Text style={styles.resetPasswordLabel}>Reset my password</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => this.props.navigation.goBack()}
+              style={styles.backBtn}>
+              <Text style={styles.backLabel}>Back</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingViewWrapper>
+      </Screen>
     );
   }
 }
@@ -129,8 +125,6 @@ ForgotPassword.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   flex: {
-    flex: 1,
-    backgroundColor: '#5EC7F2',
     justifyContent: 'center',
   },
   textInput: {
@@ -140,9 +134,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     marginTop: 27,
     backgroundColor: 'white',
+    borderWidth: 1,
   },
   resetPasswordBtn: {
-    backgroundColor: '#141B5D',
+    backgroundColor: Colors.pink4,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

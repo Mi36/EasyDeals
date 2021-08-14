@@ -1,19 +1,11 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
-import {
-  Image,
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 
 export default function EntryScreen(props) {
   return (
-    <SafeAreaView style={styles.main}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+    <Screen style={styles.main}>
       <View style={styles.header}>
         <Text style={styles.text}>Welcome to our store.</Text>
       </View>
@@ -25,7 +17,7 @@ export default function EntryScreen(props) {
         style={styles.customerButton}>
         <Text style={styles.customerText}>Continue</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </Screen>
   );
 }
 EntryScreen.navigationOptions = navData => {
@@ -36,8 +28,6 @@ EntryScreen.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#5EC7F2',
-    flex: 1,
     justifyContent: 'center',
   },
   stretch: {
@@ -78,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: '#141B5D',
+    backgroundColor: Colors.pink4,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
