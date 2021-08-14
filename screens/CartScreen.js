@@ -10,8 +10,8 @@ import {
   StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import CartItem from '../../components/shop/CartItem';
-import * as CartActions from '../../store/actions/cart';
+import CartItem from '../components/CartItem';
+import * as CartActions from '../store/actions/cart';
 import Colors from '../constants/Colors';
 
 const CartScreen = ({navigation}) => {

@@ -3,7 +3,7 @@ import {StatusBar} from 'react-native';
 import {StyleSheet, Text, Image, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useSelector, useDispatch} from 'react-redux';
-import * as cartActions from '../../store/actions/cart';
+import * as cartActions from '../store/actions/cart';
 import Colors from '../constants/Colors';
 
 const ProductDetailsScreen = props => {

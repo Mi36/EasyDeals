@@ -10,8 +10,8 @@ import {
   SafeAreaView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
-import * as orderActions from '../../store/actions/order';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
+import * as orderActions from '../store/actions/order';
 import Colors from '../constants/Colors';
 
 export default function OrderDetails({navigation}) {

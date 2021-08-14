@@ -6,7 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import * as AuthActions from '../../store/actions/auth';
+import * as AuthActions from '../store/actions/auth';
 import {connect} from 'react-redux';
 
 class ResetPassword extends Component {

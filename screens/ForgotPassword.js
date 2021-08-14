@@ -9,7 +9,7 @@ import {
   SafeAreaView,
   Image,
 } from 'react-native';
-import * as AuthActions from '../../store/actions/auth';
+import * as AuthActions from '../store/actions/auth';
 import {connect} from 'react-redux';
 import Toast from 'react-native-tiny-toast';
 
@@ -85,7 +85,7 @@ class ForgotPassword extends Component {
         <View style={styles.header}>
           <Image
             style={styles.stretch}
-            source={require('../../assets/cart.png')}
+            source={require('../assets/cart.png')}
           />
         </View>
         <View>

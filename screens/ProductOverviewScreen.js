@@ -12,10 +12,10 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-import ProductItem from '../../components/shop/ProdectItem';
-import * as AuthActions from '../../store/actions/auth';
-import * as cartActions from '../../store/actions/cart';
-import * as productActions from '../../store/actions/products';
+import ProductItem from '../components/ProdectItem';
+import * as AuthActions from '../store/actions/auth';
+import * as cartActions from '../store/actions/cart';
+import * as productActions from '../store/actions/products';
 import Colors from '../constants/Colors';
 
 const ProductOverviewScreen = props => {

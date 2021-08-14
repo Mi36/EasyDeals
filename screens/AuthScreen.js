@@ -11,9 +11,9 @@ import {
   View,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import Input from '../../components/input';
-import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
-import * as AuthActions from '../../store/actions/auth';
+import Input from '../components/input';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
+import * as AuthActions from '../store/actions/auth';
 import Colors from '../constants/Colors';
 
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
@@ -118,7 +118,7 @@ const AuthScreen = props => {
           <View style={styles.signup}>
             <Image
               style={styles.stretch}
-              source={require('../../assets/cart.png')}
+              source={require('../assets/cart.png')}
             />
           </View>
         </View>

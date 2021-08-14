@@ -7,8 +7,8 @@ import {
   View,
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import OrderItem from '../../components/shop/OrderItem';
-import * as ordersActions from '../../store/actions/order';
+import OrderItem from '../components/OrderItem';
+import * as ordersActions from '../store/actions/order';
 import {SafeAreaView} from 'react-native';
 
 const OrderScreen = props => {
