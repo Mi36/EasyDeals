@@ -39,7 +39,7 @@ const CartScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.flex}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
       <View style={styles.header}>
         <Text style={styles.headerText}>CART</Text>
       </View>

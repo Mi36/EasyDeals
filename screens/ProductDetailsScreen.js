@@ -1,7 +1,6 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
-import {StyleSheet, Text, Image, View} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, Text, Image, View, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import * as cartActions from '../store/actions/cart';
 import Colors from '../constants/Colors';
@@ -18,6 +17,7 @@ const ProductDetailsScreen = props => {
       <Image style={styles.image} source={{uri: selectedproduct.imageUrl}} />
       <View style={styles.action}>
         <TouchableOpacity
+          activeOpacity={0.8}
           style={styles.button}
           onPress={() => {
             dispatch(cartActions.addToCart(selectedproduct));
