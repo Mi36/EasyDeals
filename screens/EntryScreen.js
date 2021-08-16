@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 
@@ -8,9 +8,6 @@ export default function EntryScreen(props) {
     <Screen style={styles.main}>
       <View style={styles.header}>
         <Text style={styles.text}>Welcome to our store.</Text>
-      </View>
-      <View style={styles.margin}>
-        <Image style={styles.stretch} source={require('../assets/cart.png')} />
       </View>
       <TouchableOpacity
         onPress={() => props.navigation.navigate('Auth')}

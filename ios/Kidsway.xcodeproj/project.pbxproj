@@ -18,8 +18,8 @@
 		2DCD954D1E0B4F2C00145EB5 /* KidswayTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KidswayTests.m */; };
 		81622C078547AC8C6E0482E8 /* libPods-Kidsway.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BB2663A4AD6461CB576B98A /* libPods-Kidsway.a */; };
 		8444650C25AA0A0C0095063F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8444650B25AA0A0C0095063F /* GoogleService-Info.plist */; };
+		8466772F26CADC77003A20E1 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8466772E26CADC77003A20E1 /* BootSplash.storyboard */; };
 		846CB66E26696EE2004EA4A6 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846CB66D26696EE2004EA4A6 /* File.swift */; };
-		8480D42B25B36B6300445170 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8480D42A25B36B6200445170 /* BootSplash.storyboard */; };
 		87B156178A355AD95A897872 /* libPods-KidswayTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */; };
 		8BFC5C43B261411D6D13F329 /* libPods-Kidsway-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D5F171BE549C8E808C8313 /* libPods-Kidsway-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -79,9 +79,9 @@
 		8422D89825B44B55005AB268 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		8422D89925B44B55005AB268 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		8444650B25AA0A0C0095063F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8466772E26CADC77003A20E1 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Kidsway/BootSplash.storyboard; sourceTree = "<group>"; };
 		846CB66C26696EE1004EA4A6 /* Kidsway-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Kidsway-Bridging-Header.h"; sourceTree = "<group>"; };
 		846CB66D26696EE2004EA4A6 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		8480D42A25B36B6200445170 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = Kidsway/Images.xcassets/BootSplash.storyboard; sourceTree = "<group>"; };
 		893959DDAE50E4B00D556F55 /* Pods-Kidsway.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kidsway.release.xcconfig"; path = "Target Support Files/Pods-Kidsway/Pods-Kidsway.release.xcconfig"; sourceTree = "<group>"; };
 		937DCAAA95EFBEDE6074FDFF /* libPods-KidswayTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-KidswayTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75A964FE343C036324773EB /* Pods-Kidsway-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kidsway-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-Kidsway-tvOSTests/Pods-Kidsway-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				8480D42A25B36B6200445170 /* BootSplash.storyboard */,
+				8466772E26CADC77003A20E1 /* BootSplash.storyboard */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				846CB66D26696EE2004EA4A6 /* File.swift */,
@@ -392,7 +392,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				8444650C25AA0A0C0095063F /* GoogleService-Info.plist in Resources */,
-				8480D42B25B36B6300445170 /* BootSplash.storyboard in Resources */,
+				8466772F26CADC77003A20E1 /* BootSplash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
