@@ -2,17 +2,16 @@ import React, {useState} from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  SafeAreaView,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
-  StatusBar,
+  View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../components/CartItem';
-import * as CartActions from '../store/actions/cart';
+import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
+import * as CartActions from '../store/actions/cart';
 
 const CartScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -38,8 +37,7 @@ const CartScreen = ({navigation}) => {
   });
 
   return (
-    <SafeAreaView style={styles.flex}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+    <Screen style={styles.flex}>
       <View style={styles.header}>
         <Text style={styles.headerText}>CART</Text>
       </View>
@@ -87,7 +85,7 @@ const CartScreen = ({navigation}) => {
           )}
         />
       </View>
-    </SafeAreaView>
+    </Screen>
   );
 };
 export default CartScreen;
@@ -134,8 +132,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   flex: {
-    flex: 1,
-    backgroundColor: '#5EC7F2',
+    justifyContent: undefined,
   },
   header: {
     alignItems: 'center',

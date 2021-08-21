@@ -14,6 +14,7 @@ import ResetPassword from '../screens/ResetPassword';
 import EntryScreen from '../screens/EntryScreen';
 import OrderDetails from '../screens/OrderDetails';
 import UploadProduct from '../screens/UploadProduct';
+import Colors from '../constants/Colors';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -62,9 +63,7 @@ const TabNavigator = createBottomTabNavigator(
       activeTintColor: 'red',
       inactiveTintColor: 'black',
       style: {
-        backgroundColor: '#5EC7F2',
-        borderTopColor: '#141B5D',
-        borderTopWidth: 1,
+        backgroundColor: Colors.green3,
       },
     },
   },

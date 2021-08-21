@@ -1,9 +1,10 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
-import {StyleSheet, Text, Image, View, TouchableOpacity} from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import * as cartActions from '../store/actions/cart';
+import {Image, StyleSheet, Text, View} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import Button from '../components/Button';
+import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
+import * as cartActions from '../store/actions/cart';
 
 const ProductDetailsScreen = props => {
   const dispatch = useDispatch();
@@ -12,33 +13,25 @@ const ProductDetailsScreen = props => {
     state.products.availableProducts.find(prod => prod.id === productId),
   );
   return (
-    <View style={styles.container}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+    <Screen style={styles.container}>
       <Image style={styles.image} source={{uri: selectedproduct.imageUrl}} />
       <View style={styles.action}>
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={styles.button}
+        <Button
+          label={'Add to cart'}
           onPress={() => {
             dispatch(cartActions.addToCart(selectedproduct));
-          }}>
-          <Text style={styles.buttonLabel}>Add to cart</Text>
-        </TouchableOpacity>
+          }}
+        />
       </View>
       <Text style={styles.price}>₹{selectedproduct.price}</Text>
       <Text style={styles.description}>{selectedproduct.description}</Text>
-    </View>
+    </Screen>
   );
 };
 const styles = StyleSheet.create({
   image: {
     width: '100%',
     height: 300,
-  },
-  container: {
-    backgroundColor: '#5EC7F2',
-    flex: 1,
-    paddingHorizontal: 10,
   },
   price: {
     fontSize: 20,
@@ -53,26 +46,18 @@ const styles = StyleSheet.create({
   action: {
     marginVertical: 10,
   },
-  button: {
-    backgroundColor: '#141B5D',
-    height: 60,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-  buttonLabel: {
-    fontWeight: 'bold',
-    color: 'white',
+  container: {
+    paddingHorizontal: 20,
   },
 });
 
-ProductDetailsScreen.navigationOptions = navData => {
+ProductDetailsScreen.navigationOptions = () => {
   return {
     headerShown: true,
     title: 'Product details',
     headerTintColor: 'black',
     headerStyle: {
-      backgroundColor: '#5EC7F2',
+      backgroundColor: Colors.green3,
     },
     headerTitleStyle: {
       fontWeight: 'bold',

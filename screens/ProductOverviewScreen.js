@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import Screen from '../components/Screen';
 import {
   ActivityIndicator,
   Alert,
@@ -129,8 +129,7 @@ const ProductOverviewScreen = props => {
     );
   }
   return (
-    <SafeAreaView style={styles.flex}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+    <Screen>
       {header()}
       <FlatList
         onRefresh={loadProducts}
@@ -161,11 +160,11 @@ const ProductOverviewScreen = props => {
           </ProductItem>
         )}
       />
-    </SafeAreaView>
+    </Screen>
   );
 };
 
-ProductOverviewScreen.navigationOptions = navData => {
+ProductOverviewScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -176,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5EC7F2',
+    backgroundColor: Colors.green3,
   },
   button: {
     backgroundColor: '#141B5D',
@@ -198,7 +197,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   header: {
-    backgroundColor: '#5EC7F2',
+    backgroundColor: Colors.green3,
     height: 50,
     alignItems: 'center',
     justifyContent: 'space-between',
