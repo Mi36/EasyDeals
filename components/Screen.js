@@ -12,7 +12,11 @@ export default function Screen(props) {
   // const onBack = React.useCallback(() => navigation.goBack(), [navigation]);
   return (
     <SafeAreaView style={[styles.container, style]} co>
-      <StatusBar animated={true} backgroundColor={Colors.pink4} />
+      <StatusBar
+        animated={true}
+        backgroundColor={Colors.green3}
+        barStyle="dark-content"
+      />
       {children}
     </SafeAreaView>
   );
