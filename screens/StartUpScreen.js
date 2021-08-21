@@ -38,7 +38,7 @@ const StartUpScreen = props => {
   }, []);
   return (
     <View style={styles.indicator}>
-      <StatusBar animated={true} backgroundColor={Colors.brand_5} />
+      <StatusBar animated={true} backgroundColor={Colors.green3} />
       <ActivityIndicator color="red" size="large" />
     </View>
   );
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Colors.brand,
+    backgroundColor: Colors.green3,
   },
 });
 

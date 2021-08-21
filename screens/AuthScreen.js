@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
+import Button from '../components/Button';
 import Input from '../components/input';
 import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
 import Screen from '../components/Screen';
@@ -142,24 +143,19 @@ const AuthScreen = props => {
             {isLoading ? (
               <ActivityIndicator color="black" size="small" />
             ) : (
-              <TouchableOpacity
-                style={styles.customerButton}
-                onPress={authHandler}>
-                <Text style={styles.buttonLabel}>
-                  {isSignUp ? 'Register' : 'Login'}
-                </Text>
-              </TouchableOpacity>
+              <Button
+                label={isSignUp ? 'Register' : 'Login'}
+                onPress={authHandler}
+              />
             )}
-            <TouchableOpacity
-              style={styles.customerButton}
+            <Button
+              label={`Switch to ${isSignUp ? 'Login' : 'Register'}`}
               onPress={() => {
                 setIsSignUp(prevState => !prevState);
-              }}>
-              <Text style={styles.buttonLabel}>{`Switch to ${
-                isSignUp ? 'Login' : 'Register'
-              }`}</Text>
-            </TouchableOpacity>
+              }}
+            />
           </View>
+
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.goback}
@@ -198,7 +194,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: Colors.pink3,
+    backgroundColor: Colors.black3,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',

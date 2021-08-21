@@ -43,4 +43,5 @@ export default {
   green3: '#29CC97',
   purple: '#3F456B',
   red: '#FB1D54',
+  black3: '#232020',
 };

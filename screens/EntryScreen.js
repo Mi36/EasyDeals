@@ -1,7 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Screen from '../components/Screen';
-import Colors from '../constants/Colors';
 
 export default function EntryScreen(props) {
   return (
@@ -30,12 +29,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#222020',
   },
   customerText: {
     fontWeight: '600',
     fontSize: 20,
-    color: 'white',
   },
   header: {
     alignItems: 'center',
@@ -43,8 +40,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   customerButton: {
-    backgroundColor: Colors.pink4,
-    borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     height: 40,

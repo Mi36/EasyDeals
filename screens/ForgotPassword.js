@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import Toast from 'react-native-tiny-toast';
 import {connect} from 'react-redux';
+import Button from '../components/Button';
 import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
@@ -82,7 +83,9 @@ class ForgotPassword extends Component {
     return (
       <Screen style={styles.flex}>
         <KeyboardAvoidingViewWrapper>
-          <View style={styles.header} />
+          <View style={styles.header}>
+            <Text style={styles.headText}>Reset Password</Text>
+          </View>
           <View>
             <TextInput
               style={styles.textInput}
@@ -98,12 +101,7 @@ class ForgotPassword extends Component {
             </View>
           </View>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity
-              activeOpacity={0.5}
-              onPress={this._resetPassword}
-              style={styles.resetPasswordBtn}>
-              <Text style={styles.resetPasswordLabel}>Reset my password</Text>
-            </TouchableOpacity>
+            <Button onPress={this._resetPassword} label={'Reset my password'} />
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => this.props.navigation.goBack()}
@@ -179,6 +177,11 @@ const styles = StyleSheet.create({
     height: 130,
     resizeMode: 'stretch',
     alignSelf: 'center',
+  },
+  headText: {
+    fontWeight: 'bold',
+    fontSize: 35,
+    color: Colors.black2,
   },
 });
 
