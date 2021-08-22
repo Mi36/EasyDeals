@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "postinstall": "patch-package",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
@@ -20,6 +21,8 @@
     "@react-navigation/drawer": "^5.4.1",
     "@react-navigation/stack": "^5.1.1",
     "moment": "^2.24.0",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-native-bootsplash": "2.2.8",
