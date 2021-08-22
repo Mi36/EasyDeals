@@ -50,7 +50,7 @@ const OrderScreen = props => {
       {header()}
       <FlatList
         data={orders}
-        keyExtractor={item => item?.id}
+        keyExtractor={item => item?.date.toString()}
         renderItem={itemData => (
           <OrderItem
             amount={itemData.item.totalAmount}
