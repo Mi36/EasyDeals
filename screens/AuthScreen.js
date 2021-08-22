@@ -132,7 +132,7 @@ const AuthScreen = props => {
             label="Password"
             id="password"
             secureTextEntry
-            minlenght={6}
+            minlength={6}
             required
             autoCapitalize="none"
             errorText="Please enter a valid password"

@@ -3,7 +3,7 @@ import {View, TextInput, StyleSheet, Text} from 'react-native';
 import Colors from '../constants/Colors';
 
 const INPUT_CHANGE = 'INPUT_CHANGE';
-const INPUT_BLUR = 'INPUT_BLUR';
+//const INPUT_BLUR = 'INPUT_BLUR';
 
 const inputReducer = (state, action) => {
   switch (action.type) {
@@ -13,11 +13,11 @@ const inputReducer = (state, action) => {
         value: action.value,
         isValid: action.isValid,
       };
-    case INPUT_BLUR:
-      return {
-        ...state,
-        touched: true,
-      };
+    // case INPUT_BLUR:
+    //   return {
+    //     ...state,
+    //     touched: true,
+    //   };
     default:
       return state;
   }
@@ -33,9 +33,8 @@ const Input = props => {
   const {onInputChange, id} = props;
 
   useEffect(() => {
-    if (inputState.touched) {
-      onInputChange(id, inputState.value, inputState.isValid);
-    }
+    onInputChange(id, inputState.value, inputState.isValid);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputState, id]);
 
@@ -61,9 +60,9 @@ const Input = props => {
     dispatch({type: INPUT_CHANGE, value: text, isValid: isValid});
   };
 
-  const lostFocushandler = () => {
-    dispatch({type: INPUT_BLUR});
-  };
+  // const lostFocushandler = () => {
+  //   dispatch({type: INPUT_BLUR});
+  // };
 
   return (
     <View style={styles.formControl}>
@@ -79,7 +78,7 @@ const Input = props => {
         onSubmitEditing={() => {
           console.log('fires when we press next or done from keyboard');
         }}
-        onBlur={lostFocushandler}
+        // onBlur={lostFocushandler}
       />
       {!inputState.isValid && inputState.touched && (
         <View style={styles.errorContainer}>
