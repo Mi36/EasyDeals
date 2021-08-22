@@ -1,9 +1,8 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {useEffect} from 'react';
-import {StatusBar} from 'react-native';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import Colors from '../constants/Colors';
+import Screen from '../components/Screen';
 import * as authActions from '../store/actions/auth';
 
 const StartUpScreen = props => {
@@ -37,20 +36,10 @@ const StartUpScreen = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <View style={styles.indicator}>
-      <StatusBar animated={true} backgroundColor={Colors.green3} />
+    <Screen>
       <ActivityIndicator color="red" size="large" />
-    </View>
+    </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  indicator: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: Colors.green3,
-  },
-});
 
 export default StartUpScreen;
