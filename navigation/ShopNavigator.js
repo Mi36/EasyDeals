@@ -15,6 +15,7 @@ import EntryScreen from '../screens/EntryScreen';
 import OrderDetails from '../screens/OrderDetails';
 import UploadProduct from '../screens/UploadProduct';
 import Colors from '../constants/Colors';
+import SettingsScreen from '../screens/SettingsScreen';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -42,6 +43,7 @@ const TabNavigator = createBottomTabNavigator(
     Products: ProductsNavigator,
     Orders: OrderNavigator,
     Cart: CartNavigator,
+    Settings: SettingsScreen,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -55,6 +57,8 @@ const TabNavigator = createBottomTabNavigator(
           iconName = focused ? 'code-working-outline' : 'code-working-outline';
         } else if (routeName === 'Cart') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
+        } else if (routeName === 'Settings') {
+          iconName = 'code-working-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
