@@ -43,7 +43,6 @@ const CartNavigator = createStackNavigator({
 const TabNavigator = createBottomTabNavigator(
   {
     AllProducts: ProductsNavigator,
-    Orders: OrderNavigator,
     Cart: CartNavigator, // change to wish list
     Settings: SettingsScreen,
     MyProducts: MyProductsScreen,
@@ -57,8 +56,6 @@ const TabNavigator = createBottomTabNavigator(
         let iconName;
         if (routeName === 'AllProducts') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        } else if (routeName === 'Orders') {
-          iconName = focused ? 'code-working-outline' : 'code-working-outline';
         } else if (routeName === 'Cart') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
         } else if (routeName === 'Settings') {
