@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {
+  ActivityIndicator,
+  FlatList,
   StyleSheet,
   Text,
-  FlatList,
-  ActivityIndicator,
   View,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
-import OrderItem from '../../components/shop/OrderItem';
-import * as ordersActions from '../../store/actions/order';
-import {SafeAreaView} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import OrderItem from '../components/OrderItem';
+import Screen from '../components/Screen';
+import * as ordersActions from '../store/actions/order';
 
 const OrderScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,26 +31,26 @@ const OrderScreen = props => {
 
   if (isLoading) {
     return (
-      <View style={styles.indicator}>
+      <Screen>
         <ActivityIndicator color="red" size="large" />
-      </View>
+      </Screen>
     );
   }
 
   if (orders.length === 0) {
     return (
-      <View style={styles.noOrder}>
+      <Screen>
         <Text style={styles.text}>No orders found</Text>
-      </View>
+      </Screen>
     );
   }
 
   return (
-    <SafeAreaView style={styles.flex}>
+    <Screen>
       {header()}
       <FlatList
         data={orders}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item?.date?.toString()}
         renderItem={itemData => (
           <OrderItem
             amount={itemData.item.totalAmount}
@@ -59,7 +59,7 @@ const OrderScreen = props => {
           />
         )}
       />
-    </SafeAreaView>
+    </Screen>
   );
 };
 

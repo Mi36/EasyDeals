@@ -3,16 +3,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import CartScreen from '../screens/shop/CartScreen';
-import OrderScreen from '../screens/shop/OrderScreen';
-import ProductDetailsScreen from '../screens/shop/ProductDetailsScreen';
-import ProductOverviewScreen from '../screens/shop/ProductOverviewScreen';
+import CartScreen from '../screens/CartScreen';
+import OrderScreen from '../screens/OrderScreen';
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import ProductOverviewScreen from '../screens/ProductOverviewScreen';
 import StartUpScreen from '../screens/StartUpScreen';
-import AuthScreen from '../screens/user/AuthScreen';
-import ForgotPassword from '../screens/user/ForgotPassword';
-import ResetPassword from '../screens/user/ResetPassword';
+import AuthScreen from '../screens/AuthScreen';
+import ForgotPassword from '../screens/ForgotPassword';
+import ResetPassword from '../screens/ResetPassword';
 import EntryScreen from '../screens/EntryScreen';
-import OrderDetails from '../screens/shop/OrderDetails';
+import OrderDetails from '../screens/OrderDetails';
+import UploadProduct from '../screens/UploadProduct';
+import Colors from '../constants/Colors';
+import SettingsScreen from '../screens/SettingsScreen';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -24,6 +27,7 @@ const AuthNavigator = createStackNavigator({
   Auth: AuthScreen,
   FORGOTPASSWORD: ForgotPassword,
   RESETPASSWORD: ResetPassword,
+  UPLOAD: UploadProduct,
 });
 
 const OrderNavigator = createStackNavigator({
@@ -39,6 +43,7 @@ const TabNavigator = createBottomTabNavigator(
     Products: ProductsNavigator,
     Orders: OrderNavigator,
     Cart: CartNavigator,
+    Settings: SettingsScreen,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -52,6 +57,8 @@ const TabNavigator = createBottomTabNavigator(
           iconName = focused ? 'code-working-outline' : 'code-working-outline';
         } else if (routeName === 'Cart') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
+        } else if (routeName === 'Settings') {
+          iconName = 'code-working-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
@@ -60,9 +67,7 @@ const TabNavigator = createBottomTabNavigator(
       activeTintColor: 'red',
       inactiveTintColor: 'black',
       style: {
-        backgroundColor: '#5EC7F2',
-        borderTopColor: '#141B5D',
-        borderTopWidth: 1,
+        backgroundColor: Colors.green3,
       },
     },
   },

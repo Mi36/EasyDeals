@@ -1,18 +1,19 @@
-import React, {useState, useRef} from 'react';
-import {Alert} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import React, {useRef, useState} from 'react';
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
-  SafeAreaView,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDispatch, useSelector} from 'react-redux';
-import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
-import * as orderActions from '../../store/actions/order';
-import Colors from '../../styles/colors';
+import Button from '../components/Button';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
+import Screen from '../components/Screen';
+import Colors from '../constants/Colors';
+import * as orderActions from '../store/actions/order';
 
 export default function OrderDetails({navigation}) {
   const [name, setName] = useState('');
@@ -78,7 +79,7 @@ export default function OrderDetails({navigation}) {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.icon}
@@ -120,11 +121,13 @@ export default function OrderDetails({navigation}) {
           }}
         />
         {addressError && <Text style={styles.error}>{addressError}</Text>}
-        <TouchableOpacity style={styles.button} onPress={orderSubmitHandler}>
-          <Text style={styles.text}>Submit Order</Text>
-        </TouchableOpacity>
+        <Button
+          onPress={orderSubmitHandler}
+          label={'Submit order'}
+          style={styles.button}
+        />
       </KeyboardAvoidingViewWrapper>
-    </SafeAreaView>
+    </Screen>
   );
 }
 
@@ -148,11 +151,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   button: {
-    height: 60,
-    backgroundColor: Colors.brand_2,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
     marginHorizontal: 20,
   },
   text: {
@@ -164,7 +162,7 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 50,
-    backgroundColor: Colors.brand,
+    backgroundColor: Colors.green3,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',

@@ -2,8 +2,8 @@
   package="com.kidsway">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <application
+    
+     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
@@ -14,7 +14,7 @@
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="adjustResize"
+        android:windowSoftInputMode="adjustPan"
         android:exported="true"
         android:launchMode="singleTask">
      </activity>
@@ -28,6 +28,10 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+    <provider android:authorities="com.facebook.app.FacebookContentProviderxxxxxxxxxxxx"
+          android:name="com.facebook.FacebookContentProvider"
+          android:exported="true" />
 
     </application>
 

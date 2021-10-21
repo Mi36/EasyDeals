@@ -1,10 +1,9 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React, {useEffect} from 'react';
-import {StatusBar} from 'react-native';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Screen from '../components/Screen';
 import * as authActions from '../store/actions/auth';
-import colors from '../styles/colors';
 
 const StartUpScreen = props => {
   const admin = useSelector(state => state.auth.admin);
@@ -37,15 +36,10 @@ const StartUpScreen = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <View style={styles.indicator}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+    <Screen>
       <ActivityIndicator color="red" size="large" />
-    </View>
+    </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  indicator: {flex: 1, justifyContent: 'center', alignItems: 'center'},
-});
 
 export default StartUpScreen;

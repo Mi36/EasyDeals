@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {StatusBar} from 'react-native';
+import Screen from '../components/Screen';
 import {
   ActivityIndicator,
   Alert,
@@ -12,19 +12,23 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-import ProductItem from '../../components/shop/ProdectItem';
-import * as AuthActions from '../../store/actions/auth';
-import * as cartActions from '../../store/actions/cart';
-import * as productActions from '../../store/actions/products';
-import colors from '../../styles/colors';
+import ProductItem from '../components/ProdectItem';
+import * as AuthActions from '../store/actions/auth';
+import * as cartActions from '../store/actions/cart';
+import * as productActions from '../store/actions/products';
+import Colors from '../constants/Colors';
+
 const ProductOverviewScreen = props => {
   const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(true);
   const [isRefrehing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(); //initially undefined, thats why this is empty
+
   const actionLogOut = useCallback(() => {
     dispatch(AuthActions.logout());
   }, [dispatch]);
+
   useEffect(() => {
     props.navigation.setParams({
       logOut: actionLogOut,
@@ -38,16 +42,13 @@ const ProductOverviewScreen = props => {
 
   const loadProducts = useCallback(async () => {
     setError(null);
-    // setIsLoading(true);
     setIsRefreshing(true);
+
     try {
       await dispatch(productActions.fetchProducts());
     } catch (err) {
       setError(err.message);
     }
-
-    // here we get the thrown error fro actionFunction
-    //  setIsLoading(false);
     setIsRefreshing(false);
   }, [dispatch, setError]);
 
@@ -73,7 +74,6 @@ const ProductOverviewScreen = props => {
   }, [dispatch, loadProducts]);
 
   const products = useSelector(state => state.products.availableProducts);
-  const cart = useSelector(state => state.cart.items);
 
   const onPress = () => {
     Alert.alert(
@@ -129,8 +129,7 @@ const ProductOverviewScreen = props => {
     );
   }
   return (
-    <SafeAreaView style={styles.flex}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+    <Screen>
       {header()}
       <FlatList
         onRefresh={loadProducts}
@@ -141,9 +140,6 @@ const ProductOverviewScreen = props => {
             image={itemData.item.imageUrl}
             price={itemData.item.price}
             title={itemData.item.title}
-            // onSelect={() => {
-            //   selectItemHandler(itemData.item.id);
-            // }}
             onAddToCart={() => {
               dispatch(cartActions.addToCart(itemData.item));
             }}>
@@ -164,11 +160,11 @@ const ProductOverviewScreen = props => {
           </ProductItem>
         )}
       />
-    </SafeAreaView>
+    </Screen>
   );
 };
 
-ProductOverviewScreen.navigationOptions = navData => {
+ProductOverviewScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -179,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#5EC7F2',
+    backgroundColor: Colors.green3,
   },
   button: {
     backgroundColor: '#141B5D',
@@ -201,7 +197,7 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   header: {
-    backgroundColor: '#5EC7F2',
+    backgroundColor: Colors.green3,
     height: 50,
     alignItems: 'center',
     justifyContent: 'space-between',

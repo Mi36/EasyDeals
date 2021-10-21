@@ -1,28 +1,21 @@
 import React, {useCallback, useEffect, useReducer, useState} from 'react';
-import {StatusBar} from 'react-native';
 import {
   ActivityIndicator,
   Alert,
-  Image,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
-import Input from '../../components/input';
-import KeyboardAvoidingViewWrapper from '../../components/KBAvoidingView';
-import * as AuthActions from '../../store/actions/auth';
-import colors from '../../styles/colors';
-const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from '@react-native-google-signin/google-signin';
+import Button from '../components/Button';
+import Input from '../components/input';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
+import Screen from '../components/Screen';
+import Colors from '../constants/Colors';
+import * as AuthActions from '../store/actions/auth';
 
-// Somewhere in your code
+const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
 
 const formReducer = (state, action) => {
   if (action.type === FORM_INPUT_UPDATE) {
@@ -53,7 +46,7 @@ const formReducer = (state, action) => {
 const AuthScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -116,41 +109,13 @@ const AuthScreen = props => {
     [dispatchFormState],
   );
 
-  const signIn = async () => {
-    try {
-      await GoogleSignin.hasPlayServices();
-      const userInfo = await GoogleSignin.signIn();
-      console.log('userInfo', userInfo);
-    } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        console.log(`error`, error);
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        // operation (e.g. sign in) is in progress already
-        console.log(`error`, error);
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        // play services not available or outdated
-        console.log(`error`, error);
-      } else {
-        // some other error happened
-        console.log(`error`, error);
-      }
-    }
-  };
-
   return (
-    <View style={styles.main}>
-      <StatusBar animated={true} backgroundColor={colors.brand_5} />
+    <Screen>
       <KeyboardAvoidingViewWrapper>
-        <View style={styles.screen}>
-          <View style={styles.signup}>
-            <Image
-              style={styles.stretch}
-              source={require('../../assets/cart.png')}
-            />
+        <View style={styles.main}>
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>{isSignUp ? 'Register' : 'Login'}</Text>
           </View>
-        </View>
-        <ScrollView style={styles.scrollview} bounces={false}>
           <Input
             keyboardType="email-address"
             label="E-Mail"
@@ -167,7 +132,7 @@ const AuthScreen = props => {
             label="Password"
             id="password"
             secureTextEntry
-            minlenght={6}
+            minlength={6}
             required
             autoCapitalize="none"
             errorText="Please enter a valid password"
@@ -178,24 +143,19 @@ const AuthScreen = props => {
             {isLoading ? (
               <ActivityIndicator color="black" size="small" />
             ) : (
-              <TouchableOpacity
-                style={styles.customerButton}
-                onPress={authHandler}>
-                <Text style={styles.buttonLabel}>
-                  {isSignUp ? 'Register' : 'Login'}
-                </Text>
-              </TouchableOpacity>
+              <Button
+                label={isSignUp ? 'Register' : 'Login'}
+                onPress={authHandler}
+              />
             )}
-            <TouchableOpacity
-              style={styles.customerButton}
+            <Button
+              label={`Switch to ${isSignUp ? 'Login' : 'Register'}`}
               onPress={() => {
                 setIsSignUp(prevState => !prevState);
-              }}>
-              <Text style={styles.buttonLabel}>{`Switch to ${
-                isSignUp ? 'Login' : 'Register'
-              }`}</Text>
-            </TouchableOpacity>
+              }}
+            />
           </View>
+
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.goback}
@@ -205,15 +165,9 @@ const AuthScreen = props => {
               <Text style={styles.underline}>Forgot Password</Text>
             </TouchableOpacity>
           </View>
-          <GoogleSigninButton
-            style={{width: 192, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />
-        </ScrollView>
+        </View>
       </KeyboardAvoidingViewWrapper>
-    </View>
+    </Screen>
   );
 };
 AuthScreen.navigationOptions = navData => {
@@ -224,19 +178,23 @@ AuthScreen.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   main: {
-    backgroundColor: '#5EC7F2',
-    flex: 1,
+    marginHorizontal: 20,
+  },
+  headerContainer: {
+    alignItems: 'center',
+    marginVertical: 10,
   },
   header: {
     fontWeight: 'bold',
-    fontSize: 50,
+    fontSize: 40,
+    color: Colors.black2,
   },
   screen: {
     paddingTop: 25,
     alignItems: 'center',
   },
   customerButton: {
-    backgroundColor: '#141B5D',
+    backgroundColor: Colors.black3,
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -251,10 +209,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginTop: 50,
   },
-  scrollview: {
-    marginHorizontal: 24,
-    marginTop: 10,
-  },
+
   goBackTextColor: {},
   forgotPassword: {},
   switch: {

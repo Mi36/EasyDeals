@@ -4,17 +4,15 @@ export const AUTHENTICATE = 'AUTHENTICATE';
 export const FORGOT = 'FORGOT';
 export const LOGOUT = 'LOGOUT';
 export const NEW_PASSWORD = 'NEW_PASSWORD';
+import {googleApiKey} from '@env';
 import AsyncStorage from '@react-native-community/async-storage';
-import ENV from '../../ENV/env';
 let timer;
 
 export const newPassword = options => {
   console.log(options.code, options.password);
   return async dispatch => {
     const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=${
-        ENV.googleApiKey
-      }`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:resetPassword?key=${googleApiKey}`,
       {
         method: 'POST',
         headers: {
@@ -59,9 +57,7 @@ export const newPassword = options => {
 export const resetPassword = email => {
   return async dispatch => {
     const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${
-        ENV.googleApiKey
-      }`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${googleApiKey}`,
       {
         method: 'POST',
         headers: {
@@ -125,9 +121,7 @@ export const authenticate = (userId, token, expiryTime, admin = false) => {
 export const signup = (email, password, admin = false) => {
   return async dispatch => {
     const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${
-        ENV.googleApiKey
-      }`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${googleApiKey}`,
       {
         method: 'POST',
         headers: {
@@ -143,18 +137,15 @@ export const signup = (email, password, admin = false) => {
 
     if (!response.ok) {
       const errorResData = await response.json();
-      const errorId = errorResData.error.message; // this we can find by using console
+      const errorId = errorResData.error.message;
       let message = 'Something went wrong';
       if (errorId === 'EMAIL_EXISTS') {
         message = 'This email already used';
       }
-
       throw new Error(message);
     }
 
     const resData = await response.json();
-    console.log(resData);
-    //dispatch({type: SIGNUP, token: resData.idToken, userId: resData.localId}); // we can get these console resdata
     dispatch(
       authenticate(
         resData.localId,
@@ -171,12 +162,11 @@ export const signup = (email, password, admin = false) => {
     saveDataToStorage(resData.idToken, resData.localId, expirationDate);
   };
 };
+
 export const login = (email, password, admin = false) => {
   return async dispatch => {
     const response = await fetch(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${
-        ENV.googleApiKey
-      }`,
+      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${googleApiKey}`,
       {
         method: 'POST',
         headers: {
