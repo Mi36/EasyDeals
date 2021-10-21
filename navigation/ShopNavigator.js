@@ -3,21 +3,20 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
+import Colors from '../constants/Colors';
+import AddProductsScreen from '../screens/AddProductsScreen';
+import AuthScreen from '../screens/AuthScreen';
 import CartScreen from '../screens/CartScreen';
-import OrderScreen from '../screens/OrderScreen';
+import EntryScreen from '../screens/EntryScreen';
+import ForgotPassword from '../screens/ForgotPassword';
+import MyProductsScreen from '../screens/MyProductsScreen';
+import OrderDetails from '../screens/OrderDetails';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import ProductOverviewScreen from '../screens/ProductOverviewScreen';
-import StartUpScreen from '../screens/StartUpScreen';
-import AuthScreen from '../screens/AuthScreen';
-import ForgotPassword from '../screens/ForgotPassword';
 import ResetPassword from '../screens/ResetPassword';
-import EntryScreen from '../screens/EntryScreen';
-import OrderDetails from '../screens/OrderDetails';
-import UploadProduct from '../screens/UploadProduct';
-import Colors from '../constants/Colors';
 import SettingsScreen from '../screens/SettingsScreen';
-import MyProductsScreen from '../screens/MyProductsScreen';
-import AddProductsScreen from '../screens/AddProductsScreen';
+import StartUpScreen from '../screens/StartUpScreen';
+import UploadProduct from '../screens/UploadProduct';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -32,9 +31,6 @@ const AuthNavigator = createStackNavigator({
   UPLOAD: UploadProduct,
 });
 
-const OrderNavigator = createStackNavigator({
-  Orders: OrderScreen,
-});
 const CartNavigator = createStackNavigator({
   CartScreen: CartScreen,
   OrderDetails: OrderDetails,
