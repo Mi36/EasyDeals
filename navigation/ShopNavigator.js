@@ -16,6 +16,8 @@ import OrderDetails from '../screens/OrderDetails';
 import UploadProduct from '../screens/UploadProduct';
 import Colors from '../constants/Colors';
 import SettingsScreen from '../screens/SettingsScreen';
+import MyProductsScreen from '../screens/MyProductsScreen';
+import AddProductsScreen from '../screens/AddProductsScreen';
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -40,10 +42,12 @@ const CartNavigator = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Products: ProductsNavigator,
+    AllProducts: ProductsNavigator,
     Orders: OrderNavigator,
-    Cart: CartNavigator,
+    Cart: CartNavigator, // change to wish list
     Settings: SettingsScreen,
+    MyProducts: MyProductsScreen,
+    AddProducts: AddProductsScreen,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -51,13 +55,17 @@ const TabNavigator = createBottomTabNavigator(
         const {routeName} = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'Products') {
+        if (routeName === 'AllProducts') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
         } else if (routeName === 'Orders') {
           iconName = focused ? 'code-working-outline' : 'code-working-outline';
         } else if (routeName === 'Cart') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
         } else if (routeName === 'Settings') {
+          iconName = 'code-working-outline';
+        } else if (routeName === 'MyProducts') {
+          iconName = 'code-working-outline';
+        } else if (routeName === 'AddProducts') {
           iconName = 'code-working-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;

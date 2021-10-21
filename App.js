@@ -26,7 +26,6 @@ const persistConfig = {
   key: 'root', //use this in all
   storage: AsyncStorage, // here the storage we are using
   whitelist: ['order', 'auth'], //  here th list of reducers we want to persist, if we want some specific only
-  //seperated by commas
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, applyMiddleware(thunk));
