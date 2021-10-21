@@ -1,8 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import Screen from '../components/Screen';
 import {
   ActivityIndicator,
-  Alert,
   Button,
   FlatList,
   SafeAreaView,
@@ -13,10 +11,10 @@ import {
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
 import ProductItem from '../components/ProdectItem';
-import * as AuthActions from '../store/actions/auth';
+import Screen from '../components/Screen';
+import Colors from '../constants/Colors';
 import * as cartActions from '../store/actions/cart';
 import * as productActions from '../store/actions/products';
-import Colors from '../constants/Colors';
 
 const ProductOverviewScreen = props => {
   const dispatch = useDispatch();
@@ -24,17 +22,6 @@ const ProductOverviewScreen = props => {
   const [isLoading, setIsLoading] = useState(true);
   const [isRefrehing, setIsRefreshing] = useState(false);
   const [error, setError] = useState(); //initially undefined, thats why this is empty
-
-  const actionLogOut = useCallback(() => {
-    dispatch(AuthActions.logout());
-  }, [dispatch]);
-
-  useEffect(() => {
-    props.navigation.setParams({
-      logOut: actionLogOut,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [actionLogOut]);
 
   const selectItemHandler = id => {
     props.navigation.navigate('ProductDetails', {productId: id});
@@ -75,30 +62,10 @@ const ProductOverviewScreen = props => {
 
   const products = useSelector(state => state.products.availableProducts);
 
-  const onPress = () => {
-    Alert.alert(
-      'Log out',
-      'Are you sure you want to log out.',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => props.navigation.state.params.logOut(),
-        },
-      ],
-      {cancelable: false},
-    );
-  };
   const header = () => {
     return (
       <View style={styles.header}>
         <Text style={styles.headerText}>All Products</Text>
-        <TouchableOpacity onPress={onPress} style={styles.logoutButton}>
-          <Text style={styles.logout}>Logout</Text>
-        </TouchableOpacity>
       </View>
     );
   };
