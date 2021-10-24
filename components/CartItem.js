@@ -2,8 +2,13 @@ import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const cartItem = props => {
+  console.log(props);
   return (
-    <View style={styles.cartItem}>
+    <TouchableOpacity
+      style={styles.cartItem}
+      onPress={() => {
+        props.navigation.navigate('ProductDetails', {productId: props.id});
+      }}>
       <Text>
         {'\u2B24  '}
         {props.quantity} {props.title}
@@ -17,7 +22,7 @@ const cartItem = props => {
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -29,6 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
+    borderWidth: 1,
   },
   itemData: {
     flexDirection: 'row',

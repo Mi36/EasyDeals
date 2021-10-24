@@ -18,6 +18,7 @@ import ResetPassword from '../screens/ResetPassword';
 import SettingsScreen from '../screens/SettingsScreen';
 import StartUpScreen from '../screens/StartUpScreen';
 import UploadProduct from '../screens/UploadProduct';
+
 const ProductsNavigator = createStackNavigator({
   ProductsOverview: ProductOverviewScreen,
   ProductDetails: ProductDetailsScreen,
@@ -46,7 +47,7 @@ const UpdateNavigator = createStackNavigator({
 const TabNavigator = createBottomTabNavigator(
   {
     AllProducts: ProductsNavigator,
-    Cart: CartNavigator, // change to wish list
+    WishList: CartNavigator, // change to wish list
     Settings: SettingsScreen,
     Admin: UpdateNavigator,
   },
@@ -58,7 +59,7 @@ const TabNavigator = createBottomTabNavigator(
         let iconName;
         if (routeName === 'AllProducts') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        } else if (routeName === 'Cart') {
+        } else if (routeName === 'WishList') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
         } else if (routeName === 'Settings') {
           iconName = 'code-working-outline';

@@ -122,7 +122,7 @@ const ProductOverviewScreen = props => {
               onPress={() => {
                 dispatch(cartActions.addToCart(itemData.item));
               }}>
-              <Text style={styles.buttonLabel}>To cart</Text>
+              <Text style={styles.buttonLabel}>Add to wish List</Text>
             </TouchableOpacity>
           </ProductItem>
         )}
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
   buttonLabel: {
     color: 'white',
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   logoutButton: {
     backgroundColor: '#141B5D',

@@ -4,7 +4,6 @@ import {
   FlatList,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -39,7 +38,7 @@ const CartScreen = ({navigation}) => {
   return (
     <Screen style={styles.flex}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>CART</Text>
+        <Text style={styles.headerText}>Wish List</Text>
       </View>
       <View style={styles.screen}>
         <View style={styles.summary}>
@@ -49,30 +48,19 @@ const CartScreen = ({navigation}) => {
           {isLoading ? (
             <ActivityIndicator color="blue" size="small" />
           ) : (
-            <TouchableOpacity
-              disabled={cartItems.length === 0 ? true : false}
-              style={cartItems.length === 0 ? styles.diasbled : styles.button}
-              onPress={() =>
-                // dispatch(orderActions.addOrder(cartItems, totalAmount))
-                navigation.navigate('OrderDetails', {
-                  cartItems,
-                  totalAmount,
-                })
-              }>
-              <Text style={styles.buttonLabel}>Order now</Text>
-            </TouchableOpacity>
+            <View />
           )}
-          {/*above function do two things place order and also remove item from cart, these two are in different reducers. from actions the type get passed and
-            both reducer will work */}
         </View>
         <FlatList
           data={cartItems}
           keyExtractor={item => item.productId}
           renderItem={itemData => (
             <CartItem
+              navigation={navigation}
               quantity={itemData.item.quantity}
               amount={itemData.item.sum}
               title={itemData.item.productTitle}
+              id={itemData.item.productId}
               deletable
               onRemove={async () => {
                 setIsLoading(true);
