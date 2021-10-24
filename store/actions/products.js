@@ -70,7 +70,7 @@ export const deleteProduct = productId => {
 //the function passed automatically by redux thunk
 //this do same thing as above, but before that
 //we can now execute any async code
-export const createProduct = (title, description, imageUrl, price) => {
+export const createProduct = (title, description, imageUrl, price, phone) => {
   console.log(title, description, imageUrl, price);
   return async (dispatch, getState) => {
     const token = getState().auth.token;
@@ -88,6 +88,7 @@ export const createProduct = (title, description, imageUrl, price) => {
           imageUrl,
           price,
           ownerId: userId,
+          phone,
         }),
       },
     ); //.json added because of firebase syntax, by default it send get req,otherwise explicitly mention
@@ -103,12 +104,13 @@ export const createProduct = (title, description, imageUrl, price) => {
         imageUrl,
         price,
         ownerId: userId,
+        phone,
       },
     });
   };
 };
 
-export const updateProduct = (id, title, description, imageUrl) => {
+export const updateProduct = (id, title, description, imageUrl, phone) => {
   return async (dispatch, getState) => {
     console.log('id', id);
     // here getState is used to access the whole store, and then token
@@ -125,6 +127,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
           title,
           description,
           imageUrl,
+          phone,
         }),
       },
     );
@@ -140,6 +143,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
         title,
         description,
         imageUrl,
+        phone,
       },
     });
   };

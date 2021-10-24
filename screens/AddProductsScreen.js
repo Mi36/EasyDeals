@@ -17,28 +17,27 @@ const AddProductsScreen = props => {
   );
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
-  const [imageUrl, setImageUrl] = useState(
-    editedProduct ? editedProduct.imageUrl : '',
-  );
+  const [title, setTitle] = useState('');
+  const [phone, setPhone] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
-  const [description, setDescription] = useState(
-    editedProduct ? editedProduct.description : '',
-  );
+  const [description, setDescription] = useState('');
 
   const submitHandler = useCallback(() => {
-    if (editedProduct) {
-      dispatch(
-        productsActions.updateProduct(prodId, title, description, imageUrl),
-      );
-    } else {
-      dispatch(
-        productsActions.createProduct(title, description, imageUrl, +price),
-      );
-    }
+    dispatch(
+      productsActions.createProduct(
+        title,
+        description,
+        imageUrl,
+        +price,
+        phone,
+      ),
+    );
+
     props.navigation.goBack();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, prodId, title, description, imageUrl, price]);
+  }, [dispatch, prodId, title, description, imageUrl, price, phone]);
+  console.log(phone);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
@@ -52,7 +51,7 @@ const AddProductsScreen = props => {
           <TextInput
             style={styles.input}
             value={title}
-            onChangeText={text => setTitle(text)}
+            onChangeText={setTitle}
           />
         </View>
         <View style={styles.formControl}>
@@ -60,7 +59,7 @@ const AddProductsScreen = props => {
           <TextInput
             style={styles.input}
             value={imageUrl}
-            onChangeText={text => setImageUrl(text)}
+            onChangeText={setImageUrl}
           />
         </View>
         {editedProduct ? null : (
@@ -69,7 +68,7 @@ const AddProductsScreen = props => {
             <TextInput
               style={styles.input}
               value={price}
-              onChangeText={text => setPrice(text)}
+              onChangeText={setPrice}
             />
           </View>
         )}
@@ -78,12 +77,20 @@ const AddProductsScreen = props => {
           <TextInput
             style={styles.input}
             value={description}
-            onChangeText={text => setDescription(text)}
+            onChangeText={setDescription}
+          />
+        </View>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>PHONE</Text>
+          <TextInput
+            style={styles.input}
+            value={phone}
+            onChangeText={setPhone}
           />
         </View>
       </View>
       <TouchableOpacity style={{}} onPress={submitHandler}>
-        <Text>ADD/EDIT</Text>
+        <Text>ADD</Text>
       </TouchableOpacity>
     </ScrollView>
   );

@@ -9,12 +9,13 @@ import * as cartActions from '../store/actions/cart';
 const ProductDetailsScreen = props => {
   const dispatch = useDispatch();
   const productId = props.navigation.getParam('productId');
+
   const selectedproduct = useSelector(state =>
     state.products.availableProducts.find(prod => prod.id === productId),
   );
   return (
     <Screen style={styles.container}>
-      <Image style={styles.image} source={{uri: selectedproduct.imageUrl}} />
+      <Image style={styles.image} source={{uri: selectedproduct?.imageUrl}} />
       <View style={styles.action}>
         <Button
           label={'Add to cart'}
@@ -23,8 +24,8 @@ const ProductDetailsScreen = props => {
           }}
         />
       </View>
-      <Text style={styles.price}>₹{selectedproduct.price}</Text>
-      <Text style={styles.description}>{selectedproduct.description}</Text>
+      <Text style={styles.price}>₹{selectedproduct?.price}</Text>
+      <Text style={styles.description}>{selectedproduct?.description}</Text>
     </Screen>
   );
 };

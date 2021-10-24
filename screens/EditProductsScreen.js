@@ -19,10 +19,11 @@ const EditProductsScreen = props => {
 
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState(editedProduct.title);
-  const [imageUrl, setImageUrl] = useState(editedProduct.imageUrl);
+  const [title, setTitle] = useState(editedProduct?.title);
+  const [imageUrl, setImageUrl] = useState(editedProduct?.imageUrl);
   const [price, setPrice] = useState('');
-  const [description, setDescription] = useState(editedProduct.description);
+  const [description, setDescription] = useState(editedProduct?.description);
+  const [phone, setPhone] = useState(editedProduct?.phone);
 
   const submitHandler = useCallback(() => {
     dispatch(
@@ -31,7 +32,7 @@ const EditProductsScreen = props => {
 
     props.navigation.goBack();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, prodId, title, description, imageUrl, price]);
+  }, [dispatch, prodId, title, description, imageUrl, price, phone]);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
@@ -72,6 +73,14 @@ const EditProductsScreen = props => {
             style={styles.input}
             value={description}
             onChangeText={text => setDescription(text)}
+          />
+        </View>
+        <View style={styles.formControl}>
+          <Text style={styles.label}>Phone</Text>
+          <TextInput
+            style={styles.input}
+            value={phone}
+            onChangeText={setPhone}
           />
         </View>
       </View>
