@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-import ProductItem from '../components/ProdectItem';
+import ProductItem from '../components/ProductItem';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 import * as cartActions from '../store/actions/cart';

@@ -42,9 +42,7 @@ export const fetchProducts = () => {
         userProducts: loadedData.filter(prod => prod.ownerId === userId),
       });
     } catch (err) {
-      // we can send this to analytic server
-      //pr rethrow like below
-
+      // we can send this to analytic server from here
       throw err;
     }
   };
@@ -60,24 +58,20 @@ export const deleteProduct = productId => {
       },
     );
 
-    if (!response.ok) {
-      throw new Error('SomeThing Went Wrong');
-    }
-
+    if (!response.ok) throw new Error('SomeThing Went Wrong');
     dispatch({type: DELETE_PRODUCT, pid: productId});
   };
 };
 
 //second step, after this go to reducer
+//because we added thunk
+//by changing to this action creator function deos not immedietly return an object
+// but return a function ie dspatch function , it receives another function argument
+//the function passed automatically by redux thunk
+//this do same thing as above, but before that
+//we can now execute any async code
 export const createProduct = (title, description, imageUrl, price) => {
-  /////////////////////////////
-  //because we added thunk
-  //by changing to this action creator function deos not immedietly return an object
-  // but return a function ie dspatch function , it receives another function argument
-  //the function passed automatically by redux thunk
-  //this do same thing as above, but before that
-  //we can now execute any async code
-
+  console.log(title, description, imageUrl, price);
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
@@ -121,7 +115,7 @@ export const updateProduct = (id, title, description, imageUrl) => {
     const token = getState().auth.token;
     console.log('token', token);
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products/${id}.json?auth=${token}`, // here backtick is used to submit our id
+      `https://ecommerce-f33e7.firebaseio.com/products/${id}.json?auth=${token}`,
       {
         method: 'PATCH', // patch is used to update a specific item we requesting, PUT is fully override the data
         headers: {
