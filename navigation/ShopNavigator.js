@@ -7,6 +7,7 @@ import Colors from '../constants/Colors';
 import AddProductsScreen from '../screens/AddProductsScreen';
 import AuthScreen from '../screens/AuthScreen';
 import CartScreen from '../screens/CartScreen';
+import EditProductsScreen from '../screens/EditProductsScreen';
 import EntryScreen from '../screens/EntryScreen';
 import ForgotPassword from '../screens/ForgotPassword';
 import MyProductsScreen from '../screens/MyProductsScreen';
@@ -36,13 +37,18 @@ const CartNavigator = createStackNavigator({
   OrderDetails: OrderDetails,
 });
 
+const UpdateNavigator = createStackNavigator({
+  MyProducts: MyProductsScreen,
+  AddProducts: AddProductsScreen,
+  EditProducts: EditProductsScreen,
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
     AllProducts: ProductsNavigator,
     Cart: CartNavigator, // change to wish list
     Settings: SettingsScreen,
-    MyProducts: MyProductsScreen,
-    AddProducts: AddProductsScreen,
+    Admin: UpdateNavigator,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -56,9 +62,7 @@ const TabNavigator = createBottomTabNavigator(
           iconName = focused ? 'cart-outline' : 'cart-outline';
         } else if (routeName === 'Settings') {
           iconName = 'code-working-outline';
-        } else if (routeName === 'MyProducts') {
-          iconName = 'code-working-outline';
-        } else if (routeName === 'AddProducts') {
+        } else if (routeName === 'Admin') {
           iconName = 'code-working-outline';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;

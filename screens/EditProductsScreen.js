@@ -10,32 +10,25 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import * as productsActions from '../store/actions/products';
 
-const AddProductsScreen = props => {
+const EditProductsScreen = props => {
   const prodId = props.navigation.getParam('productId');
+
   const editedProduct = useSelector(state =>
-    state.products.userProducts?.find(prod => prod.id === prodId),
+    state.products.userproducts?.find(prod => prod.id === prodId),
   );
+
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
-  const [imageUrl, setImageUrl] = useState(
-    editedProduct ? editedProduct.imageUrl : '',
-  );
+  const [title, setTitle] = useState(editedProduct.title);
+  const [imageUrl, setImageUrl] = useState(editedProduct.imageUrl);
   const [price, setPrice] = useState('');
-  const [description, setDescription] = useState(
-    editedProduct ? editedProduct.description : '',
-  );
+  const [description, setDescription] = useState(editedProduct.description);
 
   const submitHandler = useCallback(() => {
-    if (editedProduct) {
-      dispatch(
-        productsActions.updateProduct(prodId, title, description, imageUrl),
-      );
-    } else {
-      dispatch(
-        productsActions.createProduct(title, description, imageUrl, +price),
-      );
-    }
+    dispatch(
+      productsActions.updateProduct(prodId, title, description, imageUrl),
+    );
+
     props.navigation.goBack();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, prodId, title, description, imageUrl, price]);
@@ -83,13 +76,13 @@ const AddProductsScreen = props => {
         </View>
       </View>
       <TouchableOpacity style={{}} onPress={submitHandler}>
-        <Text>ADD/EDIT</Text>
+        <Text>EDIT</Text>
       </TouchableOpacity>
     </ScrollView>
   );
 };
 
-export default AddProductsScreen;
+export default EditProductsScreen;
 
 const styles = StyleSheet.create({
   form: {
