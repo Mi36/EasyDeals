@@ -12,6 +12,8 @@ const EditProductsScreen = props => {
   const editedProduct = useSelector(state =>
     state.products.userproducts?.find(prod => prod.id === prodId),
   );
+  const editedProduct1 = useSelector(state => state.products.userproducts);
+  console.log(editedProduct1, editedProduct.phone);
 
   const dispatch = useDispatch();
 
@@ -23,7 +25,13 @@ const EditProductsScreen = props => {
 
   const submitHandler = useCallback(() => {
     dispatch(
-      productsActions.updateProduct(prodId, title, description, imageUrl),
+      productsActions.updateProduct(
+        prodId,
+        title,
+        description,
+        imageUrl,
+        phone,
+      ),
     );
 
     props.navigation.goBack();
@@ -81,7 +89,7 @@ const EditProductsScreen = props => {
             <TextInput
               style={styles.input}
               value={phone}
-              onChangeText={setPhone}
+              onChangeText={text => setPhone(text)}
             />
           </View>
         </View>

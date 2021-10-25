@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput, View, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../components/Button';
 import Header from '../components/Header';
@@ -42,7 +42,7 @@ const AddProductsScreen = props => {
   return (
     <Screen>
       <Header title={'Add product'} onBack={() => props.navigation.goBack()} />
-      <View style={styles.form}>
+      <ScrollView style={styles.form}>
         <View style={styles.formControl}>
           <Text style={styles.label}>Title</Text>
           <TextInput
@@ -85,8 +85,8 @@ const AddProductsScreen = props => {
             onChangeText={setPhone}
           />
         </View>
-      </View>
-      <Button onPress={submitHandler} label={'Add'} />
+        <Button onPress={submitHandler} label={'Add'} />
+      </ScrollView>
     </Screen>
   );
 };
@@ -114,5 +114,10 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderWidth: 1,
     borderRadius: 10,
+    height: 60,
+    paddingLeft: 10,
+  },
+  button: {
+    marginTop: 20,
   },
 });

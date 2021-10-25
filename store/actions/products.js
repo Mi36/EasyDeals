@@ -33,6 +33,7 @@ export const fetchProducts = () => {
             resData[key].imageUrl,
             resData[key].description,
             resData[key].price,
+            resData[key].phone,
           ),
         );
       }

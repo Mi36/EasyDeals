@@ -25,7 +25,9 @@ const ProductDetailsScreen = props => {
         </View>
         <Text style={styles.price}>₹{selectedproduct?.price}</Text>
         <Text style={styles.description}>{selectedproduct?.description}</Text>
-        <Text style={styles.description}>{selectedproduct?.phone}</Text>
+        <Text style={styles.description}>
+          contact number:{selectedproduct?.phone}
+        </Text>
       </ScrollView>
     </Screen>
   );

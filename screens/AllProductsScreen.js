@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   },
   flex: {
     flex: 1,
-    backgroundColor: '#5EC7F2',
+    backgroundColor: Colors.green1,
   },
   logout: {
     backgroundColor: 'white',
