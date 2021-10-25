@@ -1,13 +1,18 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Screen from '../components/Screen';
+import Colors from '../constants/Colors';
 
 export default function EntryScreen(props) {
   return (
     <Screen style={styles.main}>
       <View style={styles.header}>
-        <Text style={styles.text}>Welcome to MiSTORE.</Text>
+        <Text style={styles.text}>Welcome to EasyDeals.</Text>
       </View>
+      <Text style={styles.desc}>
+        EasyDeals makes it so easy to connect people to buy, sell or exchange
+        products.
+      </Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate('Auth')}
         style={styles.customerButton}>
@@ -33,10 +38,11 @@ const styles = StyleSheet.create({
   customerText: {
     fontWeight: '600',
     fontSize: 20,
+    color: Colors.red,
+    textDecorationLine: 'underline',
   },
   header: {
     alignItems: 'center',
-    borderWidth: 1,
     marginHorizontal: 20,
   },
   customerButton: {
@@ -45,6 +51,9 @@ const styles = StyleSheet.create({
     height: 40,
     width: 100,
     alignSelf: 'center',
-    borderWidth: 1,
+  },
+  desc: {
+    textAlign: 'center',
+    paddingHorizontal: 20,
   },
 });
