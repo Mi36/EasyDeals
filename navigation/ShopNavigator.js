@@ -6,12 +6,12 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Colors from '../constants/Colors';
 import AddProductsScreen from '../screens/AddProductsScreen';
 import AuthScreen from '../screens/AuthScreen';
-import CartScreen from '../screens/CartScreen';
+import WishListScreen from '../screens/WishListScreen';
 import EditProductsScreen from '../screens/EditProductsScreen';
 import EntryScreen from '../screens/EntryScreen';
 import ForgotPassword from '../screens/ForgotPassword';
 import MyProductsScreen from '../screens/MyProductsScreen';
-import OrderDetails from '../screens/OrderDetails';
+
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
 import AllProductsScreen from '../screens/AllProductsScreen';
 import ResetPassword from '../screens/ResetPassword';
@@ -21,7 +21,7 @@ import UploadProduct from '../screens/UploadProduct';
 const ProductsNavigator = createStackNavigator({
   AllProducts: AllProductsScreen,
   ProductDetails: ProductDetailsScreen,
-  CartScreen: CartScreen,
+  WishList: WishListScreen,
 });
 
 const AuthNavigator = createStackNavigator({
@@ -30,11 +30,6 @@ const AuthNavigator = createStackNavigator({
   FORGOTPASSWORD: ForgotPassword,
   RESETPASSWORD: ResetPassword,
   UPLOAD: UploadProduct,
-});
-
-const CartNavigator = createStackNavigator({
-  CartScreen: CartScreen,
-  OrderDetails: OrderDetails,
 });
 
 const UpdateNavigator = createStackNavigator({
@@ -46,7 +41,7 @@ const UpdateNavigator = createStackNavigator({
 const TabNavigator = createBottomTabNavigator(
   {
     AllProducts: ProductsNavigator,
-    WishList: CartNavigator, // change to wish list
+    WishList: WishListScreen,
     Admin: UpdateNavigator,
   },
   {

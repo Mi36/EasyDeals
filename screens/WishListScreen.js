@@ -12,7 +12,7 @@ import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 import * as CartActions from '../store/actions/cart';
 
-const CartScreen = ({navigation}) => {
+const WishListScreen = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   //const [error, setError] = useState(); // we can add like before for error handling
   const dispatch = useDispatch();
@@ -76,7 +76,7 @@ const CartScreen = ({navigation}) => {
     </Screen>
   );
 };
-export default CartScreen;
+export default WishListScreen;
 
 const styles = StyleSheet.create({
   screen: {
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
 });
 
-CartScreen.navigationOptions = navData => {
+WishListScreen.navigationOptions = navData => {
   return {
     headerShown: false,
   };
