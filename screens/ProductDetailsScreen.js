@@ -19,6 +19,7 @@ const ProductDetailsScreen = props => {
         <Image style={styles.image} source={{uri: selectedproduct?.imageUrl}} />
         <View style={styles.action}>
           <Button
+            style={styles.button}
             label={'Add to wishlist'}
             onPress={() => dispatch(cartActions.addToCart(selectedproduct))}
           />
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 20,
+  },
+  button: {
+    height: 40,
   },
 });
 

@@ -98,15 +98,9 @@ const AllProductsScreen = props => {
             image={itemData.item.imageUrl}
             price={itemData.item.price}
             title={itemData.item.title}
-            onAddToCart={() => {
-              dispatch(cartActions.addToCart(itemData.item));
-            }}>
-            <Button
-              style={styles.button}
-              label={'View details'}
-              onPress={() => selectItemHandler(itemData.item.id)}
-            />
-          </ProductItem>
+            onDetailsPress={() => selectItemHandler(itemData.item.id)}
+            onAddToCart={() => dispatch(cartActions.addToCart(itemData.item))}
+          />
         )}
       />
     </Screen>

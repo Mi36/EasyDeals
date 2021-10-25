@@ -59,22 +59,14 @@ const MyProductsScreen = props => {
           <ProductItem
             image={itemData.item.image}
             title={itemData.item.title}
-            price={itemData.item.price}>
-            <Button
-              style={styles.innerButton}
-              label={'Update'}
-              onPress={() => {
-                props.navigation.navigate('EditProducts', {
-                  productId: itemData.item.id,
-                });
-              }}
-            />
-            <Button
-              style={styles.innerButton}
-              label={'Delete'}
-              onPress={() => dispatch(deleteProduct(itemData.item.id))}
-            />
-          </ProductItem>
+            price={itemData.item.price}
+            onUpdate={() => {
+              props.navigation.navigate('EditProducts', {
+                productId: itemData.item.id,
+              });
+            }}
+            onDelete={() => dispatch(deleteProduct(itemData.item.id))}
+          />
         )}
       />
     </Screen>
