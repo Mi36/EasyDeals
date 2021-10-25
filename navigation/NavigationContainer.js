@@ -17,10 +17,7 @@ const NavigationContainer = props => {
   //if no token it returns false now
   useEffect(() => {
     if (!isAuth) {
-      //we want to navigate to auth screen, but normally not accessible to using navigation props
-      //because it is outside
-      //to do this, use useRef
-      //now establishes a connection between navRef and ShopNavigator
+      //we want to navigate to auth screen, but normally not accessible to using navigation props because it is outside to do this, use useRef
       navRef.current.dispatch(NavigationActions.navigate({routeName: 'Auth'}));
     }
   }, [isAuth]);

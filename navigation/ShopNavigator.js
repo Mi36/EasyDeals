@@ -3,23 +3,25 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
-import CartScreen from '../screens/CartScreen';
-import OrderScreen from '../screens/OrderScreen';
-import ProductDetailsScreen from '../screens/ProductDetailsScreen';
-import ProductOverviewScreen from '../screens/ProductOverviewScreen';
-import StartUpScreen from '../screens/StartUpScreen';
-import AuthScreen from '../screens/AuthScreen';
-import ForgotPassword from '../screens/ForgotPassword';
-import ResetPassword from '../screens/ResetPassword';
-import EntryScreen from '../screens/EntryScreen';
-import OrderDetails from '../screens/OrderDetails';
-import UploadProduct from '../screens/UploadProduct';
 import Colors from '../constants/Colors';
-import SettingsScreen from '../screens/SettingsScreen';
+import AddProductsScreen from '../screens/AddProductsScreen';
+import AuthScreen from '../screens/AuthScreen';
+import WishListScreen from '../screens/WishListScreen';
+import EditProductsScreen from '../screens/EditProductsScreen';
+import EntryScreen from '../screens/EntryScreen';
+import ForgotPassword from '../screens/ForgotPassword';
+import MyProductsScreen from '../screens/MyProductsScreen';
+
+import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import AllProductsScreen from '../screens/AllProductsScreen';
+import ResetPassword from '../screens/ResetPassword';
+import StartUpScreen from '../screens/StartUpScreen';
+import UploadProduct from '../screens/UploadProduct';
+
 const ProductsNavigator = createStackNavigator({
-  ProductsOverview: ProductOverviewScreen,
+  Products: AllProductsScreen,
   ProductDetails: ProductDetailsScreen,
-  CartScreen: CartScreen,
+  Selected: WishListScreen,
 });
 
 const AuthNavigator = createStackNavigator({
@@ -30,20 +32,17 @@ const AuthNavigator = createStackNavigator({
   UPLOAD: UploadProduct,
 });
 
-const OrderNavigator = createStackNavigator({
-  Orders: OrderScreen,
-});
-const CartNavigator = createStackNavigator({
-  CartScreen: CartScreen,
-  OrderDetails: OrderDetails,
+const UpdateNavigator = createStackNavigator({
+  MyProducts: MyProductsScreen,
+  AddProducts: AddProductsScreen,
+  EditProducts: EditProductsScreen,
 });
 
 const TabNavigator = createBottomTabNavigator(
   {
     Products: ProductsNavigator,
-    Orders: OrderNavigator,
-    Cart: CartNavigator,
-    Settings: SettingsScreen,
+    Selected: WishListScreen,
+    Admin: UpdateNavigator,
   },
   {
     defaultNavigationOptions: ({navigation}) => ({
@@ -53,12 +52,10 @@ const TabNavigator = createBottomTabNavigator(
         let iconName;
         if (routeName === 'Products') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        } else if (routeName === 'Orders') {
-          iconName = focused ? 'code-working-outline' : 'code-working-outline';
-        } else if (routeName === 'Cart') {
+        } else if (routeName === 'Selected') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
-        } else if (routeName === 'Settings') {
-          iconName = 'code-working-outline';
+        } else if (routeName === 'Admin') {
+          iconName = 'key-sharp';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },

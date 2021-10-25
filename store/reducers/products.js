@@ -26,7 +26,9 @@ export default (state = initialState, action) => {
         action.productData.imageUrl,
         action.productData.description,
         action.productData.price,
+        action.productData.phone,
       );
+
       return {
         ...state,
         availableProducts: state.availableProducts.concat(newProduct),
@@ -43,6 +45,7 @@ export default (state = initialState, action) => {
         action.productData.imageUrl,
         action.productData.description,
         state.userproducts[productIndex].price, // price should not be edited
+        action.productData.phone,
       );
       const updatedUserProducts = [...state.userproducts];
       updatedUserProducts[productIndex] = updatedProduct;

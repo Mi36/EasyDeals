@@ -141,7 +141,11 @@ const AuthScreen = props => {
           />
           <View style={styles.switch}>
             {isLoading ? (
-              <ActivityIndicator color="black" size="small" />
+              <ActivityIndicator
+                color="black"
+                size="small"
+                style={styles.indicator}
+              />
             ) : (
               <Button
                 label={isSignUp ? 'Register' : 'Login'}
@@ -235,6 +239,9 @@ const styles = StyleSheet.create({
     height: 130,
     resizeMode: 'stretch',
     alignSelf: 'center',
+  },
+  indicator: {
+    height: 70,
   },
 });
 

@@ -1,11 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Colors from '../constants/Colors';
 
 const cartItem = props => {
   return (
-    <View style={styles.cartItem}>
-      <Text>
-        {'\u2B24  '}
+    <TouchableOpacity
+      style={styles.cartItem}
+      onPress={() =>
+        props.navigation.navigate('ProductDetails', {productId: props.id})
+      }>
+      <Text style={styles.text}>
         {props.quantity} {props.title}
       </Text>
 
@@ -13,11 +17,11 @@ const cartItem = props => {
       <View style={styles.delete}>
         {props.deletable && (
           <TouchableOpacity onPress={props.onRemove} style={styles.button}>
-            <Text style={styles.buttonLabel}>DELETE</Text>
+            <Text>X</Text>
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -29,9 +33,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: 10,
+    backgroundColor: Colors.black2,
+    borderRadius: 5,
   },
   itemData: {
     flexDirection: 'row',
+    color: Colors.white,
   },
   deleteButton: {
     backgroundColor: 'pink',
@@ -41,15 +48,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   button: {
-    backgroundColor: '#141B5D',
-    height: 40,
+    backgroundColor: Colors.pink2,
+    padding: 5,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
-    width: 100,
   },
   buttonLabel: {
     fontWeight: 'bold',
     color: 'white',
+  },
+  text: {
+    color: Colors.white,
   },
 });
