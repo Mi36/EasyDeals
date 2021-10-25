@@ -62,7 +62,7 @@ const TabNavigator = createBottomTabNavigator(
         } else if (routeName === 'Settings') {
           iconName = 'code-working-outline';
         } else if (routeName === 'Admin') {
-          iconName = 'code-working-outline';
+          iconName = 'key-sharp';
         }
         return <IconComponent name={iconName} size={25} color={tintColor} />;
       },
