@@ -19,9 +19,9 @@ import StartUpScreen from '../screens/StartUpScreen';
 import UploadProduct from '../screens/UploadProduct';
 
 const ProductsNavigator = createStackNavigator({
-  AllProducts: AllProductsScreen,
+  Products: AllProductsScreen,
   ProductDetails: ProductDetailsScreen,
-  WishList: WishListScreen,
+  Selected: WishListScreen,
 });
 
 const AuthNavigator = createStackNavigator({
@@ -40,8 +40,8 @@ const UpdateNavigator = createStackNavigator({
 
 const TabNavigator = createBottomTabNavigator(
   {
-    AllProducts: ProductsNavigator,
-    WishList: WishListScreen,
+    Products: ProductsNavigator,
+    Selected: WishListScreen,
     Admin: UpdateNavigator,
   },
   {
@@ -50,12 +50,10 @@ const TabNavigator = createBottomTabNavigator(
         const {routeName} = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'AllProducts') {
+        if (routeName === 'Products') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        } else if (routeName === 'WishList') {
+        } else if (routeName === 'Selected') {
           iconName = focused ? 'cart-outline' : 'cart-outline';
-        } else if (routeName === 'Settings') {
-          iconName = 'code-working-outline';
         } else if (routeName === 'Admin') {
           iconName = 'key-sharp';
         }
