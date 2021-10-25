@@ -1,13 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Button from '../components/Button';
+import Header from '../components/Header';
+import Screen from '../components/Screen';
 import * as productsActions from '../store/actions/products';
 
 const EditProductsScreen = props => {
@@ -39,59 +35,73 @@ const EditProductsScreen = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitHandler]);
   return (
-    <ScrollView>
-      <View style={styles.form}>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Title</Text>
-          <TextInput
-            style={styles.input}
-            value={title}
-            onChangeText={text => setTitle(text)}
-          />
-        </View>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Image URL</Text>
-          <TextInput
-            style={styles.input}
-            value={imageUrl}
-            onChangeText={text => setImageUrl(text)}
-          />
-        </View>
-        {editedProduct ? null : (
+    <Screen>
+      <Header
+        title={'Update your product'}
+        onBack={() => props.navigation.goBack()}
+      />
+      <ScrollView>
+        <View style={styles.form}>
           <View style={styles.formControl}>
-            <Text style={styles.label}>Price</Text>
+            <Text style={styles.label}>Title</Text>
             <TextInput
               style={styles.input}
-              value={price}
-              onChangeText={text => setPrice(text)}
+              value={title}
+              onChangeText={text => setTitle(text)}
             />
           </View>
-        )}
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Description</Text>
-          <TextInput
-            style={styles.input}
-            value={description}
-            onChangeText={text => setDescription(text)}
-          />
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Image URL</Text>
+            <TextInput
+              style={styles.input}
+              value={imageUrl}
+              onChangeText={text => setImageUrl(text)}
+            />
+          </View>
+          {editedProduct ? null : (
+            <View style={styles.formControl}>
+              <Text style={styles.label}>Price</Text>
+              <TextInput
+                style={styles.input}
+                value={price}
+                onChangeText={text => setPrice(text)}
+              />
+            </View>
+          )}
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Description</Text>
+            <TextInput
+              style={styles.input}
+              value={description}
+              onChangeText={text => setDescription(text)}
+            />
+          </View>
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Phone</Text>
+            <TextInput
+              style={styles.input}
+              value={phone}
+              onChangeText={setPhone}
+            />
+          </View>
         </View>
-        <View style={styles.formControl}>
-          <Text style={styles.label}>Phone</Text>
-          <TextInput
-            style={styles.input}
-            value={phone}
-            onChangeText={setPhone}
-          />
-        </View>
-      </View>
-      <TouchableOpacity style={{}} onPress={submitHandler}>
-        <Text>EDIT</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <Button
+          label={'Update'}
+          onPress={submitHandler}
+          style={styles.button}
+        />
+      </ScrollView>
+    </Screen>
   );
 };
 
 export default EditProductsScreen;
+
+EditProductsScreen.navigationOptions = navData => {
+  return {
+    headerShown: false,
+  };
+};
 
 const styles = StyleSheet.create({
   form: {
@@ -106,7 +116,12 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 2,
     paddingVertical: 5,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    borderWidth: 1,
+    height: 60,
+    borderRadius: 10,
+    paddingLeft: 8,
+  },
+  button: {
+    marginHorizontal: 20,
   },
 });

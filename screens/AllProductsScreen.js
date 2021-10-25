@@ -1,22 +1,22 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
-  Button,
   FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
+import Button from '../components/Button';
+import Header from '../components/Header';
 import ProductItem from '../components/ProductItem';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 import * as cartActions from '../store/actions/cart';
 import * as productActions from '../store/actions/products';
 
-const ProductOverviewScreen = props => {
+const AllProductsScreen = props => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -62,14 +62,6 @@ const ProductOverviewScreen = props => {
 
   const products = useSelector(state => state.products.availableProducts);
 
-  const header = () => {
-    return (
-      <View style={styles.header}>
-        <Text style={styles.headerText}>All Products</Text>
-      </View>
-    );
-  };
-
   if (isLoading) {
     return (
       <View style={styles.indicator}>
@@ -80,7 +72,6 @@ const ProductOverviewScreen = props => {
   if (!isLoading && products.length === 0) {
     return (
       <SafeAreaView style={styles.flex}>
-        {header()}
         <View style={styles.noProductAvailable}>
           <Text style={styles.text}>There is no products available</Text>
         </View>
@@ -97,7 +88,7 @@ const ProductOverviewScreen = props => {
   }
   return (
     <Screen>
-      {header()}
+      <Header title={'Choose products to buy'} />
       <FlatList
         onRefresh={loadProducts}
         refreshing={isRefrehing}
@@ -110,20 +101,11 @@ const ProductOverviewScreen = props => {
             onAddToCart={() => {
               dispatch(cartActions.addToCart(itemData.item));
             }}>
-            <TouchableOpacity
+            <Button
               style={styles.button}
-              onPress={() => {
-                selectItemHandler(itemData.item.id);
-              }}>
-              <Text style={styles.buttonLabel}>View details</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                dispatch(cartActions.addToCart(itemData.item));
-              }}>
-              <Text style={styles.buttonLabel}>Add to wish List</Text>
-            </TouchableOpacity>
+              label={'View details'}
+              onPress={() => selectItemHandler(itemData.item.id)}
+            />
           </ProductItem>
         )}
       />
@@ -131,7 +113,7 @@ const ProductOverviewScreen = props => {
   );
 };
 
-ProductOverviewScreen.navigationOptions = () => {
+AllProductsScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -145,7 +127,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.green3,
   },
   button: {
-    backgroundColor: '#141B5D',
+    backgroundColor: Colors.brand_2,
     height: 40,
     width: 100,
     alignItems: 'center',
@@ -194,4 +176,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProductOverviewScreen;
+export default AllProductsScreen;

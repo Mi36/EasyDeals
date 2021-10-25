@@ -3,74 +3,27 @@ import {View, Text, Image, StyleSheet} from 'react-native';
 
 const ProductItem = props => {
   return (
-    <View style={styles.product}>
-      <View>
-        <View>
-          <View style={styles.imageContainer}>
-            <Image style={styles.image} source={{uri: props.image}} />
-          </View>
-          <View style={styles.detail}>
-            <Text style={styles.title}>{props.title}</Text>
-            <Text style={styles.price}>₹{props.price}</Text>
-          </View>
-          <View style={styles.actions}>
-            {/* <Button title="View Details" onPress={props.onViewDetail}/>
-                <Button title="To Cart" onPress={props.onAddToCart}/> */}
-            {props.children}
-            {/* this helps to pass data to here through the opening and closing tags.
-                fro where ever we use this component. because we added this, change the component open and closing tag
-                where we are using this.
-                */}
-          </View>
-        </View>
-      </View>
+    <View style={styles.main}>
+      <Image style={styles.image} source={{uri: props.image}} />
+
+      <Text>{props.title}</Text>
+      <Text>₹{props.price}</Text>
+
+      <View>{props.children}</View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  product: {
-    elevation: 5,
-    shadowColor: 'black',
-    shadowOpacity: 0.25,
-    backgroundColor: 'white',
+  main: {
     borderRadius: 10,
-    height: 300,
-    margin: 20,
-    shadowRadius: 8,
-    shadowOffset: {width: 0, height: 2},
+    borderWidth: 1,
+    marginBottom: 20,
+    alignItems: 'center',
   },
   image: {
-    // marginTop:10,
-    width: '100%',
-    height: '100%',
-    // resizeMode: 'stretch',//image will be completly displayed using this.
-    //if we use contain the image will be completly displayed in our view, but its size reduced and uniformly scaled
-    //center will move the image center of view, kollatha part purath pokum.
-  },
-  imageContainer: {
-    width: '100%',
-    height: '60%',
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-    overflow: 'hidden',
-  },
-
-  title: {fontSize: 18, marginVertical: 4},
-  price: {
-    fontSize: 14,
-    color: 'blue',
-  },
-  actions: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    height: '25%',
-  },
-  detail: {
-    padding: 10,
-    height: '15%',
-    alignItems: 'center',
+    width: 150,
+    height: 150,
   },
 });
 

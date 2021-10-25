@@ -13,14 +13,13 @@ import ForgotPassword from '../screens/ForgotPassword';
 import MyProductsScreen from '../screens/MyProductsScreen';
 import OrderDetails from '../screens/OrderDetails';
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
-import ProductOverviewScreen from '../screens/ProductOverviewScreen';
+import AllProductsScreen from '../screens/AllProductsScreen';
 import ResetPassword from '../screens/ResetPassword';
-import SettingsScreen from '../screens/SettingsScreen';
 import StartUpScreen from '../screens/StartUpScreen';
 import UploadProduct from '../screens/UploadProduct';
 
 const ProductsNavigator = createStackNavigator({
-  ProductsOverview: ProductOverviewScreen,
+  AllProducts: AllProductsScreen,
   ProductDetails: ProductDetailsScreen,
   CartScreen: CartScreen,
 });
@@ -48,7 +47,6 @@ const TabNavigator = createBottomTabNavigator(
   {
     AllProducts: ProductsNavigator,
     WishList: CartNavigator, // change to wish list
-    Settings: SettingsScreen,
     Admin: UpdateNavigator,
   },
   {

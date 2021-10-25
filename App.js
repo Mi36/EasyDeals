@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage'; // for persisi
 import React, {Component} from 'react';
 import {YellowBox} from 'react-native';
 import RNBootSplash from 'react-native-bootsplash';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist'; // for prsist
@@ -44,11 +45,13 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistedStore}>
-          <NavigationContainer />
-        </PersistGate>
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistedStore}>
+            <NavigationContainer />
+          </PersistGate>
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 }

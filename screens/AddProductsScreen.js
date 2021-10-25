@@ -1,13 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import Button from '../components/Button';
+import Header from '../components/Header';
+import Screen from '../components/Screen';
 import * as productsActions from '../store/actions/products';
 
 const AddProductsScreen = props => {
@@ -44,7 +40,8 @@ const AddProductsScreen = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [submitHandler]);
   return (
-    <ScrollView>
+    <Screen>
+      <Header title={'Add product'} onBack={() => props.navigation.goBack()} />
       <View style={styles.form}>
         <View style={styles.formControl}>
           <Text style={styles.label}>Title</Text>
@@ -89,14 +86,18 @@ const AddProductsScreen = props => {
           />
         </View>
       </View>
-      <TouchableOpacity style={{}} onPress={submitHandler}>
-        <Text>ADD</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <Button onPress={submitHandler} label={'Add'} />
+    </Screen>
   );
 };
 
 export default AddProductsScreen;
+
+AddProductsScreen.navigationOptions = () => {
+  return {
+    headerShown: false,
+  };
+};
 
 const styles = StyleSheet.create({
   form: {
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
   input: {
     paddingHorizontal: 2,
     paddingVertical: 5,
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
+    borderWidth: 1,
+    borderRadius: 10,
   },
 });
