@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import CartItem from '../components/CartItem';
+import Header from '../components/Header';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 import * as CartActions from '../store/actions/cart';
@@ -37,18 +38,15 @@ const WishListScreen = ({navigation}) => {
 
   return (
     <Screen style={styles.flex}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Wish List</Text>
-      </View>
+      <Header title={'Wish List'} />
       <View style={styles.screen}>
         <View style={styles.summary}>
-          <Text style={styles.summaryText}>
-            Total:₹{totalAmount.toFixed(2)}
-          </Text>
           {isLoading ? (
             <ActivityIndicator color="blue" size="small" />
           ) : (
-            <View />
+            <Text style={styles.summaryText}>
+              Total:₹{totalAmount.toFixed(2)}
+            </Text>
           )}
         </View>
         <FlatList
@@ -83,16 +81,12 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   summary: {
-    elevation: 5,
-    shadowColor: 'black',
-    shadowOpacity: 0.25,
     backgroundColor: 'white',
-    borderRadius: 10,
+    borderRadius: 5,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
     marginBottom: 20,
-    shadowOffset: {width: 0, height: 2},
     height: 50,
   },
   button: {
@@ -121,14 +115,6 @@ const styles = StyleSheet.create({
   },
   flex: {
     justifyContent: undefined,
-  },
-  header: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  headerText: {
-    fontSize: 30,
-    fontWeight: 'bold',
   },
 });
 
