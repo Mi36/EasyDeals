@@ -44,7 +44,7 @@ const AddProductsScreen = props => {
     <Screen>
       <Header title={'Add product'} onBack={() => props.navigation.goBack()} />
       <KeyboardAvoidingViewWrapper>
-        <ScrollView style={styles.form}>
+        <ScrollView style={styles.form} bounces={false}>
           <View style={styles.formControl}>
             <Text style={styles.label}>Title</Text>
             <TextInput

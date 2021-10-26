@@ -50,7 +50,7 @@ const EditProductsScreen = props => {
         onBack={() => props.navigation.goBack()}
       />
       <KeyboardAvoidingViewWrapper>
-        <ScrollView>
+        <ScrollView bounces={false}>
           <View style={styles.form}>
             <View style={styles.formControl}>
               <Text style={styles.label}>Title</Text>
