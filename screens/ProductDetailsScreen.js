@@ -24,11 +24,12 @@ const ProductDetailsScreen = props => {
             onPress={() => dispatch(cartActions.addToCart(selectedproduct))}
           />
         </View>
-        <Text style={styles.price}>₹{selectedproduct?.price}</Text>
+        <Text style={styles.price}>Price: ₹{selectedproduct?.price}</Text>
         <Text style={styles.description}>{selectedproduct?.description}</Text>
-        <Text style={styles.description}>
-          contact number:{selectedproduct?.phone}
+        <Text style={styles.phone}>
+          contact number: {selectedproduct?.phone}
         </Text>
+        <Text style={styles.phone}>Place: {selectedproduct?.place}</Text>
       </ScrollView>
     </Screen>
   );
@@ -42,12 +43,11 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 20,
     textAlign: 'center',
-    color: '#888',
-    marginVertical: 20,
   },
   description: {
     fontSize: 14,
     textAlign: 'center',
+    color: Colors.danger,
   },
   action: {
     marginVertical: 10,
@@ -57,6 +57,12 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 40,
+  },
+  phone: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: '500',
+    color: Colors.pink5,
   },
 });
 
