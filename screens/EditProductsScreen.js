@@ -3,6 +3,7 @@ import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Button from '../components/Button';
 import Header from '../components/Header';
+import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
 import Screen from '../components/Screen';
 import * as productsActions from '../store/actions/products';
 
@@ -48,57 +49,59 @@ const EditProductsScreen = props => {
         title={'Update your product'}
         onBack={() => props.navigation.goBack()}
       />
-      <ScrollView>
-        <View style={styles.form}>
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Title</Text>
-            <TextInput
-              style={styles.input}
-              value={title}
-              onChangeText={text => setTitle(text)}
-            />
-          </View>
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Image URL</Text>
-            <TextInput
-              style={styles.input}
-              value={imageUrl}
-              onChangeText={text => setImageUrl(text)}
-            />
-          </View>
-          {editedProduct ? null : (
+      <KeyboardAvoidingViewWrapper>
+        <ScrollView>
+          <View style={styles.form}>
             <View style={styles.formControl}>
-              <Text style={styles.label}>Price</Text>
+              <Text style={styles.label}>Title</Text>
               <TextInput
                 style={styles.input}
-                value={price}
-                onChangeText={text => setPrice(text)}
+                value={title}
+                onChangeText={text => setTitle(text)}
               />
             </View>
-          )}
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Description</Text>
-            <TextInput
-              style={styles.input}
-              value={description}
-              onChangeText={text => setDescription(text)}
-            />
+            <View style={styles.formControl}>
+              <Text style={styles.label}>Image URL</Text>
+              <TextInput
+                style={styles.input}
+                value={imageUrl}
+                onChangeText={text => setImageUrl(text)}
+              />
+            </View>
+            {editedProduct ? null : (
+              <View style={styles.formControl}>
+                <Text style={styles.label}>Price</Text>
+                <TextInput
+                  style={styles.input}
+                  value={price}
+                  onChangeText={text => setPrice(text)}
+                />
+              </View>
+            )}
+            <View style={styles.formControl}>
+              <Text style={styles.label}>Description</Text>
+              <TextInput
+                style={styles.input}
+                value={description}
+                onChangeText={text => setDescription(text)}
+              />
+            </View>
+            <View style={styles.formControl}>
+              <Text style={styles.label}>Phone</Text>
+              <TextInput
+                style={styles.input}
+                value={phone}
+                onChangeText={text => setPhone(text)}
+              />
+            </View>
           </View>
-          <View style={styles.formControl}>
-            <Text style={styles.label}>Phone</Text>
-            <TextInput
-              style={styles.input}
-              value={phone}
-              onChangeText={text => setPhone(text)}
-            />
-          </View>
-        </View>
-        <Button
-          label={'Update'}
-          onPress={submitHandler}
-          style={styles.button}
-        />
-      </ScrollView>
+          <Button
+            label={'Update'}
+            onPress={submitHandler}
+            style={styles.button}
+          />
+        </ScrollView>
+      </KeyboardAvoidingViewWrapper>
     </Screen>
   );
 };
