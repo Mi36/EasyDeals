@@ -19,6 +19,7 @@ const AddProductsScreen = props => {
   const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
+  const [place, setPlace] = useState('');
 
   const submitHandler = useCallback(() => {
     dispatch(
@@ -28,13 +29,13 @@ const AddProductsScreen = props => {
         imageUrl,
         +price,
         phone,
+        place,
       ),
     );
 
     props.navigation.goBack();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, prodId, title, description, imageUrl, price, phone]);
-  console.log(phone);
+  }, [dispatch, prodId, title, description, imageUrl, price, phone, place]);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
@@ -85,6 +86,14 @@ const AddProductsScreen = props => {
               style={styles.input}
               value={phone}
               onChangeText={setPhone}
+            />
+          </View>
+          <View style={styles.formControl}>
+            <Text style={styles.label}>PLACE</Text>
+            <TextInput
+              style={styles.input}
+              value={place}
+              onChangeText={setPlace}
             />
           </View>
           <Button onPress={submitHandler} label={'Add'} />

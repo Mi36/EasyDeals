@@ -34,6 +34,7 @@ export const fetchProducts = () => {
             resData[key].description,
             resData[key].price,
             resData[key].phone,
+            resData[key].place,
           ),
         );
       }
@@ -71,7 +72,14 @@ export const deleteProduct = productId => {
 //the function passed automatically by redux thunk
 //this do same thing as above, but before that
 //we can now execute any async code
-export const createProduct = (title, description, imageUrl, price, phone) => {
+export const createProduct = (
+  title,
+  description,
+  imageUrl,
+  price,
+  phone,
+  place,
+) => {
   console.log(title, description, imageUrl, price);
   return async (dispatch, getState) => {
     const token = getState().auth.token;
@@ -90,11 +98,11 @@ export const createProduct = (title, description, imageUrl, price, phone) => {
           price,
           ownerId: userId,
           phone,
+          place,
         }),
       },
     ); //.json added because of firebase syntax, by default it send get req,otherwise explicitly mention
     const resData = await response.json();
-    console.log(resData);
 
     dispatch({
       type: CREATE_PRODUCT,
@@ -106,12 +114,20 @@ export const createProduct = (title, description, imageUrl, price, phone) => {
         price,
         ownerId: userId,
         phone,
+        place,
       },
     });
   };
 };
 
-export const updateProduct = (id, title, description, imageUrl, phone) => {
+export const updateProduct = (
+  id,
+  title,
+  description,
+  imageUrl,
+  phone,
+  place,
+) => {
   return async (dispatch, getState) => {
     console.log('id', id);
     // here getState is used to access the whole store, and then token
@@ -129,10 +145,10 @@ export const updateProduct = (id, title, description, imageUrl, phone) => {
           description,
           imageUrl,
           phone,
+          place,
         }),
       },
     );
-    console.log('res', response);
     if (!response.ok) {
       throw new Error('SomeThing Went Wrong');
     }
@@ -145,6 +161,7 @@ export const updateProduct = (id, title, description, imageUrl, phone) => {
         description,
         imageUrl,
         phone,
+        place,
       },
     });
   };
