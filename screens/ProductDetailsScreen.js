@@ -16,7 +16,11 @@ const ProductDetailsScreen = props => {
   return (
     <Screen>
       <ScrollView style={styles.container}>
-        <Image style={styles.image} source={{uri: selectedproduct?.imageUrl}} />
+        <Image
+          style={styles.image}
+          source={{uri: selectedproduct?.imageUrl}}
+          resizeMode="contain"
+        />
         <View style={styles.action}>
           <Button
             style={styles.button}
@@ -36,9 +40,9 @@ const ProductDetailsScreen = props => {
 };
 const styles = StyleSheet.create({
   image: {
-    width: '100%',
-    height: 300,
-    borderWidth: 1,
+    width: 250,
+    height: 250,
+    alignSelf: 'center',
   },
   price: {
     fontSize: 20,

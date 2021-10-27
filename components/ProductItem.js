@@ -5,7 +5,11 @@ import Button from './Button';
 const ProductItem = props => {
   return (
     <View style={styles.main}>
-      <Image style={styles.image} source={{uri: props.image}} />
+      <Image
+        style={styles.image}
+        source={{uri: props.image}}
+        resizeMode="contain"
+      />
 
       <Text style={styles.textAlign}>{props.title}</Text>
       <Text style={styles.textAlign}>₹{props.price}</Text>
@@ -44,9 +48,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   image: {
-    width: 150,
-    height: 150,
-    alignItems: 'center',
+    width: 250,
+    height: 250,
+    alignSelf: 'center',
   },
   textAlign: {
     textAlign: 'center',
