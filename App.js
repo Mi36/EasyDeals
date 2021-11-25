@@ -14,8 +14,6 @@ import cartReducer from './store/reducers/cart';
 import orderReducer from './store/reducers/order';
 import productReducer from './store/reducers/products';
 
-YellowBox.ignoreWarnings(['Remote']);
-
 const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,

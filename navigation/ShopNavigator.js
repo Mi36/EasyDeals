@@ -5,23 +5,19 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Colors from '../constants/Colors';
 import AddProductsScreen from '../screens/AddProductsScreen';
+import AllProductsScreen from '../screens/AllProductsScreen';
 import AuthScreen from '../screens/AuthScreen';
-import WishListScreen from '../screens/WishListScreen';
 import EditProductsScreen from '../screens/EditProductsScreen';
 import EntryScreen from '../screens/EntryScreen';
 import ForgotPassword from '../screens/ForgotPassword';
 import MyProductsScreen from '../screens/MyProductsScreen';
-
 import ProductDetailsScreen from '../screens/ProductDetailsScreen';
-import AllProductsScreen from '../screens/AllProductsScreen';
 import ResetPassword from '../screens/ResetPassword';
 import StartUpScreen from '../screens/StartUpScreen';
-import UploadProduct from '../screens/UploadProduct';
 
 const ProductsNavigator = createStackNavigator({
   Products: AllProductsScreen,
   ProductDetails: ProductDetailsScreen,
-  Selected: WishListScreen,
 });
 
 const AuthNavigator = createStackNavigator({
@@ -29,7 +25,6 @@ const AuthNavigator = createStackNavigator({
   Auth: AuthScreen,
   FORGOTPASSWORD: ForgotPassword,
   RESETPASSWORD: ResetPassword,
-  UPLOAD: UploadProduct,
 });
 
 const UpdateNavigator = createStackNavigator({
@@ -41,7 +36,6 @@ const UpdateNavigator = createStackNavigator({
 const TabNavigator = createBottomTabNavigator(
   {
     Products: ProductsNavigator,
-    Selected: WishListScreen,
     Admin: UpdateNavigator,
   },
   {
@@ -52,8 +46,6 @@ const TabNavigator = createBottomTabNavigator(
         let iconName;
         if (routeName === 'Products') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
-        } else if (routeName === 'Selected') {
-          iconName = focused ? 'cart-outline' : 'cart-outline';
         } else if (routeName === 'Admin') {
           iconName = 'key-sharp';
         }

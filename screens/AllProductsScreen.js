@@ -73,7 +73,7 @@ const AllProductsScreen = props => {
     return (
       <SafeAreaView style={styles.flex}>
         <View style={styles.noProductAvailable}>
-          <Text style={styles.text}>There is no products available</Text>
+          <Text style={styles.text}>There is no jobs available</Text>
         </View>
       </SafeAreaView>
     );
@@ -88,7 +88,7 @@ const AllProductsScreen = props => {
   }
   return (
     <Screen>
-      <Header title={'Choose products to buy'} />
+      <Header title={'JOBS AVAILABLE'} />
       <FlatList
         onRefresh={loadProducts}
         refreshing={isRefrehing}

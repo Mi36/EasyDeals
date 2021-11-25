@@ -46,7 +46,7 @@ const MyProductsScreen = props => {
       <Header title={'My products'} />
       <Button label={'Log out'} onPress={onPress} style={styles.button} />
       <Button
-        label={'Sell your product'}
+        label={'Post your job'}
         onPress={() => props.navigation.navigate('AddProducts')}
         style={styles.button}
       />

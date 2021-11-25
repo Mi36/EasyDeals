@@ -7,12 +7,9 @@ export default function EntryScreen(props) {
   return (
     <Screen style={styles.main}>
       <View style={styles.header}>
-        <Text style={styles.text}>Welcome to EasyDeals.</Text>
+        <Text style={styles.text}>Welcome to AMAL.</Text>
       </View>
-      <Text style={styles.desc}>
-        EasyDeals makes it so easy to connect people to buy, sell or exchange
-        products.
-      </Text>
+      <Text style={styles.desc}>AMAL makes it so easy to connect people.</Text>
       <TouchableOpacity
         onPress={() => props.navigation.navigate('Auth')}
         style={styles.customerButton}>
