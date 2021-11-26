@@ -8,7 +8,7 @@ import Screen from '../components/Screen';
 import {deleteProduct} from '../store/actions/products';
 import * as AuthActions from '../store/actions/auth';
 
-const MyProductsScreen = props => {
+const MyJobsScreen = props => {
   const dispatch = useDispatch();
   const userProducts = useSelector(state => state.products.userproducts);
 
@@ -47,7 +47,7 @@ const MyProductsScreen = props => {
       <Button label={'Log out'} onPress={onPress} style={styles.button} />
       <Button
         label={'Post your job'}
-        onPress={() => props.navigation.navigate('AddProducts')}
+        onPress={() => props.navigation.navigate('AddJob')}
         style={styles.button}
       />
 
@@ -61,7 +61,7 @@ const MyProductsScreen = props => {
             title={itemData.item.title}
             price={itemData.item.price}
             onUpdate={() => {
-              props.navigation.navigate('EditProducts', {
+              props.navigation.navigate('EditJob', {
                 productId: itemData.item.id,
               });
             }}
@@ -73,13 +73,13 @@ const MyProductsScreen = props => {
   );
 };
 
-MyProductsScreen.navigationOptions = navData => {
+MyJobsScreen.navigationOptions = navData => {
   return {
     headerShown: false,
   };
 };
 
-export default MyProductsScreen;
+export default MyJobsScreen;
 
 const styles = StyleSheet.create({
   button: {

@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
 
-const ProductDetailsScreen = props => {
+const JobDetailsScreen = props => {
   const productId = props.navigation.getParam('productId');
 
   const selectedproduct = useSelector(state =>
@@ -56,10 +56,10 @@ const styles = StyleSheet.create({
   },
 });
 
-ProductDetailsScreen.navigationOptions = () => {
+JobDetailsScreen.navigationOptions = () => {
   return {
     headerShown: true,
-    title: 'Product details',
+    title: 'Job details',
     headerTintColor: 'black',
     headerStyle: {
       backgroundColor: Colors.green3,
@@ -71,4 +71,4 @@ ProductDetailsScreen.navigationOptions = () => {
   };
 };
 
-export default ProductDetailsScreen;
+export default JobDetailsScreen;

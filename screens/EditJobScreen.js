@@ -7,7 +7,7 @@ import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
 import Screen from '../components/Screen';
 import * as productsActions from '../store/actions/products';
 
-const EditProductsScreen = props => {
+const EditJobScreen = props => {
   const prodId = props.navigation.getParam('productId');
 
   const editedProduct = useSelector(state =>
@@ -77,7 +77,7 @@ const EditProductsScreen = props => {
   return (
     <Screen>
       <Header
-        title={'Update your product'}
+        title={'Update your job'}
         onBack={() => props.navigation.goBack()}
       />
       <KeyboardAvoidingViewWrapper>
@@ -156,9 +156,9 @@ const EditProductsScreen = props => {
   );
 };
 
-export default EditProductsScreen;
+export default EditJobScreen;
 
-EditProductsScreen.navigationOptions = navData => {
+EditJobScreen.navigationOptions = navData => {
   return {
     headerShown: false,
   };

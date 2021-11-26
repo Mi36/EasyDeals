@@ -7,7 +7,7 @@ import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
 import Screen from '../components/Screen';
 import * as productsActions from '../store/actions/products';
 
-const AddProductsScreen = props => {
+const AddJobScreen = props => {
   const prodId = props.navigation.getParam('productId');
   const editedProduct = useSelector(state =>
     state.products.userProducts?.find(prod => prod.id === prodId),
@@ -80,7 +80,7 @@ const AddProductsScreen = props => {
   }, [submitHandler]);
   return (
     <Screen>
-      <Header title={'Add product'} onBack={() => props.navigation.goBack()} />
+      <Header title={'Add job'} onBack={() => props.navigation.goBack()} />
       <KeyboardAvoidingViewWrapper>
         <ScrollView style={styles.form} bounces={false}>
           <View style={styles.formControl}>
@@ -164,9 +164,9 @@ const AddProductsScreen = props => {
   );
 };
 
-export default AddProductsScreen;
+export default AddJobScreen;
 
-AddProductsScreen.navigationOptions = () => {
+AddJobScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };

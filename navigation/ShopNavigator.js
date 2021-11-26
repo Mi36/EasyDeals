@@ -4,20 +4,20 @@ import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Colors from '../constants/Colors';
-import AddProductsScreen from '../screens/AddProductsScreen';
-import AllProductsScreen from '../screens/AllProductsScreen';
+import AddJobScreen from '../screens/AddJobScreen';
+import AllJobsScreen from '../screens/AllJobsScreen';
 import AuthScreen from '../screens/AuthScreen';
-import EditProductsScreen from '../screens/EditProductsScreen';
+import EditJobScreen from '../screens/EditJobScreen';
 import EntryScreen from '../screens/EntryScreen';
 import ForgotPassword from '../screens/ForgotPassword';
-import MyProductsScreen from '../screens/MyProductsScreen';
-import ProductDetailsScreen from '../screens/ProductDetailsScreen';
+import JobDetailsScreen from '../screens/JobDetailsScreen';
+import MyJobsScreen from '../screens/MyJobsScreen';
 import ResetPassword from '../screens/ResetPassword';
 import StartUpScreen from '../screens/StartUpScreen';
 
-const ProductsNavigator = createStackNavigator({
-  Products: AllProductsScreen,
-  ProductDetails: ProductDetailsScreen,
+const JobsNavigator = createStackNavigator({
+  Jobs: AllJobsScreen,
+  JobDetails: JobDetailsScreen,
 });
 
 const AuthNavigator = createStackNavigator({
@@ -28,14 +28,14 @@ const AuthNavigator = createStackNavigator({
 });
 
 const UpdateNavigator = createStackNavigator({
-  MyProducts: MyProductsScreen,
-  AddProducts: AddProductsScreen,
-  EditProducts: EditProductsScreen,
+  MyJobs: MyJobsScreen,
+  AddJob: AddJobScreen,
+  EditJob: EditJobScreen,
 });
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Products: ProductsNavigator,
+    Jobs: JobsNavigator,
     Admin: UpdateNavigator,
   },
   {
@@ -44,7 +44,7 @@ const TabNavigator = createBottomTabNavigator(
         const {routeName} = navigation.state;
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'Products') {
+        if (routeName === 'Jobs') {
           iconName = focused ? 'apps-outline' : 'apps-outline';
         } else if (routeName === 'Admin') {
           iconName = 'key-sharp';

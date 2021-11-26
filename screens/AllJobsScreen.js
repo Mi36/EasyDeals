@@ -16,7 +16,7 @@ import Colors from '../constants/Colors';
 import * as cartActions from '../store/actions/cart';
 import * as productActions from '../store/actions/products';
 
-const AllProductsScreen = props => {
+const AllJobsScreen = props => {
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +24,7 @@ const AllProductsScreen = props => {
   const [error, setError] = useState(); //initially undefined, thats why this is empty
 
   const selectItemHandler = id => {
-    props.navigation.navigate('ProductDetails', {productId: id});
+    props.navigation.navigate('JobDetails', {productId: id});
   };
 
   const loadProducts = useCallback(async () => {
@@ -107,7 +107,7 @@ const AllProductsScreen = props => {
   );
 };
 
-AllProductsScreen.navigationOptions = () => {
+AllJobsScreen.navigationOptions = () => {
   return {
     headerShown: false,
   };
@@ -170,4 +170,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllProductsScreen;
+export default AllJobsScreen;
