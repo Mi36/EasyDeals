@@ -23,7 +23,6 @@ export default (state = initialState, action) => {
         action.productData.id,
         action.productData.ownerId,
         action.productData.title,
-        action.productData.imageUrl,
         action.productData.description,
         action.productData.price,
         action.productData.phone,
@@ -42,7 +41,6 @@ export default (state = initialState, action) => {
         action.pid,
         state.userproducts[productIndex].ownerId,
         action.productData.title,
-        action.productData.imageUrl,
         action.productData.description,
         state.userproducts[productIndex].price, // price should not be edited
         action.productData.phone,

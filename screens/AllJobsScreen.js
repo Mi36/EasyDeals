@@ -13,7 +13,6 @@ import Header from '../components/Header';
 import ProductItem from '../components/ProductItem';
 import Screen from '../components/Screen';
 import Colors from '../constants/Colors';
-import * as cartActions from '../store/actions/cart';
 import * as productActions from '../store/actions/products';
 
 const AllJobsScreen = props => {
@@ -99,7 +98,7 @@ const AllJobsScreen = props => {
             price={itemData.item.price}
             title={itemData.item.title}
             onDetailsPress={() => selectItemHandler(itemData.item.id)}
-            onAddToCart={() => dispatch(cartActions.addToCart(itemData.item))}
+            onAddToCart={() => {}}
           />
         )}
       />

@@ -11,6 +11,7 @@ import * as AuthActions from '../store/actions/auth';
 const MyJobsScreen = props => {
   const dispatch = useDispatch();
   const userProducts = useSelector(state => state.products.userproducts);
+  console.log(userProducts);
 
   const actionLogOut = React.useCallback(() => {
     dispatch(AuthActions.logout());
@@ -43,7 +44,7 @@ const MyJobsScreen = props => {
 
   return (
     <Screen style={styles.main}>
-      <Header title={'My products'} />
+      <Header title={'My jobs'} />
       <Button label={'Log out'} onPress={onPress} style={styles.button} />
       <Button
         label={'Post your job'}
@@ -57,7 +58,6 @@ const MyJobsScreen = props => {
         keyExtractor={item => item.id}
         renderItem={itemData => (
           <ProductItem
-            image={itemData.item.imageUrl}
             title={itemData.item.title}
             price={itemData.item.price}
             onUpdate={() => {

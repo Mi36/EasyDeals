@@ -13,13 +13,10 @@ const EditJobScreen = props => {
   const editedProduct = useSelector(state =>
     state.products.userproducts?.find(prod => prod.id === prodId),
   );
-  const editedProduct1 = useSelector(state => state.products.userproducts);
-  console.log(editedProduct1, editedProduct.phone);
 
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState(editedProduct?.title);
-  const [imageUrl, setImageUrl] = useState(editedProduct?.imageUrl);
   const [description, setDescription] = useState(editedProduct?.description);
   const [phone, setPhone] = useState(editedProduct?.phone);
   const [place, setPlace] = useState(editedProduct?.place);
@@ -27,7 +24,6 @@ const EditJobScreen = props => {
   const [placeError, setPlaceError] = useState();
   const [descError, setDescError] = useState();
   const [titleError, setTitleError] = useState();
-  const [imageError, setImageError] = useState();
 
   const isValid = () => {
     if (phone.trim().length === 0) {
@@ -36,10 +32,6 @@ const EditJobScreen = props => {
     }
     if (title.trim().length === 0) {
       setTitleError('title cannot be empty');
-      return false;
-    }
-    if (imageUrl.trim().length === 0) {
-      setImageError('image url cannot be empty');
       return false;
     }
     if (place.trim().length === 0) {
@@ -55,20 +47,13 @@ const EditJobScreen = props => {
   const submitHandler = useCallback(() => {
     if (isValid()) {
       dispatch(
-        productsActions.updateProduct(
-          prodId,
-          title,
-          description,
-          imageUrl,
-          phone,
-          place,
-        ),
+        productsActions.updateProduct(prodId, title, description, phone, place),
       );
 
       props.navigation.goBack();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, prodId, title, description, imageUrl, phone, place]);
+  }, [dispatch, prodId, title, description, phone, place]);
 
   useEffect(() => {
     props.navigation.setParams({submit: submitHandler});
@@ -95,19 +80,6 @@ const EditJobScreen = props => {
               />
               <Text style={styles.error}>{titleError}</Text>
             </View>
-            <View style={styles.formControl}>
-              <Text style={styles.label}>Image URL</Text>
-              <TextInput
-                style={styles.input}
-                value={imageUrl}
-                onChangeText={text => {
-                  setImageUrl(text);
-                  setImageError(null);
-                }}
-              />
-              <Text style={styles.error}>{imageError}</Text>
-            </View>
-
             <View style={styles.formControl}>
               <Text style={styles.label}>Description</Text>
               <TextInput

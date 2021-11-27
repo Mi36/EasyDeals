@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {StyleSheet, Text, TextInput, View, ScrollView} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import {ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
+import {useDispatch} from 'react-redux';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import KeyboardAvoidingViewWrapper from '../components/KBAvoidingView';
@@ -9,14 +9,10 @@ import * as productsActions from '../store/actions/products';
 
 const AddJobScreen = props => {
   const prodId = props.navigation.getParam('productId');
-  const editedProduct = useSelector(state =>
-    state.products.userProducts?.find(prod => prod.id === prodId),
-  );
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [phone, setPhone] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
   const [place, setPlace] = useState('');
@@ -24,26 +20,18 @@ const AddJobScreen = props => {
   const submitHandler = useCallback(() => {
     if (isValid()) {
       dispatch(
-        productsActions.createProduct(
-          title,
-          description,
-          imageUrl,
-          +price,
-          phone,
-          place,
-        ),
+        productsActions.createProduct(title, description, +price, phone, place),
       );
 
       props.navigation.goBack();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, prodId, title, description, imageUrl, price, phone, place]);
+  }, [dispatch, prodId, title, description, price, phone, place]);
 
   const [phoneError, setPhoneError] = useState();
   const [placeError, setPlaceError] = useState();
   const [descError, setDescError] = useState();
   const [titleError, setTitleError] = useState();
-  const [imageError, setImageError] = useState();
   const [priceError, setPriceError] = useState();
 
   const isValid = () => {
@@ -55,10 +43,7 @@ const AddJobScreen = props => {
       setTitleError('title cannot be empty');
       return false;
     }
-    if (imageUrl.trim().length === 0) {
-      setImageError('image url cannot be empty');
-      return false;
-    }
+
     if (place.trim().length === 0) {
       setPlaceError('place cannot be empty');
       return false;
@@ -95,32 +80,20 @@ const AddJobScreen = props => {
             />
             <Text style={styles.error}>{titleError}</Text>
           </View>
+
           <View style={styles.formControl}>
-            <Text style={styles.label}>Image URL</Text>
+            <Text style={styles.label}>Price</Text>
             <TextInput
               style={styles.input}
-              value={imageUrl}
+              value={price}
               onChangeText={text => {
-                setImageUrl(text);
-                setImageError(null);
+                setPrice(text);
+                setPriceError(null);
               }}
             />
-            <Text style={styles.error}>{imageError}</Text>
+            <Text style={styles.error}>{priceError}</Text>
           </View>
-          {editedProduct ? null : (
-            <View style={styles.formControl}>
-              <Text style={styles.label}>Price</Text>
-              <TextInput
-                style={styles.input}
-                value={price}
-                onChangeText={text => {
-                  setPrice(text);
-                  setPriceError(null);
-                }}
-              />
-              <Text style={styles.error}>{priceError}</Text>
-            </View>
-          )}
+
           <View style={styles.formControl}>
             <Text style={styles.label}>Description</Text>
             <TextInput

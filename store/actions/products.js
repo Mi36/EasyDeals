@@ -10,7 +10,7 @@ export const fetchProducts = () => {
     const userId = getState().auth.userId;
     try {
       const response = await fetch(
-        'https://ecommerce-f33e7.firebaseio.com/products.json',
+        'https://ecommerce-f33e7.firebaseio.com/jobs.json',
       );
       // ok is a field available in response body
       //this is true if rsponse in 200 status code range
@@ -30,7 +30,6 @@ export const fetchProducts = () => {
             key,
             resData[key].ownerId,
             resData[key].title,
-            resData[key].imageUrl,
             resData[key].description,
             resData[key].price,
             resData[key].phone,
@@ -54,13 +53,15 @@ export const deleteProduct = productId => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products/${productId}.json?auth=${token}`,
+      `https://ecommerce-f33e7.firebaseio.com/jobs/${productId}.json?auth=${token}`,
       {
         method: 'DELETE',
       },
     );
 
-    if (!response.ok) throw new Error('SomeThing Went Wrong');
+    if (!response.ok) {
+      throw new Error('SomeThing Went Wrong');
+    }
     dispatch({type: DELETE_PRODUCT, pid: productId});
   };
 };
@@ -72,20 +73,12 @@ export const deleteProduct = productId => {
 //the function passed automatically by redux thunk
 //this do same thing as above, but before that
 //we can now execute any async code
-export const createProduct = (
-  title,
-  description,
-  imageUrl,
-  price,
-  phone,
-  place,
-) => {
-  console.log(title, description, imageUrl, price);
+export const createProduct = (title, description, price, phone, place) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
     const userId = getState().auth.userId;
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products.json?auth=${token}`,
+      `https://ecommerce-f33e7.firebaseio.com/jobs.json?auth=${token}`,
       {
         method: 'POST',
         headers: {
@@ -94,7 +87,6 @@ export const createProduct = (
         body: JSON.stringify({
           title,
           description,
-          imageUrl,
           price,
           ownerId: userId,
           phone,
@@ -110,7 +102,6 @@ export const createProduct = (
         id: resData.name,
         title,
         description,
-        imageUrl,
         price,
         ownerId: userId,
         phone,
@@ -120,21 +111,13 @@ export const createProduct = (
   };
 };
 
-export const updateProduct = (
-  id,
-  title,
-  description,
-  imageUrl,
-  phone,
-  place,
-) => {
+export const updateProduct = (id, title, description, phone, place) => {
   return async (dispatch, getState) => {
-    console.log('id', id);
     // here getState is used to access the whole store, and then token
     const token = getState().auth.token;
     console.log('token', token);
     const response = await fetch(
-      `https://ecommerce-f33e7.firebaseio.com/products/${id}.json?auth=${token}`,
+      `https://ecommerce-f33e7.firebaseio.com/jobs/${id}.json?auth=${token}`,
       {
         method: 'PATCH', // patch is used to update a specific item we requesting, PUT is fully override the data
         headers: {
@@ -143,7 +126,6 @@ export const updateProduct = (
         body: JSON.stringify({
           title,
           description,
-          imageUrl,
           phone,
           place,
         }),
@@ -159,7 +141,6 @@ export const updateProduct = (
       productData: {
         title,
         description,
-        imageUrl,
         phone,
         place,
       },
