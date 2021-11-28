@@ -1,4 +1,4 @@
 <resources>
-    <color name="bootsplash_background">#5DDEB4</color>
+    <color name="bootsplash_background">#FFFFFF</color>
     <color name="navigationbar_color">#29CC97</color>
 </resources>
