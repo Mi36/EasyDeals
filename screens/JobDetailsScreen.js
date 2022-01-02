@@ -15,7 +15,9 @@ const JobDetailsScreen = props => {
       <ScrollView style={styles.container}>
         <View style={styles.action} />
         <Text style={styles.price}>Price: ₹{selectedproduct?.price}</Text>
-        <Text style={styles.description}>{selectedproduct?.description}</Text>
+        <Text style={styles.description}>
+          Description: {selectedproduct?.description}
+        </Text>
         <Text style={styles.phone}>
           contact number: {selectedproduct?.phone}
         </Text>
@@ -37,7 +39,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     textAlign: 'center',
-    color: Colors.danger,
+    color: Colors.black2,
   },
   action: {
     marginVertical: 10,
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 20,
     fontWeight: '500',
-    color: Colors.pink5,
+    color: Colors.black2,
   },
 });
 
