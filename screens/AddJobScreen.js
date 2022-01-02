@@ -82,7 +82,7 @@ const AddJobScreen = props => {
           </View>
 
           <View style={styles.formControl}>
-            <Text style={styles.label}>Price</Text>
+            <Text style={styles.label}>Salary</Text>
             <TextInput
               style={styles.input}
               value={price}

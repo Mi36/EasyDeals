@@ -37,19 +37,20 @@ const styles = StyleSheet.create({
   customerText: {
     fontWeight: '600',
     fontSize: 20,
-    color: Colors.red,
-    textDecorationLine: 'underline',
+    color: Colors.white,
   },
   header: {
     alignItems: 'center',
     marginHorizontal: 20,
   },
   customerButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 40,
-    width: 100,
+    backgroundColor: Colors.black2,
+    borderRadius: 10,
+    width: 200,
     alignSelf: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    marginTop: 5,
   },
   desc: {
     textAlign: 'center',

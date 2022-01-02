@@ -14,7 +14,7 @@ const JobDetailsScreen = props => {
     <Screen>
       <ScrollView style={styles.container}>
         <View style={styles.action} />
-        <Text style={styles.price}>Price: ₹{selectedproduct?.price}</Text>
+        <Text style={styles.price}>Salary: ₹{selectedproduct?.price}</Text>
         <Text style={styles.description}>
           Description: {selectedproduct?.description}
         </Text>
